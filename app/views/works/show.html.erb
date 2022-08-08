@@ -1,0 +1,17 @@
+<p>
+  <strong>Title:</strong>
+  <%= @work.title %>
+</p>
+
+<p>
+  <strong>Public flag:</strong>
+  <%= @work.public_flag %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @work.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_work_path(@work) %> |
+<%= link_to 'Back', works_path %>
