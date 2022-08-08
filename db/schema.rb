@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_08_08_083846) do
     t.string "name"
     t.string "industry"
     t.string "occupation"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
