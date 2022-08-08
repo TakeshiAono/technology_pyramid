@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Title</th>
       <th>Public flag</th>
       <th>User</th>
       <th colspan="3"></th>
@@ -15,7 +15,7 @@
   <tbody>
     <% @works.each do |work| %>
       <tr>
-        <td><%= work.name %></td>
+        <td><%= work.title %></td>
         <td><%= work.public_flag %></td>
         <td><%= work.user_id %></td>
         <td><%= link_to 'Show', work %></td>

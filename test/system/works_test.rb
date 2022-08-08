@@ -14,8 +14,8 @@ class WorksTest < ApplicationSystemTestCase
     visit works_url
     click_on "New Work"
 
-    fill_in "Name", with: @work.name
     check "Public flag" if @work.public_flag
+    fill_in "Title", with: @work.title
     fill_in "User", with: @work.user_id
     click_on "Create Work"
 
@@ -27,8 +27,8 @@ class WorksTest < ApplicationSystemTestCase
     visit works_url
     click_on "Edit", match: :first
 
-    fill_in "Name", with: @work.name
     check "Public flag" if @work.public_flag
+    fill_in "Title", with: @work.title
     fill_in "User", with: @work.user_id
     click_on "Update Work"
 
