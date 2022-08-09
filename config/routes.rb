@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   resources :links
   resources :pyramids
   resources :technologies
+  resources :my_pages do
+    collection do
+      get 'search'
+    end
+  end
   resources :works
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users

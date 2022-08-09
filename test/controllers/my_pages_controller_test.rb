@@ -16,11 +16,11 @@ class MyPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create my_page" do
-    assert_difference('MyPage.count') do
+    assert_difference('User.count') do
       post my_pages_url, params: { my_page: {  } }
     end
 
-    assert_redirected_to my_page_url(MyPage.last)
+    assert_redirected_to my_page_url(User.last)
   end
 
   test "should show my_page" do
@@ -39,7 +39,7 @@ class MyPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy my_page" do
-    assert_difference('MyPage.count', -1) do
+    assert_difference('User.count', -1) do
       delete my_page_url(@my_page)
     end
 
