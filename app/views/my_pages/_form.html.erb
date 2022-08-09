@@ -1,4 +1,4 @@
-<%= form_with(model: my_page, local: true) do |form| %>
+<%= form_with(model: my_page, local: true, url:new_my_page_path) do |form| %>
   <% if my_page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(my_page.errors.count, "error") %> prohibited this my_page from being saved:</h2>
