@@ -5,6 +5,7 @@ class MyPagesController < ApplicationController
   # GET /my_pages or /my_pages.json
   def index
     @my_pages = User.all
+    @users = User.all
   end
 
   # GET /my_pages/1 or /my_pages/1.json
@@ -60,7 +61,7 @@ class MyPagesController < ApplicationController
 
   def search
     @my_pages = @q.result
-    render :index
+    render searches_index_path
   end
 
   private

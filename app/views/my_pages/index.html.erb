@@ -2,32 +2,18 @@
 
 <h1>My Pages</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <div>
     <h2>ワーク検索</h2>
-    <%= search_form_for @q, url: search_my_pages_path do |f| %>
+    <%= search_form_for @q, url: searches_index_path do |f| %>
       <%= f.label :title_cont, 'ワーク名' %>
       <%= f.search_field :title_cont %>
       <%= f.submit '検索' %>
     <% end %>
   </div>
-  <tbody>
-    <% @my_pages.each do |my_page| %>
+
+    <% @users.each do |user| %>
       <tr>
-        <td><%= link_to 'Show', my_page %></td>
-        <td><%= link_to 'Edit', edit_my_page_path(my_page) %></td>
-        <td><%= link_to 'Destroy', my_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user.name %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New My Page', new_my_page_path %>
