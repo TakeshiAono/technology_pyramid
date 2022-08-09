@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Pages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @my_pages.each do |my_page| %>
+      <tr>
+        <td><%= link_to 'Show', my_page %></td>
+        <td><%= link_to 'Edit', edit_my_page_path(my_page) %></td>
+        <td><%= link_to 'Destroy', my_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New My Page', new_my_page_path %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pyramids</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Public flag</th>
+      <th>Technology</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pyramids.each do |pyramid| %>
+      <tr>
+        <td><%= pyramid.name %></td>
+        <td><%= pyramid.public_flag %></td>
+        <td><%= pyramid.technology_id %></td>
+        <td><%= link_to 'Show', pyramid %></td>
+        <td><%= link_to 'Edit', edit_pyramid_path(pyramid) %></td>
+        <td><%= link_to 'Destroy', pyramid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pyramid', new_pyramid_path %>

@@ -1,0 +1,32 @@
+<%= form_with(model: pyramid, local: true) do |form| %>
+  <% if pyramid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pyramid.errors.count, "error") %> prohibited this pyramid from being saved:</h2>
+
+      <ul>
+        <% pyramid.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :public_flag %>
+    <%= form.check_box :public_flag %>
+  </div>
+
+  <div class="field">
+    <%= form.label :technology_id %>
+    <%= form.text_field :technology_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
