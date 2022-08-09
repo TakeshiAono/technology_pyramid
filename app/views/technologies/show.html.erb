@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @technology.name %>
+</p>
+
+<p>
+  <strong>Public flag:</strong>
+  <%= @technology.public_flag %>
+</p>
+
+<p>
+  <strong>Upper technology:</strong>
+  <%= @technology.upper_technology %>
+</p>
+
+<p>
+  <strong>Lowwer technology:</strong>
+  <%= @technology.lowwer_technology %>
+</p>
+
+<p>
+  <strong>Work:</strong>
+  <%= @technology.work_id %>
+</p>
+
+<%= link_to 'Edit', edit_technology_path(@technology) %> |
+<%= link_to 'Back', technologies_path %>

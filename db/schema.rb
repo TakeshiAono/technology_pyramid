@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_08_130909) do
+ActiveRecord::Schema.define(version: 2022_08_09_042518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "technologies", force: :cascade do |t|
+    t.string "name"
+    t.boolean "public_flag"
+    t.integer "upper_technology"
+    t.integer "lower_technology"
+    t.bigint "work_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["work_id"], name: "index_technologies_on_work_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,5 +60,8 @@ ActiveRecord::Schema.define(version: 2022_08_08_130909) do
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
+  add_foreign_key "technologies", "technologies", column: "lower_technology"
+  add_foreign_key "technologies", "technologies", column: "upper_technology"
+  add_foreign_key "technologies", "works"
   add_foreign_key "works", "users"
 end
