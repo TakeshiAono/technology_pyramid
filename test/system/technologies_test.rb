@@ -14,7 +14,7 @@ class TechnologiesTest < ApplicationSystemTestCase
     visit technologies_url
     click_on "New Technology"
 
-    fill_in "Lowwer technology", with: @technology.lowwer_technology
+    fill_in "Lower technology", with: @technology.lower_technology
     fill_in "Name", with: @technology.name
     check "Public flag" if @technology.public_flag
     fill_in "Upper technology", with: @technology.upper_technology
@@ -29,7 +29,7 @@ class TechnologiesTest < ApplicationSystemTestCase
     visit technologies_url
     click_on "Edit", match: :first
 
-    fill_in "Lowwer technology", with: @technology.lowwer_technology
+    fill_in "Lower technology", with: @technology.lower_technology
     fill_in "Name", with: @technology.name
     check "Public flag" if @technology.public_flag
     fill_in "Upper technology", with: @technology.upper_technology

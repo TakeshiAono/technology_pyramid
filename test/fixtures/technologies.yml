@@ -4,12 +4,12 @@ one:
   name: MyString
   public_flag: false
   upper_technology: 1
-  lowwer_technology: 1
+  lower_technology: 1
   work: one
 
 two:
   name: MyString
   public_flag: false
   upper_technology: 1
-  lowwer_technology: 1
+  lower_technology: 1
   work: two
