@@ -1,2 +1,27 @@
-<h1>Searches#index</h1>
-<p>Find me in app/views/searches/index.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<h1>Searches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Works</th>
+      <th>User</th>
+      <th>Favorite</th>
+      <th>Import</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @works.each do |work| %>
+      <tr>
+        <td><%= work.title %></td>
+        <td><%= work.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Link', new_link_path %>
