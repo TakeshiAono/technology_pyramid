@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searches/index'
   resources :links
   resources :pyramids
   resources :technologies

@@ -5,6 +5,7 @@ class MyPagesController < ApplicationController
   # GET /my_pages or /my_pages.json
   def index
     @my_pages = User.all
+    @users = User.all
   end
 
   # GET /my_pages/1 or /my_pages/1.json
@@ -58,14 +59,10 @@ class MyPagesController < ApplicationController
     end
   end
 
-  def search
-    @my_pages = @q.result
-    render :index
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_q
+      byebug
       @q = Work.ransack(params[:q])
     end
 
