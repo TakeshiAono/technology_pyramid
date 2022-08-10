@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_09_073247) do
+ActiveRecord::Schema.define(version: 2022_08_10_113423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 2022_08_09_073247) do
   create_table "pyramids", force: :cascade do |t|
     t.string "name"
     t.boolean "public_flag"
-    t.bigint "technology_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["technology_id"], name: "index_pyramids_on_technology_id"
+    t.bigint "work_id", null: false
+    t.index ["work_id"], name: "index_pyramids_on_work_id"
   end
 
   create_table "technologies", force: :cascade do |t|
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 2022_08_09_073247) do
     t.boolean "public_flag"
     t.integer "upper_technology"
     t.integer "lower_technology"
-    t.bigint "work_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["work_id"], name: "index_technologies_on_work_id"
+    t.bigint "pyramid_id", null: false
+    t.index ["pyramid_id"], name: "index_technologies_on_pyramid_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,15 +86,16 @@ ActiveRecord::Schema.define(version: 2022_08_09_073247) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active_flag"
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
   add_foreign_key "link_access_counters", "links"
   add_foreign_key "link_access_counters", "pyramids"
   add_foreign_key "links", "technologies"
-  add_foreign_key "pyramids", "technologies"
+  add_foreign_key "pyramids", "works"
+  add_foreign_key "technologies", "pyramids"
   add_foreign_key "technologies", "technologies", column: "lower_technology"
   add_foreign_key "technologies", "technologies", column: "upper_technology"
-  add_foreign_key "technologies", "works"
   add_foreign_key "works", "users"
 end
