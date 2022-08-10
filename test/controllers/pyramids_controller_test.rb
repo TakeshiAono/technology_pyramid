@@ -17,7 +17,7 @@ class PyramidsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create pyramid" do
     assert_difference('Pyramid.count') do
-      post pyramids_url, params: { pyramid: { name: @pyramid.name, public_flag: @pyramid.public_flag, technology_id: @pyramid.technology_id } }
+      post pyramids_url, params: { pyramid: { name: @pyramid.name, public_flag: @pyramid.public_flag, work_id: @pyramid.work_id } }
     end
 
     assert_redirected_to pyramid_url(Pyramid.last)
@@ -34,7 +34,7 @@ class PyramidsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update pyramid" do
-    patch pyramid_url(@pyramid), params: { pyramid: { name: @pyramid.name, public_flag: @pyramid.public_flag, technology_id: @pyramid.technology_id } }
+    patch pyramid_url(@pyramid), params: { pyramid: { name: @pyramid.name, public_flag: @pyramid.public_flag, work_id: @pyramid.work_id } }
     assert_redirected_to pyramid_url(@pyramid)
   end
 

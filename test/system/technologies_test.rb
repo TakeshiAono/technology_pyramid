@@ -18,7 +18,7 @@ class TechnologiesTest < ApplicationSystemTestCase
     fill_in "Name", with: @technology.name
     check "Public flag" if @technology.public_flag
     fill_in "Upper technology", with: @technology.upper_technology
-    fill_in "Work", with: @technology.work_id
+    fill_in "Work", with: @technology.pyramid_id
     click_on "Create Technology"
 
     assert_text "Technology was successfully created"
@@ -33,7 +33,7 @@ class TechnologiesTest < ApplicationSystemTestCase
     fill_in "Name", with: @technology.name
     check "Public flag" if @technology.public_flag
     fill_in "Upper technology", with: @technology.upper_technology
-    fill_in "Work", with: @technology.work_id
+    fill_in "Work", with: @technology.pyramid_id
     click_on "Update Technology"
 
     assert_text "Technology was successfully updated"
