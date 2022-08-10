@@ -1,29 +1,56 @@
 <h1>Works</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Public flag</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @works.each do |work| %>
-      <tr>
-        <td><%= work.title %></td>
-        <td><%= work.public_flag %></td>
-        <td><%= work.user_id %></td>
-        <td><%= link_to 'Show', work %></td>
-        <td><%= link_to 'Edit', edit_work_path(work) %></td>
-        <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
 <%= link_to 'New Work', new_work_path %>
+
+<div class = "active_works">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Public flag</th>
+        <th>User</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @works.each do |work| %>
+        <tr>
+          <td><%= work.title %></td>
+          <td><%= work.public_flag %></td>
+          <td><%= work.user_id %></td>
+          <td><%= link_to 'Show', work %></td>
+          <td><%= link_to 'Edit', edit_work_path(work) %></td>
+          <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class = "inactive_works">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Public flag</th>
+        <th>User</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @works.each do |work| %>
+        <tr>
+          <td><%= work.title %></td>
+          <td><%= work.public_flag %></td>
+          <td><%= work.user_id %></td>
+          <td><%= link_to 'Show', work %></td>
+          <td><%= link_to 'Edit', edit_work_path(work) %></td>
+          <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
