@@ -1,4 +1,4 @@
 class Work < ApplicationRecord
-  has_many :pyramids
+  has_many :technologies
   belongs_to :user
 end
