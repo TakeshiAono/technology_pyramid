@@ -37,7 +37,6 @@ User::count.times do
   i += 1
   k = 0
   5.times do
-    puts k
     Work.create!(
       title: work_example[k], 
       public_flag: true,
