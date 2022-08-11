@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pyramid: one
+  technology: one
+
+two:
+  pyramid: two
+  technology: two
