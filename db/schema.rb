@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_11_113435) do
+ActiveRecord::Schema.define(version: 2022_08_11_115347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2022_08_11_113435) do
   end
 
   create_table "pyramids", force: :cascade do |t|
-    t.string "name"
     t.boolean "public_flag"
     t.bigint "technology_id", null: false
     t.datetime "created_at", precision: 6, null: false

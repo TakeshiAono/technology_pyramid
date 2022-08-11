@@ -32,7 +32,6 @@ end
 
 
 work_example = ['rails', 'ruby', 'php', 'python', 'laravel']
-initialize
 User::count.times do
   i += 1
   k = 0
@@ -45,4 +44,16 @@ User::count.times do
     )
     k += 1
   end
+end
+
+technology_example = ['クラス', 'インスタンス', 'クラスメソッド', 'rails', 'ruby']
+k = 0
+5.times do
+  Technology.create!(
+    name: technology_example[k], 
+    public_flag: true,
+    work_id: 1,
+    basic_flag: false
+  )
+  k += 1
 end
