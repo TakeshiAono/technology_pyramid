@@ -16,7 +16,7 @@ class PyramidsTest < ApplicationSystemTestCase
 
     fill_in "Name", with: @pyramid.name
     check "Public flag" if @pyramid.public_flag
-    fill_in "Technology", with: @pyramid.work_id
+    fill_in "Technology", with: @pyramid.technology_id
     click_on "Create Pyramid"
 
     assert_text "Pyramid was successfully created"
@@ -29,7 +29,7 @@ class PyramidsTest < ApplicationSystemTestCase
 
     fill_in "Name", with: @pyramid.name
     check "Public flag" if @pyramid.public_flag
-    fill_in "Technology", with: @pyramid.work_id
+    fill_in "Technology", with: @pyramid.technology_id
     click_on "Update Pyramid"
 
     assert_text "Pyramid was successfully updated"

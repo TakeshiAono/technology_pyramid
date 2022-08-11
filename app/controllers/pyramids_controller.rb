@@ -65,6 +65,6 @@ class PyramidsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pyramid_params
-      params.require(:pyramid).permit(:name, :public_flag, :work_id)
+      params.require(:pyramid).permit(:name, :public_flag, :technology_id)
     end
 end
