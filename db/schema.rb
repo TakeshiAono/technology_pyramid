@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_10_113423) do
+ActiveRecord::Schema.define(version: 2022_08_11_051047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "circulations", force: :cascade do |t|
+    t.bigint "pyramid_id", null: false
+    t.bigint "technology_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pyramid_id"], name: "index_circulations_on_pyramid_id"
+    t.index ["technology_id"], name: "index_circulations_on_technology_id"
+  end
 
   create_table "link_access_counters", force: :cascade do |t|
     t.bigint "pyramid_id", null: false
@@ -90,6 +99,8 @@ ActiveRecord::Schema.define(version: 2022_08_10_113423) do
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
+  add_foreign_key "circulations", "pyramids"
+  add_foreign_key "circulations", "technologies"
   add_foreign_key "link_access_counters", "links"
   add_foreign_key "link_access_counters", "pyramids"
   add_foreign_key "links", "technologies"
