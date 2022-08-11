@@ -13,7 +13,8 @@
   <tbody>
     <% @pyramids.each do |pyramid| %>
       <tr>
-        <td><%= pyramid.name %></td>
+      <% byebug %>
+        <td><%= pyramid.child_technology.name %></td>
         <td><%= link_to 'Show', pyramid %></td>
         <td><%= link_to 'Edit', edit_pyramid_path(pyramid) %></td>
         <td><%= link_to 'Destroy', pyramid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
