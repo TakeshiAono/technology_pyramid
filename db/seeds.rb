@@ -19,7 +19,7 @@ User.create!(
   admin: true
 )
 
-9.times do 
+4.times do 
   User.create!(
     name: Faker::Name.name, 
     email: Faker::Internet.email, 
@@ -46,14 +46,24 @@ User::count.times do
   end
 end
 
-technology_example = ['クラス', 'インスタンス', 'クラスメソッド', 'rails', 'ruby']
+technology_example = ['クラス', 'インスタンス', 'クラスメソッド', 'rails', 'ruby', 'インスタンス変数', 'selfメソッド','アクセスメソッド','プライベートメソッド','パブリックメソッド']
 k = 0
-5.times do
+10.times do
   Technology.create!(
     name: technology_example[k], 
     public_flag: true,
     work_id: 1,
     basic_flag: false
+  )
+  k += 1
+end
+
+k = 1
+5.times do
+  Pyramid.create!(
+    parent_technology_id: 1, 
+    child_technology_id: k, 
+    public_flag: true,
   )
   k += 1
 end
