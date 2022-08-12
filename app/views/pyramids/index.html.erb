@@ -11,13 +11,12 @@
   </thead>
 
   <tbody>
-    <% @pyramids.each do |pyramid| %>
+    <% @technologies.each do |technology| %>
       <tr>
-      <% byebug %>
-        <td><%= pyramid.child_technology.name %></td>
-        <td><%= link_to 'Show', pyramid %></td>
-        <td><%= link_to 'Edit', edit_pyramid_path(pyramid) %></td>
-        <td><%= link_to 'Destroy', pyramid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= technology.name %></td>
+        <td><%= link_to '技術の中身を見る', technology %></td>
+        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
+        <td><%= link_to 'Destroy', technology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Pyramid', new_pyramid_path %>
+<%# <%= link_to 'New Pyramid', new_pyramid_path %> %>
