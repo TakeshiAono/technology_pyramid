@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_11_130017) do
+ActiveRecord::Schema.define(version: 2022_08_12_110936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_08_11_130017) do
     t.bigint "work_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "basic_flag"
+    t.boolean "basic_flag", default: true
     t.index ["work_id"], name: "index_technologies_on_work_id"
   end
 

@@ -46,14 +46,27 @@ User::count.times do
   end
 end
 
-technology_example = ['クラス', 'インスタンス', 'クラスメソッド', 'rails', 'ruby', 'インスタンス変数', 'selfメソッド','アクセスメソッド','プライベートメソッド','パブリックメソッド']
+technology_example = ['クラス', 'インスタンス', 'クラスメソッド', 'rails','ruby']
+
+basic_technology_example = ['インスタンス変数', 'selfメソッド','アクセスメソッド','プライベートメソッド','パブリックメソッド']
 k = 0
-10.times do
+5.times do
   Technology.create!(
     name: technology_example[k], 
     public_flag: true,
     work_id: 1,
     basic_flag: false
+  )
+  k += 1
+end
+
+k = 0
+5.times do
+  Technology.create!(
+    name: basic_technology_example[k], 
+    public_flag: true,
+    work_id: 1,
+    basic_flag: true
   )
   k += 1
 end

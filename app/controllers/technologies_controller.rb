@@ -3,7 +3,12 @@ class TechnologiesController < ApplicationController
 
   # GET /technologies or /technologies.json
   def index
-    @technologies = Technology.all
+    if params[:format].present?
+      session[:work_id] = params[:format]
+    end
+    work = Work.find(session[:work_id])
+    @technologies = work.technologies.where(basic_flag: false)
+    @basic_technologies = work.technologies.where(basic_flag: true)
   end
 
   # GET /technologies/1 or /technologies/1.json
