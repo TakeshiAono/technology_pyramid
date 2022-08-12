@@ -10,8 +10,8 @@ i = 0
 k = 0
 
 User.create!(
-  name: "aono", 
-  email: "aono0321@yahoo.co.jp", 
+  name: "guest", 
+  email: "guest@example.com", 
   password: "aoao0101",
   password_confirmation: "aoao0101",
   industry: "製造業",
