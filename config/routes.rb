@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "my_pages#index"
   get 'searches/index'
   resources :links
   resources :pyramids
@@ -15,5 +16,4 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  root "works#index"
 end

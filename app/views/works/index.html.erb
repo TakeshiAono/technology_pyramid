@@ -14,7 +14,7 @@
     </thead>
   
     <tbody>
-      <% @works.each do |work| %>
+      <% @active_works.each do |work| %>
         <tr>
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>
@@ -40,7 +40,7 @@
     </thead>
   
     <tbody>
-      <% @works.each do |work| %>
+      <% @inactive_works.each do |work| %>
         <tr>
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>
