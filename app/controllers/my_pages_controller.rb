@@ -4,6 +4,9 @@ class MyPagesController < ApplicationController
 
   # GET /my_pages or /my_pages.json
   def index
+    # if current_user.sign_in_count.zero?
+      # redirect_to top_my_pages_path
+    # end
     @my_pages = User.all
     @users = User.all
   end
@@ -57,6 +60,11 @@ class MyPagesController < ApplicationController
       format.html { redirect_to my_pages_url, notice: "My page was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def top
+    # render top_my_pages_path
+    # current_user.update(sign_in_count: current_user.sign_in_count + 1)
   end
 
   private
