@@ -75,7 +75,7 @@ k=1
 5.times do
   Hierarcky.create!(
     technology_id: 1 ,
-    upper_technology: k,
+    lower_technology_id: k,
     access_counter: k,
     good_counter: k,
   )

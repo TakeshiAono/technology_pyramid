@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2022_08_14_094129) do
 
   create_table "hierarckies", force: :cascade do |t|
     t.bigint "technology_id", null: false
-    t.bigint "upper_technology"
+    t.bigint "lower_technology_id"
     t.bigint "access_counter"
     t.bigint "good_counter"
     t.datetime "created_at", precision: 6, null: false
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2022_08_14_094129) do
   end
 
   add_foreign_key "hierarckies", "technologies"
-  add_foreign_key "hierarckies", "technologies", column: "upper_technology"
+  add_foreign_key "hierarckies", "technologies", column: "lower_technology_id"
   add_foreign_key "links", "technologies"
   add_foreign_key "technologies", "works"
   add_foreign_key "works", "users"
