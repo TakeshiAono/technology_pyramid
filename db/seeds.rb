@@ -71,6 +71,17 @@ k = 0
   k += 1
 end
 
+k=1
+5.times do
+  Hierarcky.create!(
+    technology_id: 1 ,
+    upper_technology: k,
+    access_counter: k,
+    good_counter: k,
+  )
+  k += 1
+end
+
 # k = 1
 # 5.times do
 #   Pyramid.create!(
