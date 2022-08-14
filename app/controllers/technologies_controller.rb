@@ -17,7 +17,7 @@ class TechnologiesController < ApplicationController
 
   # GET /technologies/new
   def new
-    @technology = Technology.new
+    @technology = Technology.new(work_id: session[:work_id])
   end
 
   # GET /technologies/1/edit
