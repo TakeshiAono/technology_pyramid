@@ -17,7 +17,7 @@ class TechnologiesController < ApplicationController
 
   # GET /technologies/new
   def new
-    @technology = Technology.new
+    @technology = Technology.new(work_id: session[:work_id])
   end
 
   # GET /technologies/1/edit
@@ -70,6 +70,6 @@ class TechnologiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def technology_params
-      params.require(:technology).permit(:name, :public_flag, :upper_technology, :lower_technology, :work_id)
+      params.require(:technology).permit(:name, :public_flag, :upper_technology, :lower_technology, :work_id, :basic_flag)
     end
 end
