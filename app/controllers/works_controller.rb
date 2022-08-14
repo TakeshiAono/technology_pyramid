@@ -68,6 +68,6 @@ class WorksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def work_params
-      params.require(:work).permit(:title, :public_flag, :user_id)
+      params.require(:work).permit(:title, :public_flag, :user_id, :active_flag)
     end
 end
