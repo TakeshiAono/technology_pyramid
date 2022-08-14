@@ -15,16 +15,6 @@ ActiveRecord::Schema.define(version: 2022_08_14_043705) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "link_access_counters", force: :cascade do |t|
-    t.bigint "pyramid_id", null: false
-    t.bigint "link_id", null: false
-    t.integer "counter"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["link_id"], name: "index_link_access_counters_on_link_id"
-    t.index ["pyramid_id"], name: "index_link_access_counters_on_pyramid_id"
-  end
-
   create_table "links", force: :cascade do |t|
     t.string "title"
     t.string "url"
@@ -33,14 +23,6 @@ ActiveRecord::Schema.define(version: 2022_08_14_043705) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["technology_id"], name: "index_links_on_technology_id"
-  end
-
-  create_table "pyramids", force: :cascade do |t|
-    t.boolean "public_flag"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "parent_technology_id"
-    t.bigint "child_technology_id"
   end
 
   create_table "technologies", force: :cascade do |t|
@@ -90,11 +72,7 @@ ActiveRecord::Schema.define(version: 2022_08_14_043705) do
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
-  add_foreign_key "link_access_counters", "links"
-  add_foreign_key "link_access_counters", "pyramids"
   add_foreign_key "links", "technologies"
-  add_foreign_key "pyramids", "technologies", column: "child_technology_id"
-  add_foreign_key "pyramids", "technologies", column: "parent_technology_id"
   add_foreign_key "technologies", "technologies", column: "lower_technology"
   add_foreign_key "technologies", "technologies", column: "upper_technology"
   add_foreign_key "technologies", "works"
