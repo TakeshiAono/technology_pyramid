@@ -2,6 +2,12 @@
 
 <h1>Searches</h1>
 
+<%= search_form_for @q, url: searches_index_path do |f| %>
+      <%= f.label :title_cont, 'ワーク名' %>
+      <%= f.search_field :title_cont %>
+      <%= f.submit '検索' %>
+    <% end %>
+
 <table>
   <thead>
     <tr>
