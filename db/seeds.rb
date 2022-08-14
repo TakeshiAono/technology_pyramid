@@ -71,15 +71,15 @@ k = 0
   k += 1
 end
 
-k = 1
-5.times do
-  Pyramid.create!(
-    parent_technology_id: 1, 
-    child_technology_id: k, 
-    public_flag: true,
-  )
-  k += 1
-end
+# k = 1
+# 5.times do
+#   Pyramid.create!(
+#     parent_technology_id: 1, 
+#     child_technology_id: k, 
+#     public_flag: true,
+#   )
+#   k += 1
+# end
 
 Link.create!(
   title: "クラスについて（qiita記事）",
@@ -116,30 +116,30 @@ Link.create!(
   technology_id: 1
 )
 
-LinkAccessCounter.create!(
-  pyramid_id: 1,
-  link_id: 1,
-  counter: 2000
-)
+# LinkAccessCounter.create!(
+#   pyramid_id: 1,
+#   link_id: 1,
+#   counter: 2000
+# )
 
-LinkAccessCounter.create!(
-  pyramid_id: 1,
-  link_id: 2,
-  counter: 300
-)
+# LinkAccessCounter.create!(
+#   pyramid_id: 1,
+#   link_id: 2,
+#   counter: 300
+# )
 
-LinkAccessCounter.create!(
-  pyramid_id: 1,
-  link_id: 3,
-  counter: 500
-)
-LinkAccessCounter.create!(
-  pyramid_id: 1,
-  link_id: 4,
-  counter: 80
-)
-LinkAccessCounter.create!(
-  pyramid_id: 1,
-  link_id: 5,
-  counter: 300
-)
+# LinkAccessCounter.create!(
+#   pyramid_id: 1,
+#   link_id: 3,
+#   counter: 500
+# )
+# LinkAccessCounter.create!(
+#   pyramid_id: 1,
+#   link_id: 4,
+#   counter: 80
+# )
+# LinkAccessCounter.create!(
+#   pyramid_id: 1,
+#   link_id: 5,
+#   counter: 300
+# )
