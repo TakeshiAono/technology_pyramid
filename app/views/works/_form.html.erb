@@ -21,6 +21,11 @@
     <%= form.check_box :public_flag %>
   </div>
 
+  <div class="field">
+    <%= form.label :active_flag %>
+    <%= form.check_box :active_flag %>
+  </div>
+
     <%= form.hidden_field :user_id, :value => current_user.id %>
 
   <div class="actions">

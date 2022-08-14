@@ -7,7 +7,6 @@ class WorksController < ApplicationController
     # works = Work.all
       @active_works = current_user.works.where(active_flag: true)
       @inactive_works = current_user.works.where(active_flag: false)
-      byebug
   end
 
   # GET /works/1 or /works/1.json
@@ -69,6 +68,6 @@ class WorksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def work_params
-      params.require(:work).permit(:title, :public_flag, :user_id)
+      params.require(:work).permit(:title, :public_flag, :user_id, :active_flag)
     end
 end
