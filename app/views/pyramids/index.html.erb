@@ -11,12 +11,12 @@
   </thead>
   <%= link_to "#{Technology.find(session[:technology_id]).name}",links_path(session[:technology_id]) %>
   <tbody>
-    <% @technologies.each do |technology| %>
+    <% @lower_technologies.each do |technology| %>
       <tr>
-        <td><%= technology.name %></td>
-        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
-        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
-        <td><%= link_to 'Destroy', technology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= technology.upper_technology.name %></td>
+        <td><%= link_to '技術の中身を見る', links_path(technology.upper_technology) %></td>
+        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology.upper_technology) %></td>
+        <td><%= link_to 'Destroy', technology.upper_technology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
