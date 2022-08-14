@@ -10,8 +10,6 @@
     <tr>
       <th>Name</th>
       <th>Public flag</th>
-      <th>Upper technology</th>
-      <th>Lower technology</th>
       <th>Work</th>
       <th>basic_flag</th>
       <th colspan="3"></th>
@@ -23,8 +21,8 @@
       <tr>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <td><%= technology.upper_technology %></td>
-        <td><%= technology.lower_technology %></td>
+        <%# <td><%= technology.upper_technology %></td> %>
+        <%# <td><%= technology.lower_technology %></td> %>
         <td><%= technology.work_id %></td>
         <td><%= technology.basic_flag %></td>
         <td><%= link_to 'pyramid', pyramids_path(technology) %></td>
@@ -54,8 +52,8 @@
       <tr>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <td><%= technology.upper_technology %></td>
-        <td><%= technology.lower_technology %></td>
+        <%# <td><%= technology.upper_technology %></td> %>
+        <%# <td><%= technology.lower_technology %></td> %>
         <td><%= technology.work_id %></td>
         <td><%= technology.basic_flag %></td>
         <td><%= link_to 'pyramid', pyramids_path(technology) %></td>
