@@ -56,7 +56,9 @@ class PyramidsController < ApplicationController
 
   # DELETE /pyramids/1 or /pyramids/1.json
   def destroy
-    @pyramid.destroy
+    # @pyramid.destroy
+    hierarcky = Hierarcky.where(technology_id: session[:top_technology_id])
+    hierarcky.find_by(lower_technology_id: params[:id]).update(lower_technology_id: nil)
 
     respond_to do |format|
       format.html { redirect_to pyramids_url, notice: "Pyramid was successfully destroyed." }
@@ -67,7 +69,7 @@ class PyramidsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pyramid
-      @pyramid = Pyramid.find(params[:id])
+      # @pyramid = Pyramid.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
