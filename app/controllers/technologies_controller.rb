@@ -20,6 +20,7 @@ class TechnologiesController < ApplicationController
     path = Rails.application.routes.recognize_path(request.referer)
     if path[:controller] == "pyramids" && path[:action] == "index"
       session[:parent_technology_id] = params[:format]
+      session[:before_controller_path] = path[:controller]
     end
     @technology = Technology.new(work_id: session[:work_id])
   end
@@ -41,8 +42,6 @@ class TechnologiesController < ApplicationController
       end
     end
     Hierarcky.create(technology_id: session[:parent_technology_id],lower_technology_id: @technology.id)
-    session[:parent_technology_id] =nil
-
   end
 
   # PATCH/PUT /technologies/1 or /technologies/1.json
