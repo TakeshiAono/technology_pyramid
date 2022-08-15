@@ -18,7 +18,7 @@
 <%= link_to 'Edit', edit_technology_path(@technology) %> |
 <% if session[:before_controller_path].present? %>
   <%= link_to 'Back', pyramids_path(session[:top_technology_id]) %>
-  <%= session[:top_technology_id] = nil %>
+  <%# <%= session[:top_technology_id] = nil %> %>
 <% else %>
   <%= link_to 'Back', technologies_path %>
 <% end %>
