@@ -46,7 +46,7 @@ User::count.times do
   end
 end
 
-technology_example = ['クラス', 'インスタンス', 'クラスメソッド', 'rails','ruby']
+technology_example = ['プログラミング言語','ruby','クラス', 'インスタンス', 'クラスメソッド', 'rails','ruby']
 
 basic_technology_example = ['インスタンス変数', 'selfメソッド','アクセスメソッド','プライベートメソッド','パブリックメソッド']
 k = 0
@@ -71,10 +71,32 @@ k = 0
   k += 1
 end
 
-k=1
+k=2
 5.times do
   Hierarcky.create!(
     technology_id: 1 ,
+    lower_technology_id: k,
+    access_counter: k,
+    good_counter: k,
+  )
+  k += 1
+end
+
+k=3
+5.times do
+  Hierarcky.create!(
+    technology_id: 2 ,
+    lower_technology_id: k,
+    access_counter: k,
+    good_counter: k,
+  )
+  k += 1
+end
+
+k=4
+5.times do
+  Hierarcky.create!(
+    technology_id: 3 ,
     lower_technology_id: k,
     access_counter: k,
     good_counter: k,
