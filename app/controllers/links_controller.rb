@@ -3,6 +3,7 @@ class LinksController < ApplicationController
 
   # GET /links or /links.json
   def index
+    session[:technology_id] = params[:format]
     @links = Link.where(technology_id: params[:format])
   end
 
@@ -12,7 +13,7 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
-    @link = Link.new
+    @link = Link.new(technology_id: session[:technology_id])
   end
 
   # GET /links/1/edit
