@@ -11,7 +11,7 @@ class PyramidsController < ApplicationController
     # else
       # @pyramids = Pyramid.all
     # end
-   end
+  end
 
   # GET /pyramids/1 or /pyramids/1.json
   def show

@@ -3,6 +3,8 @@ class TechnologiesController < ApplicationController
 
   # GET /technologies or /technologies.json
   def index
+    path = Rails.application.routes.recognize_path(request.referer)
+    session[:before_controller_path] = path[:controller]
     if params[:format].present?
       session[:work_id] = params[:format]
     end
@@ -13,20 +15,24 @@ class TechnologiesController < ApplicationController
 
   # GET /technologies/1 or /technologies/1.json
   def show
+    path = Rails.application.routes.recognize_path(request.referer)
+    session[:before_controller_path] = path[:controller]
   end
 
   # GET /technologies/new
   def new
     path = Rails.application.routes.recognize_path(request.referer)
-    if path[:controller] == "pyramids" && path[:action] == "index"
+    session[:before_controller_path] = path[:controller]
+    if session[:before_controller_path] == "pyramids"
       session[:top_technology_id] = params[:format]
-      session[:before_controller_path] = path[:controller]
     end
     @technology = Technology.new(work_id: session[:work_id])
   end
 
   # GET /technologies/1/edit
   def edit
+    path = Rails.application.routes.recognize_path(request.referer)
+    session[:before_controller_path] = path[:controller]
   end
 
   # POST /technologies or /technologies.json

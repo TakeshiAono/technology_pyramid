@@ -2,9 +2,11 @@
 
 <%= render 'form', technology: @technology %>
 
-<%= link_to 'Show', @technology %> |
-<% if session[:before_controller_path].present? %>
+<%# <% byebug %> %>
+<% if session[:before_controller_path] == 'pyramids' %>
+  <%= link_to 'Show', technology_path(session[:top_technology_id]) %> |
   <%= link_to 'Back', pyramids_path(session[:top_technology_id]) %>
 <% else %>
+  <%= link_to 'Show', @technology %> |
   <%= link_to 'Back', technologies_path %>
 <% end %>
