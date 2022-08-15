@@ -53,7 +53,7 @@ class LinksController < ApplicationController
     @link.destroy
 
     respond_to do |format|
-      format.html { redirect_to links_url, notice: "Link was successfully destroyed." }
+      format.html { redirect_to links_path(session[:technology_id]), notice: "Link was successfully destroyed." }
       format.json { head :no_content }
     end
   end
