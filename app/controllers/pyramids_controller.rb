@@ -6,8 +6,10 @@ class PyramidsController < ApplicationController
     # @pyramids = Pyramid.all
     if params[:format].present?
       session[:technology_id] = params[:format]
+      @top_technology = Technology.find(session[:technology_id])
+      @lower_technologies = @top_technology.hierarckies
+      # @technologies = Technology.where(upper_technology: session[:technology_id])
     end
-    @technologies = Technology.where(upper_technology: session[:technology_id])
    end
 
   # GET /pyramids/1 or /pyramids/1.json
