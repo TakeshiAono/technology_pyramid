@@ -2,6 +2,9 @@
 
 <h1>Pyramids</h1>
 
+<p><%= link_to 'New Technology', new_technology_path %></p>
+<p><%= @top_technology.name %></p>
+
 <table>
   <thead>
     <tr>
@@ -9,7 +12,7 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-  <%= link_to "#{Technology.find(session[:technology_id]).name}",links_path(session[:technology_id]) %>
+
   <tbody>
     <% @lower_technologies.each do |technology| %>
       <tr>
