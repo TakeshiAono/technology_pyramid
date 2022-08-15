@@ -6,6 +6,9 @@ class PyramidsController < ApplicationController
     # if params[:format].present?
       session[:top_technology_id] = params[:format] if params[:format].present?
       @top_technology = Technology.find(session[:top_technology_id])
+      # byebug
+      # @top_technology.hierarckies.each
+
       @lower_technologies = @top_technology.hierarckies
       # @technologies = Technology.where(upper_technology: session[:technology_id])
     # else

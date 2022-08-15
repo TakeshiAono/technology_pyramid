@@ -14,6 +14,29 @@
   </thead>
 
   <tbody>
+    <%# <%= @top_technology.name %><br> %>
+    <%# <% @top_technology.hierarckies.each do |first_hierarcky| %> %>
+      <%# <%= first_hierarcky.technology.name %> %>
+      <%# <% first_lower_technology = first_hierarcky.upper_technology %> %>
+      <%# <br> %>
+      <%# <%= first_lower_technology.name %> %>
+      <%# <% first_lower_technology.hierarckies.each do |second_hierarcky| %> %>
+        <%# <% second_lower_technology = second_hierarcky.upper_technology %> %>
+        <%# <br> %>
+        <%# <% byebug %> %>
+        <%# <%= second_lower_technology.name %> %>
+        <%# / %>
+      <%# <% end %> %>
+      <%# <br> %>
+    <%# <% end %> %>
+
+
+
+
+
+
+
+
     <% @lower_technologies.each do |lower_technology| %>
       <tr>
       <% unless lower_technology.upper_technology == nil %>
