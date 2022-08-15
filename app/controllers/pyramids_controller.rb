@@ -3,13 +3,14 @@ class PyramidsController < ApplicationController
 
   # GET /pyramids or /pyramids.json
   def index
-    # @pyramids = Pyramid.all
-    if params[:format].present?
-      session[:technology_id] = params[:format]
-      @top_technology = Technology.find(session[:technology_id])
+    # if params[:format].present?
+      session[:top_technology_id] = params[:format] if params[:format].present?
+      @top_technology = Technology.find(session[:top_technology_id])
       @lower_technologies = @top_technology.hierarckies
       # @technologies = Technology.where(upper_technology: session[:technology_id])
-    end
+    # else
+      # @pyramids = Pyramid.all
+    # end
    end
 
   # GET /pyramids/1 or /pyramids/1.json

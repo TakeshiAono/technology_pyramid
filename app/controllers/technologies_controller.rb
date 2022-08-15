@@ -19,7 +19,7 @@ class TechnologiesController < ApplicationController
   def new
     path = Rails.application.routes.recognize_path(request.referer)
     if path[:controller] == "pyramids" && path[:action] == "index"
-      session[:parent_technology_id] = params[:format]
+      session[:top_technology_id] = params[:format]
       session[:before_controller_path] = path[:controller]
     end
     @technology = Technology.new(work_id: session[:work_id])
@@ -41,7 +41,7 @@ class TechnologiesController < ApplicationController
         format.json { render json: @technology.errors, status: :unprocessable_entity }
       end
     end
-    Hierarcky.create(technology_id: session[:parent_technology_id],lower_technology_id: @technology.id)
+    Hierarcky.create(technology_id: session[:top_technology_id],lower_technology_id: @technology.id)
   end
 
   # PATCH/PUT /technologies/1 or /technologies/1.json
