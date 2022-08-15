@@ -16,10 +16,12 @@
   <tbody>
     <% @lower_technologies.each do |technology| %>
       <tr>
+      <% unless technology.upper_technology == nil %>
         <td><%= technology.upper_technology.name %></td>
         <td><%= link_to '技術の中身を見る', links_path(technology.upper_technology) %></td>
         <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology.upper_technology) %></td>
-        <td><%= link_to 'Destroy', technology.upper_technology, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>
