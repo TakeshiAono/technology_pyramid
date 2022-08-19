@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_14_094129) do
+ActiveRecord::Schema.define(version: 2022_08_19_042403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "favorite_user", default: 3
+  end
 
   create_table "hierarckies", force: :cascade do |t|
     t.bigint "technology_id", null: false
@@ -80,6 +87,8 @@ ActiveRecord::Schema.define(version: 2022_08_14_094129) do
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
+  add_foreign_key "favorites", "users"
+  add_foreign_key "favorites", "users", column: "favorite_user"
   add_foreign_key "hierarckies", "technologies"
   add_foreign_key "hierarckies", "technologies", column: "lower_technology_id"
   add_foreign_key "links", "technologies"
