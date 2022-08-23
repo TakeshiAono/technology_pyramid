@@ -5,6 +5,7 @@
 <p><%= link_to 'New Technology', new_technology_path(session[:top_technology_id]) %></p>
 <p><%= @top_technology.name %></p>
 
+<h2>first_hierarckies</h2>
 <table>
   <thead>
     <tr>
@@ -14,13 +15,82 @@
   </thead>
 
   <tbody>
-    <% @lower_technologies.each do |lower_technology| %>
+    <% @first_hierarckies.each do |technology| %>
       <tr>
-      <% unless lower_technology.upper_technology == nil %>
-        <td><%= lower_technology.upper_technology.name %></td>
-        <td><%= link_to '技術の中身を見る', links_path(lower_technology) %></td>
-        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(lower_technology.upper_technology) %></td>
-        <td><%= link_to 'Destroy', pyramid_path(lower_technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% unless technology == nil %>
+        <td><%= technology.name %></td>
+        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
+        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
+        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>second_hierarckies</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @second_hierarckies.each do |technology| %>
+      <tr>
+      <% unless technology == nil %>
+        <td><%= technology.name %></td>
+        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
+        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
+        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>third_hierarckies</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @third_hierarckies.each do |technology| %>
+      <tr>
+      <% unless technology == nil %>
+        <td><%= technology.name %></td>
+        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
+        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
+        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>fourth_hierarckies</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fourth_hierarckies.each do |technology| %>
+      <tr>
+      <% unless technology == nil %>
+        <td><%= technology.name %></td>
+        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
+        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
+        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
       </tr>
     <% end %>

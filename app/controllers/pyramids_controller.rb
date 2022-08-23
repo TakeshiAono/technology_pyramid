@@ -6,7 +6,122 @@ class PyramidsController < ApplicationController
     # if params[:format].present?
       session[:top_technology_id] = params[:format] if params[:format].present?
       @top_technology = Technology.find(session[:top_technology_id])
-      @lower_technologies = @top_technology.hierarckies
+      # byebug
+      # @top_technology.hierarckies.each
+
+      @top_hierarckies = []
+      @first_hierarckies = []
+      @second_hierarckies = []
+      @third_hierarckies = []
+      @fourth_hierarckies = []
+      @hierarckies = []
+      # @lower_technologies = @top_technology.lower_technologies
+
+
+      # @top_technology.lower_technologies.each do |technology|
+      #   @first_hierarckies << technology
+      #   technology.lower_technologies.each do |technology2|
+      #     byebug
+      #     @second_hierarckies << technology2.lower_technologies.first
+      #   end
+      # end
+
+
+
+
+      
+
+
+      @top_technology.lower_technologies.each do |technology|
+        @first_hierarckies << technology
+      end
+      
+      @first_hierarckies.each do |technology|
+        technology.lower_technologies.each do |technology2|
+          @second_hierarckies << technology2
+        end
+      end
+
+      @second_hierarckies.each do |technology|
+        technology.lower_technologies.each do |technology2|
+          @third_hierarckies << technology2
+        end
+      end
+
+      @third_hierarckies.each do |technology|
+        technology.lower_technologies.each do |technology2|
+          @fourth_hierarckies << technology2
+        end
+      end
+
+
+
+
+
+
+
+      # @hierarcky_lebel = []
+      # @top_technology.lower_technologies.each do |technology|
+      #   @first_hierarckies << technology
+      # end
+      # @hierarcky_lebel << @first_hierarckies
+      
+      # next_hierarckies = []
+      # 5.times do
+      #   @first_hierarckies.each do |technology|
+      #     technology.lower_technologies.each do |technology2|
+      #       next_hierarckies << technology2
+      #     end
+      #     @hierarcky_lebel << next_hierarckies.dup
+      #   end
+      #   @first_hierarckies = next_hierarckies.dup
+      #   next_hierarckies.clear
+      #   byebug
+      # end
+
+
+      # @second_hierarckies.each do |technology|
+      #   technology.lower_technologies.each do |technology2|
+      #     @third_hierarckies << technology2
+      #   end
+      # end
+
+      # @third_hierarckies.each do |technology|
+      #   technology.lower_technologies.each do |technology2|
+      #     @fourth_hierarckies << technology2
+      #   end
+      # end
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      # hierarckies << @lower_technologies
+      # hierarckies << ['a','b','c']
+      
       # @technologies = Technology.where(upper_technology: session[:technology_id])
     # else
       # @pyramids = Pyramid.all

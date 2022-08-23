@@ -5,6 +5,9 @@ class User < ApplicationRecord
   OCCUPATION = ['営業','設計','人事','オペレータ','データ管理・操作']
   
   has_many :works, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :favorite_user
+
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
 
