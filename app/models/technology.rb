@@ -9,4 +9,10 @@ class Technology < ApplicationRecord
   has_many :lower_hierarckies,class_name: "Hierarcky", foreign_key: :lower_technology_id
   has_many :upper_technologies, through: :lower_hierarckies, source: :technology
 
+  technologies_hash = {}
+  self.all.each do |technology|
+    technologies_hash.store(technology.name,technology.id)
+  end
+  enum lower_technology: technologies_hash
+
 end
