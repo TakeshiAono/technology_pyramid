@@ -26,6 +26,11 @@
     <%= form.check_box :basic_flag %>
   </div>
 
+    <div class="field">
+    <%= form.label :lower_technology %>
+    <%= form.select :lower_technology, Technology.lower_technologies %>
+  </div>
+
   <div class="field">
     <%= form.label :work_id %>
     <%= form.text_field :work_id %>
