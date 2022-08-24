@@ -103,6 +103,13 @@ k=4
   )
   k += 1
 end
+Hierarcky.find(2).destroy
+Hierarcky.find(3).destroy
+Hierarcky.find(4).destroy
+Hierarcky.find(5).destroy
+Hierarcky.find(7).destroy
+Hierarcky.find(8).destroy
+Hierarcky.find(10).destroy
 
 # k = 1
 # 5.times do
