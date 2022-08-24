@@ -26,9 +26,12 @@
     <%= form.check_box :basic_flag %>
   </div>
 
-    <div class="field">
-    <%= form.label :lower_technology %>
-    <%= form.select :lower_technology, Technology.lower_technologies %>
+  <div class="field">
+    <%= form.fields_for :hierarckies do |hierarcky| %>
+      <%= hierarcky.label :to_lower_technology %>
+      <%# <%= hierarcky.hidden_field :top_technology_id, technology %> %>
+      <%= hierarcky.select :lower_technology_id, Technology.lower_technologies %>
+    <% end %>
   </div>
 
   <div class="field">

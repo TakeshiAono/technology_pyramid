@@ -27,6 +27,7 @@ class TechnologiesController < ApplicationController
       session[:top_technology_id] = params[:format]
     end
     @technology = Technology.new(work_id: session[:work_id])
+    @technology.hierarckies.build
   end
 
   # GET /technologies/1/edit
@@ -47,7 +48,7 @@ class TechnologiesController < ApplicationController
         format.json { render json: @technology.errors, status: :unprocessable_entity }
       end
     end
-    Hierarcky.create(technology_id: session[:top_technology_id],lower_technology_id: @technology.id)
+    # Hierarcky.create(technology_id: session[:top_technology_id],lower_technology_id: @technology.id)
   end
 
   # PATCH/PUT /technologies/1 or /technologies/1.json
@@ -81,6 +82,6 @@ class TechnologiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def technology_params
-      params.require(:technology).permit(:name, :public_flag,  :work_id, :basic_flag)
+      params.require(:technology).permit(:name, :public_flag,  :work_id, :basic_flag, hierarckies_attributes: %i[id lower_technology_id])
     end
 end
