@@ -125,35 +125,35 @@ Link.create!(
   title: "クラスについて（qiita記事）",
   url: "https://qiita.com/shizen-shin/items/09cf07f9b9f5c4977a14",
   good_counter: 100,
-  technology_id: 1
+  technology_id: 2
 )
 
 Link.create!(
   title: "クラスの基礎知識まとめ（qiita記事）",
   url: "https://qiita.com/naotospace/items/654b285a7bcbd82b1cff",
   good_counter: 20,
-  technology_id: 1
+  technology_id: 2
 )
 
 Link.create!(
   title: "クラスの概念整理してみた（qiita記事）",
   url: "https://qiita.com/kohei_04/items/df462ac6578c0fb670bc",
   good_counter: 50,
-  technology_id: 1
+  technology_id: 2
 )
 
 Link.create!(
   title: "クラス毎のよく使う操作まとめ（qiita記事）",
   url: "https://qiita.com/ren0826jam/items/24d28839d307ffa825fc",
   good_counter: 80,
-  technology_id: 1
+  technology_id: 2
 )
 
 Link.create!(
   title: "クラスとインスタンスの違い（qiita記事）",
   url: "https://qiita.com/yamaday0u/items/dca132e46b390c9af51b",
   good_counter: 3,
-  technology_id: 1
+  technology_id: 2
 )
 
 # LinkAccessCounter.create!(
