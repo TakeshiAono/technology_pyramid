@@ -3,100 +3,53 @@
 <h1>Pyramids</h1>
 
 <p><%= link_to 'New Technology', new_technology_path(session[:top_technology_id]) %></p>
-<p><%= @top_technology.name %></p>
+<span class = "top-technology-line technology-box border border-denger"><%= @top_technology.name %></span>
 
-<h2>first_hierarckies</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @first_hierarckies.each do |technology| %>
-      <tr>
-      <% unless technology == nil %>
-        <td><%= technology.name %></td>
-        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
-        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
-        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-      </tr>
+<%# <h2>first_hierarckies</h2> %>
+<% @first_hierarckies.each do |technology| %>
+    <% unless technology == nil %>
+      <div class = "first-technology-line">
+      <%= link_to "#{technology.name}", links_path(technology), class: "border border-primary" %>
+      <%# <%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %> %>
+      <%# <%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %> %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+<% end %>
 
-<h2>second_hierarckies</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @second_hierarckies.each do |technology| %>
-      <tr>
-      <% unless technology == nil %>
-        <td><%= technology.name %></td>
-        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
-        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
-        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @second_hierarckies.each do |technology| %>
+  <% unless technology == nil %>
+      <div class = "second-technology-line">
+        <%= link_to "#{technology.name}", links_path(technology), class: "border border-secondary" %>
+        <%# <%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %> %>
+        <%# <%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %> %>
+      </div>
+  <% end %>
+<% end %>
 
-<h2>third_hierarckies</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @third_hierarckies.each do |technology| %>
+  <% unless technology == nil %>
+    <div class = "third-technology-line">
+      <%= link_to "#{technology.name}", links_path(technology), class: "border border-success" %>
+      <%# <%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %> %>
+      <%# <%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %> %>
+    </div>
+  <% end %>
+<% end %>
 
-  <tbody>
-    <% @third_hierarckies.each do |technology| %>
-      <tr>
-      <% unless technology == nil %>
-        <td><%= technology.name %></td>
-        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
-        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
-        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h2>fourth_hierarckies</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fourth_hierarckies.each do |technology| %>
-      <tr>
-      <% unless technology == nil %>
-        <td><%= technology.name %></td>
-        <td><%= link_to '技術の中身を見る', links_path(technology) %></td>
-        <td><%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %></td>
-        <td><%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @fourth_hierarckies.each do |technology| %>
+  <% unless technology == nil %>
+    <div class = "fourth-technology-line">
+      <%= link_to "#{technology.name}", links_path(technology), class: "border border-warning" %>
+      <%# <%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %> %>
+      <%# <%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %> %>
+    </div>
+  <% end %>
+<% end %>
 
 <br>
+
+<div id="start">start</div>
+<div id="end">end</div>
 
 <%# <%= link_to 'New Pyramid', new_pyramid_path %> %>
