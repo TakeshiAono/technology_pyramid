@@ -7,7 +7,8 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-import "../stylesheets/application.scss";
+
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -16,3 +17,11 @@ import "../stylesheets/application.scss";
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+
+import "../stylesheets/application.scss";
+import "../stylesheets/pyramid.scss";
+
+import "leader-line";
+import "./pyramid.js";
+import "./test";
