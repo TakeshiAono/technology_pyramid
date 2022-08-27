@@ -1,15 +1,36 @@
+body, html{
+  padding:0; /*　追加*/
+  margin:0; /*　追加*/
+  height: 100%;
+}
+
+.container{
+  padding-top: 50px;
+}
+
 .icon{
   width: 60px;
   height: 40px;
 }
 
-footer{
-  position: absolute;
-  bottom: 0;
+header{
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
   height: 70px;
 }
 
+footer{
+  // position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: aqua;
+}
 
-@import 'bootstrap'
+.wrapper { min-height: calc(100vh - 70px - 70px); }
+
+
+// @import 'bootstrap'
