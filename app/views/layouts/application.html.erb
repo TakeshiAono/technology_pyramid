@@ -22,22 +22,21 @@
       <% end %>
     </div>
 
+    <% if notice %>
+      <p class= 'alert alert-notice'><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+    <% end %>
 
-  <% if notice %>
-    <p class= 'alert alert-notice'><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-error"><%= alert %></p>
-  <% end %>
-
-  <%= yield %>
-    <footer class="my-5 p-3 text-center bg-secondary">
-    <p class="mb-1">&copy; 2022~ Aono Co.,Ltd</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">プライバシー</a></li>
-      <li class="list-inline-item"><a href="#">利用規約</a></li>
-      <li class="list-inline-item"><a href="#">サポート</a></li>
-    </ul>
-  </footer>
+    <%= yield %>
+    <footer class="my-0 p-3 text-center bg-secondary">
+      <p class="mb-1">&copy; 2022~ Aono Co.,Ltd</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">プライバシー</a></li>
+        <li class="list-inline-item"><a href="#">利用規約</a></li>
+        <li class="list-inline-item"><a href="#">サポート</a></li>
+      </ul>
+    </footer>
   </body>
 </html>
