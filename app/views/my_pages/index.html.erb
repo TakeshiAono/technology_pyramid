@@ -6,12 +6,8 @@
     <h2>ワーク検索</h2>
     <%= search_form_for @q, url: searches_index_path do |f| %>
       <%= f.label :title_cont, 'ワーク名' %>
-      <%= f.search_field :title_cont %>
+      <%= f.search_field :title_cont, :placeholder => "検索キーワード" %>
       <%= f.submit '検索' %>
     <% end %>
   </div>
-
-  <% @users.each do |user| %>
-  <td><%= user.name %></td>
-  <% end %>
 
