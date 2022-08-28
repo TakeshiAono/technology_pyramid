@@ -21,7 +21,7 @@ require("leader-line")
 
 
 import "../stylesheets/application.scss";
-import "../stylesheets/pyramid.scss";
+
 
 import "./pyramid.js";
 import "./test";
