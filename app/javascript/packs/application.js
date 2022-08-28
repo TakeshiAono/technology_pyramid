@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("leader-line")
 
 
 
@@ -22,6 +23,5 @@ require("channels")
 import "../stylesheets/application.scss";
 import "../stylesheets/pyramid.scss";
 
-import "leader-line";
 import "./pyramid.js";
 import "./test";
