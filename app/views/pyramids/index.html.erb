@@ -2,7 +2,7 @@
 
 <h1>Pyramids</h1>
 
-<p><%= link_to 'New Technology', new_technology_path(session[:top_technology_id]) %></p>
+<p><%= link_to 'New Technology', new_technology_path(session[:top_technology_id]), class: "btn btn-primary" %></p>
 <span class = "top-technology-line technology-box border border-denger"><%= @top_technology.name %></span>
 
 <%# <h2>first_hierarckies</h2> %>
