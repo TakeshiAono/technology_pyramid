@@ -3,6 +3,7 @@
 <%= link_to 'New Work', new_work_path, class: "btn btn-primary" %>
 
 <div class = "active_works">
+<h2>Active Works</h2>
   <table>
     <thead>
       <tr>
@@ -19,9 +20,9 @@
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>
           <td><%= work.user_id %></td>
-          <td><%= link_to '技術一覧へ飛ぶ', technologies_path(work) %></td>
-          <td><%= link_to 'Edit', edit_work_path(work) %></td>
-          <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to '技術一覧へ飛ぶ', technologies_path(work), class: "btn btn-success" %></td>
+          <td><%= link_to 'Edit', edit_work_path(work), class: "btn btn-warning" %></td>
+          <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
@@ -29,6 +30,7 @@
 </div>
 
 <div class = "inactive_works">
+<h2>Inactive Works</h2>
   <table>
     <thead>
       <tr>
@@ -45,9 +47,9 @@
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>
           <td><%= work.user_id %></td>
-          <td><%= link_to '技術一覧へ飛ぶ', technologies_path(work) %></td>
-          <td><%= link_to 'Edit', edit_work_path(work) %></td>
-          <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to '技術一覧へ飛ぶ', technologies_path(work), class: "btn btn-success" %></td>
+          <td><%= link_to 'Edit', edit_work_path(work), class: "btn btn-warning" %></td>
+          <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
