@@ -2,7 +2,7 @@
 
 <h1>Technologies</h1>
 
-  <%= link_to 'New Technology', new_technology_path if current_user.works.find_by(id:session[:work_id]) %>
+  <%= link_to 'New Technology', new_technology_path, class: "btn btn-primary" if current_user.works.find_by(id:session[:work_id]) %>
 
 <h2>応用技術</h2>
 <table>
