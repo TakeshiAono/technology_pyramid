@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Searches</h1>
+<h1>Search Results</h1>
 
 <%= search_form_for @q, url: searches_index_path do |f| %>
       <%= f.label :title_cont, 'ワーク名' %>
@@ -21,7 +21,7 @@
   <tbody>
     <% @works.each do |work| %>
       <tr>
-        <td><%= work.title %></td>
+        <td><%= link_to "#{work.title}", technologies_path(work) %></td>
         <td><%= work.user.name %></td>
       </tr>
     <% end %>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Link', new_link_path %>
+<%# <%= link_to 'New Link', new_link_path %> %>
