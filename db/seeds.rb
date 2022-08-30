@@ -110,6 +110,8 @@ Hierarcky.find(5).destroy
 Hierarcky.find(7).destroy
 Hierarcky.find(8).destroy
 Hierarcky.find(10).destroy
+Hierarcky.find(13).destroy
+Hierarcky.find(6).update(technology_id:1)
 
 # k = 1
 # 5.times do
