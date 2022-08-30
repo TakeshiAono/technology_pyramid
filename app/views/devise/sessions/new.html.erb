@@ -1,47 +1,72 @@
-<h1>【コンセプト】</h1>
-<p>テクノロジーを調べて見たけど、分かるような分からないような、そんな感覚を味わった事はありませんか？<br>
-・テクノロジーを説明してくれてるけど、専門用語が多くて理解できない…<br>
-・抽象的なものに例えて説明してくれるけど、なんとなくでしかわからない…<br>
-この問題を解決するためには、その応用テクノロジーを構成する基礎テクノロジーを知る必要があります。<br>
-このアプリは応用テクノロジーと基礎テクノロジーの繋がりを階層で把握し、皆さんの理解に助けになることを目指します。
-</p>
-
-<h1>【サービス概要】</h1>
-<p>・自分が持っているテクノロジーをピラミッド構造で整理・整頓できる<br>
-・他の人とテクノロジーピラミッドを共有できる<br>
-・テクノロジーを支えているベーシックテクノロジーが何かを理解できる</p>
-
-<h1>【機能について】</h1>
-<p>テクノロジーごとに<br>
-・外部リンク（記事）を持たせる事ができます。<br>
-・オリジナルの記事を書くことができます。<br>
-・他の人が持っているテクノロジーに質問・回答することができます。<br>
-・他の人が作ったピラミッドを自分のピラミッドにインポートして、他人のテクノロジーをコピーすることができます。<br>
-</p>
-
-<h2><%= t('.sign_in') %></h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email" %>
+<div class = "session_wrapper">
+  <div class = "apply_summary">
+    
+    <h1>アプリ概要</h1>
+    <ul class = "list-group">
+      <div class = "apply_concept list-group-item">
+        <h2>【コンセプト】</h2>
+        <ul>
+          <li>テクノロジーを調べて見たけど、分かるような分からないような、そんな感覚を味わった事はありませんか？</li>
+          <li>テクノロジーを説明してくれてるけど、専門用語が多くて理解できない…</li>
+          <li>抽象的なものに例えて説明してくれるけど、なんとなくでしかわからない…</li>
+        </ul>
+        <p class = "font-weight-bold" >この問題を解決するためには、その応用テクノロジーを構成する基礎テクノロジーを知る必要があります。
+        このアプリは応用テクノロジーと基礎テクノロジーの繋がりを階層で把握し、皆さんの理解に助けになることを目指します。
+        </p>
+      </div>
+      
+      <div class = "apply_service list-group-item">
+        <h2>【サービス概要】</h2>
+        <ul>
+          <li>自分が持っているテクノロジーをピラミッド構造で整理・整頓できる</li>
+          <li>他の人とテクノロジーピラミッドを共有できる</li>
+          <li>テクノロジーを支えているベーシックテクノロジーが何かを理解できる</li>
+        </ul>
+      </div>
+    
+      <div class = "apply_function list-group-item">
+        <h2>【機能について】</h2>
+        <p>テクノロジーごとに</p>
+        <ul>
+          <li>外部リンク（記事）を持たせる事ができます。</li>
+          <li>オリジナルの記事を書くことができます。</li>
+          <li>他の人が持っているテクノロジーに質問・回答することができます。</li>
+          <li>他の人が作ったピラミッドを自分のピラミッドにインポートして、他人のテクノロジーをコピーすることができます。</li>
+        </ul>
+      </div>
+    </ul>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  
+  <div class = "login_wrapper">
+    <div class = "login_box  d-flex justify-content-center">
+      <div class = "login_content">
+        <h1><%= t('.sign_in') %></h1>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email" %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "password" %>
+          </div>
+        
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+        
+          <div class="actions">
+            <%= f.submit t('.sign_in') %>
+          </div>
+        <% end %>
+        
+        <%= render "devise/shared/links" %>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit t('.sign_in') %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+</div>

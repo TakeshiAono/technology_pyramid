@@ -1,4 +1,4 @@
-.top-technology-line{
+.top-technology{
   margin: 20px;
 }
 
@@ -17,6 +17,23 @@
 
 .fourth-technology-line{
   margin: 20px;
+}
+
+.pyramid_wrapper{
+  padding: 0 auto;
+}
+.pyramid_content{
+  text-align: center;
+  border: solid;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 70px;
+}
+
+.hierarchy-3{
+  display: flex;
+  justify-content: center;
 }
 
 #start{
