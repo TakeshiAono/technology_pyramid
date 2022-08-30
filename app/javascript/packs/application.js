@@ -21,4 +21,5 @@ require("channels")
 
 
 import "../stylesheets/application.scss";
-import "./pyramid.js";
+
+// import "./pyramid.js";
