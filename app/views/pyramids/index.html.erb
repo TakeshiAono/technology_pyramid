@@ -4,71 +4,60 @@
 
 <p><%= link_to 'New Technology', new_technology_path(session[:top_technology_id]), class: "btn btn-primary" %></p>
 
-
 <div class = "pyramid_wrapper">
   <div class = "pyramid_content">
-    <span id = "element-1" class = " top-technology technology-box border border-denger"><%= @top_technology.name %></span>
+    <div id = "hierarcky-1">
+      <%=link_to @top_technology.name, links_path(@top_technology), id: "#{@top_technology.id}" , class: "technology-1 border border-primary", data:{lower_technologies: @top_technology.lower_technologies.ids} %>
+    </div>
     <br>
     <br>
     <br>
     <br>
     <br>
-    
-    
-    <%# <h2>first_hierarckies</h2> %>
-    <% @first_hierarckies.each do |technology| %>
-        <% unless technology == nil %>
-          <div class = "technology-line">
-          <%= link_to "#{technology.name}", links_path(technology), id: "element-2" , class: "end border border-primary" %>
-          <%# <%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %> %>
-          <%# <%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %> %>
-          </div>
-        <% end %>
-    <% end %>
-    
+    <br>
+
+    <div id = "hierarcky-2">
+            <%# <div class = "technology-2-parent"> %>
+      <% counter = 1 %>
+      <% @first_hierarckies.each do |technology| %>
+          <% unless technology == nil %>
+              <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}" , class: "technology-2 border border-primary", data:{lower_technologies: technology.lower_technologies.ids} %>
+            <% counter += 1 %>
+          <% end %>
+      <% end %>
+            <%# </div> %>
+    </div>
     <br>
     <br>
     <br>
-  
-    
-    <div class = "hierarchy-3" >
+    <br>
+    <br>
+    <br>
+
+    <div id = "hierarcky-3" >
       <% @second_hierarckies.each do |technology| %>
         <% unless technology == nil %>
-            <div id= "element-3" class = "second-technology-line">
-              <%= link_to "#{technology.name}", links_path(technology), id: "technology1", class: "border border-secondary" %>
-              <%# <%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %> 
-              <%# <%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %>
-            </div>
+              <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}", class: "border border-secondary", data:{lower_technologies: technology.lower_technologies.ids} %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id = "hierarcky-4" >
+      <% @third_hierarckies.each do |technology| %>
+        <% unless technology == nil %>
+            <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}", class: "border border-success", data:{lower_technologies: technology.lower_technologies.ids} %>
         <% end %>
       <% end %>
     </div>
     
-    <% @third_hierarckies.each do |technology| %>
-      <% unless technology == nil %>
-        <div class = "third-technology-line">
-          <%= link_to "#{technology.name}", links_path(technology), class: "border border-success" %>
-          <%# <%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %> %>
-          <%# <%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %> %>
-        </div>
+    <div id = "hierarcky-5" >
+      <% @fourth_hierarckies.each do |technology| %>
+        <% unless technology == nil %>
+            <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}", class: "border border-warning" %>
+        <% end %>
       <% end %>
-    <% end %>
-    
-    <% @fourth_hierarckies.each do |technology| %>
-      <% unless technology == nil %>
-        <div class = "fourth-technology-line">
-          <%= link_to "#{technology.name}", links_path(technology), class: "border border-warning" %>
-          <%# <%= link_to 'ピラミッドリレーションを編集する', edit_technology_path(technology) %> %>
-          <%# <%= link_to 'Destroy', pyramid_path(technology), method: :delete, data: { confirm: 'Are you sure?' } %> %>
-        </div>
-      <% end %>
-    <% end %>
-    
-    <br>
-    
-    <%# <div id="start">start</div> %>
-    <%# <div id="end">end</div> %>
-    
-    <%# <%= link_to 'New Pyramid', new_pyramid_path %> %>
+    </div>
+
   </div>
 </div>
 <%= javascript_pack_tag 'pyramid', 'data-turbolinks-track': 'reload' %>
