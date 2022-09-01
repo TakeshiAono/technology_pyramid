@@ -41,8 +41,13 @@ class TechnologiesController < ApplicationController
     @technology = Technology.new(technology_params)
     respond_to do |format|
       if @technology.save
-        format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
-        format.json { render :show, status: :created, location: @technology }
+        @upper_hierarcky = Hierarcky.new(technology_id: params[:technology][:upper_technology_id], lower_technology_id: @technology.id)
+        if @upper_hierarcky.save
+          format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
+          format.json { render :show, status: :created, location: @technology }
+        else
+          return
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @technology.errors, status: :unprocessable_entity }
@@ -82,6 +87,7 @@ class TechnologiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def technology_params
-      params.require(:technology).permit(:name, :public_flag,  :work_id, :basic_flag, hierarckies_attributes: %i[id lower_technology_id])
+      params.require(:technology).permit(:name, :public_flag,  :work_id, :basic_flag, hierarckies_attributes: %i[id lower_technology_id technology_id])
     end
+
 end

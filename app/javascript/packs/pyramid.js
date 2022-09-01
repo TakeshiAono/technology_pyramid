@@ -45,12 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let line;
   pyramid.forEach(hierarcky => Object.keys(hierarcky).forEach(function(start){
     ends = hierarcky[start]
-    ends.forEach(end =>
-      line = new LeaderLine(
-        document.getElementById(`${start}`),
-        document.getElementById(`${end}`),
-        {dash: {animation: true}, size: 4, startSocket: 'bottom', endSocket: 'top', path: 'straight' },
-      )
-    )
+      if (ends != null){ends.forEach(end =>
+        {if (ends != null){
+          line = new LeaderLine(
+            document.getElementById(`${start}`),
+            document.getElementById(`${end}`),
+            {dash: {animation: true}, size: 4, startSocket: 'bottom', endSocket: 'top', path: 'straight' },
+          )
+        }}
+      )}
   }));
 });
