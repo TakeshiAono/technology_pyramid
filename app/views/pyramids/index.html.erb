@@ -7,9 +7,7 @@
 <div class = "pyramid_wrapper">
   <div class = "pyramid_content">
     <div id = "hierarcky-1">
-      <%# <span id = "top_technology" class = " top-technology technology-box border border-denger", data-lower-technologies = "<%= @top_technology.lower_technologies.ids %>" > %>
-        <%=link_to @top_technology.name, links_path(@top_technology), id: "#{@top_technology.id}" , class: "technology-1 border border-primary", data:{lower_technologies: @top_technology.lower_technologies.ids} %>
-      <%# </span> %>
+      <%=link_to @top_technology.name, links_path(@top_technology), id: "#{@top_technology.id}" , class: "technology-1 border border-primary", data:{lower_technologies: @top_technology.lower_technologies.ids} %>
     </div>
     <br>
     <br>
