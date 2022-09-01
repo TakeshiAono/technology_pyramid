@@ -9,50 +9,68 @@ document.addEventListener('DOMContentLoaded', () => {
   // technology_2.forEach(node => array_technology_2.push(node.dataset.upperTechnologies.match(/\d+/g)));
   // console.log(array_technology_2);
 
-  let pyramid = Array(document.getElementById('top_technology').dataset.lowerTechnologies.match(/\d+/g));
-
-  let technology_array = new Array;
+  let technology_vector = {};
   let technology_nodes = new Array;
+  let pyramid = new Array;
+
+  technology_nodes = document.getElementById('hierarcky-1').children;
+  technology_nodes = Array.from(technology_nodes);
+  technology_nodes.forEach(technology_node => technology_vector[`${technology_node.id}`] = technology_node.dataset.lowerTechnologies.match(/\d+/g));
+  pyramid.push(technology_vector)
+  // pyramid = Array(document.getElementById('top_technology').dataset.lowerTechnologies.match(/\d+/g));
+  // pyramid = Array(document.getElementById('top_technology').dataset.lowerTechnologies.match(/\d+/g));
+  technology_vector = {};
+  technology_nodes = [];
+
 
   technology_nodes = document.getElementById('hierarcky-2').children;
   technology_nodes = Array.from(technology_nodes);
-  technology_nodes.forEach(technology_node => technology_array.push(technology_node.dataset.lowerTechnologies.match(/\d+/g)));
-  pyramid.push(technology_array)
+  technology_nodes.forEach(technology_node => technology_vector[`${technology_node.id}`] = technology_node.dataset.lowerTechnologies.match(/\d+/g));
+  pyramid.push(technology_vector)
+  technology_vector = {};
   technology_nodes = [];
-  technology_array = [];
 
   technology_nodes = document.getElementById('hierarcky-3').children;
   technology_nodes = Array.from(technology_nodes);
-  technology_nodes.forEach(technology_node => 
-    technology_array.push(technology_node.dataset.lowerTechnologies.match(/\d+/g)));
-  pyramid.push(technology_array)
+  technology_nodes.forEach(technology_node => technology_vector[`${technology_node.id}`] = technology_node.dataset.lowerTechnologies.match(/\d+/g));
+  pyramid.push(technology_vector)
   technology_nodes = [];
-  technology_array = [];
+  technology_vector = {};
 
   technology_nodes = document.getElementById('hierarcky-4').children;
   technology_nodes = Array.from(technology_nodes);
-  technology_nodes.forEach(technology_node => 
-    technology_array.push(technology_node.dataset.lowerTechnologies.match(/\d+/g)));
-  pyramid.push(technology_array)
+  technology_nodes.forEach(technology_node => technology_vector[`${technology_node.id}`] = technology_node.dataset.lowerTechnologies.match(/\d+/g));
+  pyramid.push(technology_vector)
   technology_nodes = [];
-  technology_array = [];
+  technology_vector = {};
 
   technology_nodes = document.getElementById('hierarcky-5').children;
   technology_nodes = Array.from(technology_nodes);
-  technology_nodes.forEach(technology_node => 
-    technology_array.push(technology_node.dataset.lowerTechnologies.match(/\d+/g)));
-  pyramid.push(technology_array)
+  technology_nodes.forEach(technology_node => technology_vector[`${technology_node.id}`] = technology_node.dataset.lowerTechnologies.match(/\d+/g));
+  pyramid.push(technology_vector)
   technology_nodes = [];
-  technology_array = [];
+  technology_vector = {};
 
 
   console.log(pyramid);
 
+  let ends
+  pyramid.forEach(hierarcky => Object.keys(hierarcky).forEach(function(start){
+      console.log(start)
+      ends = hierarcky[start]
+      console.log(ends)
+      ends.forEach(end =>
+        new LeaderLine(
+          document.getElementById(`${start}`),
+          document.getElementById(`${end}`)
+        )
+      )
+
+      // new LeaderLine(
+      // document.getElementById(`${start}`),
+      // document.getElementById(`${end}`))
+  }));
 
 
 
-
-  new LeaderLine(
-  document.getElementById('top_technology'),
-  document.getElementById('element2-1'));
-  });
+});
