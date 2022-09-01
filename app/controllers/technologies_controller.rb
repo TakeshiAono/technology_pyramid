@@ -46,7 +46,8 @@ class TechnologiesController < ApplicationController
           format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
           format.json { render :show, status: :created, location: @technology }
         else
-          return
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @technology.errors, status: :unprocessable_entity }
         end
       else
         format.html { render :new, status: :unprocessable_entity }
