@@ -1,4 +1,6 @@
 class Technology < ApplicationRecord
+  validates :name, presence: true, length: {maximum: 20 }
+
   has_many :links, dependent: :destroy
   has_many :hierarckies, dependent: :destroy
   has_many :lower_hierarckies,class_name: "Hierarcky", foreign_key: :lower_technology_id
