@@ -1,6 +1,6 @@
 <%= form_with(model: pyramid, local: true) do |form| %>
   <% if pyramid.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class = "alert alert-danger">
       <h2><%= pluralize(pyramid.errors.count, "error") %> prohibited this pyramid from being saved:</h2>
 
       <ul>
