@@ -4,6 +4,11 @@ ja:
   works:
     display: "ワーク"
     new: "新規ワーク作成"
+    active: "アクティブワーク"
+    inactive: "非アクティブワーク"
+    title: 'タイトル'
+    public_flag: '公開フラグ'
+    active_flag: 'アクティブワークフラグ'
     research:
       display: "ワーク検索"
       keyword: "検索キーワード"

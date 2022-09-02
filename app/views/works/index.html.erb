@@ -3,13 +3,13 @@
 <%= link_to I18n.t('works.new'), new_work_path, class: "btn btn-primary" %>
 
 <div class = "active_works">
-<h2>Active Works</h2>
+<h2><%= I18n.t('works.active') %></h2>
   <table>
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Public flag</th>
-        <th>User</th>
+        <th><%= I18n.t('works.title') %></th>
+        <th><%= I18n.t('works.public_flag') %></th>
+        <td>User</td>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -30,13 +30,13 @@
 </div>
 
 <div class = "inactive_works">
-<h2>Inactive Works</h2>
+<h2><%= I18n.t('works.inactive') %></h2>
   <table>
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Public flag</th>
-        <th>User</th>
+        <th><%= I18n.t('works.title') %></th>
+        <th><%= I18n.t('works.public_flag') %></th>
+        <td>User</td>
         <th colspan="3"></th>
       </tr>
     </thead>
