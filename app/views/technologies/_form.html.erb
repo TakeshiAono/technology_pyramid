@@ -2,7 +2,6 @@
   <% if technology.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(technology.errors.count, "error") %> prohibited this technology from being saved:</h2>
-
       <ul>
         <% technology.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -25,12 +24,16 @@
     <%= form.label :basic_flag %>
     <%= form.check_box :basic_flag %>
   </div>
+  
+  <div class="field">
+    <%= form.label :to_upper_technology %>
+    <%= form.select :upper_technology_id, Technology.technologies %>
+  </div>
 
   <div class="field">
     <%= form.fields_for :hierarckies do |hierarcky| %>
       <%= hierarcky.label :to_lower_technology %>
-      <%# <%= hierarcky.hidden_field :top_technology_id, technology %> %>
-      <%= hierarcky.select :lower_technology_id, Technology.lower_technologies %>
+      <%= hierarcky.select :lower_technology_id, Technology.technologies %>
     <% end %>
   </div>
 
