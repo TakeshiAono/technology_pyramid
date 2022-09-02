@@ -1,0 +1,8 @@
+ja:
+  my_pages:
+    display: "マイページ"
+  works:
+    display: "ワーク"
+    research:
+      display: "ワーク検索"
+      keyword: "検索キーワード"

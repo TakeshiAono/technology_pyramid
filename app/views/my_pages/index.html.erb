@@ -1,12 +1,12 @@
 <%# <p id="notice"><%= notice %></p> %>
 
-<h1>My Pages</h1>
+<h1><%= I18n.t("my_pages.display") %></h1>
 
   <div>
-    <h2>ワーク検索</h2>
+    <h2><%= I18n.t("works.research.display") %></h2>
     <%= search_form_for @q, url: searches_index_path do |f| %>
       <%= f.label :title_cont, 'ワーク名' %>
-      <%= f.search_field :title_cont, :placeholder => "検索キーワード" %>
+      <%= f.search_field :title_cont, :placeholder => I18n.t('works.research.keyword') %>
       <%= f.submit '検索' %>
     <% end %>
   </div>
