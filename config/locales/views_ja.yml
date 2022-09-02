@@ -3,6 +3,7 @@ ja:
     display: "マイページ"
   works:
     display: "ワーク"
+    new: "新規ワーク作成"
     research:
       display: "ワーク検索"
       keyword: "検索キーワード"
