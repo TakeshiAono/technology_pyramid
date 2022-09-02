@@ -20,9 +20,9 @@
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>
           <td><%= work.user_id %></td>
-          <td><%= link_to '技術一覧へ飛ぶ', technologies_path(work), class: "btn btn-success" %></td>
-          <td><%= link_to 'Edit', edit_work_path(work), class: "btn btn-warning" %></td>
-          <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          <td><%= link_to I18n.t('technologies.transition.index'), technologies_path(work), class: "btn btn-success" %></td>
+          <td><%= link_to I18n.t('edit'), edit_work_path(work), class: "btn btn-warning" %></td>
+          <td><%= link_to I18n.t('destroy'), work, method: :delete, data: { confirm: I18n.t('confirm.destroy') }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
