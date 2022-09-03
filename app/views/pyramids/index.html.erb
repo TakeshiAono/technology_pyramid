@@ -1,8 +1,8 @@
 <%# <p id="notice"><%= notice %></p> %>
 
-<h1>Pyramids</h1>
+<h1><%= I18n.t('pyramids.display') %></h1>
 
-<p><%= link_to 'New Technology', new_technology_path(session[:top_technology_id]), class: "btn btn-primary" %></p>
+<p><%= link_to I18n.t('technologies.new'), new_technology_path(session[:top_technology_id]), class: "btn btn-primary" %></p>
 
 <div class = "pyramid_wrapper">
   <div class = "pyramid_content">
@@ -17,7 +17,6 @@
     <br>
 
     <div id = "hierarcky-2">
-            <%# <div class = "technology-2-parent"> %>
       <% counter = 1 %>
       <% @first_hierarckies.each do |technology| %>
           <% unless technology == nil %>
@@ -25,7 +24,6 @@
             <% counter += 1 %>
           <% end %>
       <% end %>
-            <%# </div> %>
     </div>
     <br>
     <br>
