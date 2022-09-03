@@ -21,4 +21,4 @@
 </p>
 
 <%= link_to 'Edit', edit_link_path(@link) %> |
-<%= link_to 'Back', links_path(session[:technology_id]) %>
+<%= link_to I18n.t("back"), links_path(session[:technology_id]) %>

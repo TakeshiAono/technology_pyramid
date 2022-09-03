@@ -1,7 +1,7 @@
 <%= form_with(model: technology, local: true) do |form| %>
   <% if technology.errors.any? %>
     <div id="error_explanation" class = "alert alert-danger">
-      <h2><%= pluralize(technology.errors.count, "error") %> prohibited this technology from being saved:</h2>
+      <h2><%= pluralize(technology.errors.count, I18n.t('error')) %> <%= I18n.t('error.save') %></h2>
       <ul>
         <% technology.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -12,7 +12,7 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, placeholder: "technology name" %>
+    <%= form.text_field :name, placeholder: I18n.t('technologies.name') %>
   </div>
 
   <div class="field">
