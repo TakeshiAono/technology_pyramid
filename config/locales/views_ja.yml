@@ -18,6 +18,7 @@ ja:
   pyramids:
     display: ピラミッド
     confirm: ピラミッド一覧
+    edit: ピラミッド編集
     name: ピラミッドネーム
     public_flag: 公開有無
   works:
