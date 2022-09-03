@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TechnologyPyramid</title>
+    <title><%= I18n.t('technology_pyramid') %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,12 +14,13 @@
       <div class = " navbar navbar-light" style="background-color: #e3f2fd";>
         <% if user_signed_in? %>
           <%= link_to image_tag("logo.png", class: 'icon' ), my_pages_path %>
-          <%= link_to "マイページ", my_pages_path %>
-          <%= link_to "マイワーク", works_path %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to I18n.t('my_page'), my_pages_path %>
+          <%= link_to I18n.t('my_work'), works_path %>
+          <%= link_to I18n.t('logout'), destroy_user_session_path, method: :delete %>
         <% else %>
-          <%= link_to "ログイン", new_user_session_path %>
-          <%= link_to "新規登録", new_user_registration_path %>
+          <%= image_tag("logo.png", class: 'icon' ) %>
+          <%= link_to I18n.t('login_display'), new_user_session_path %>
+          <%= link_to I18n.t('new_account'), new_user_registration_path %>
         <% end %>
       </div>
     </header>
@@ -36,9 +37,9 @@
     <footer class=" text-center bg-secondary">
       <p>&copy; 2022~ Aono Co.,Ltd</p>
       <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">プライバシー</a></li>
-        <li class="list-inline-item"><a href="#">利用規約</a></li>
-        <li class="list-inline-item"><a href="#">サポート</a></li>
+        <li class="list-inline-item"><a href="#"><%= I18n.t('privacy')%></a></li>
+        <li class="list-inline-item"><a href="#"><%= I18n.t('terms_of_service')%></a></li>
+        <li class="list-inline-item"><a href="#"><%= I18n.t('support')%></a></li>
       </ul>
     </footer>
   </body>

@@ -3,6 +3,15 @@ ja:
   destroy: 削除
   show: 詳細
   back: 戻る
+  my_page: マイページ
+  my_work: マイワーク
+  logout: ログアウト
+  login_display: ログイン画面
+  new_account: 新規アカウント登録
+  privacy: プライバシー
+  terms_of_service: 利用規約
+  support: サポート
+  technology_pyramid: テクノロジーピラミッド
   error:
     display: エラー
     save: 【保存エラー】
