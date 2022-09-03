@@ -45,3 +45,10 @@ ja:
       index: 技術一覧へ遷移
   searches:
     result: 検索結果
+  links:
+    edit: リンク編集
+    display: リンク
+    new: リンク作成
+    title: タイトル
+    url: URL
+    good_counter: いいね数
