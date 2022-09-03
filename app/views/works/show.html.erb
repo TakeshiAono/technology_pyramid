@@ -1,10 +1,10 @@
 <p>
-  <strong>Title:</strong>
+  <strong><%= I18n.t('works.title') %>:</strong>
   <%= @work.title %>
 </p>
 
 <p>
-  <strong>Public flag:</strong>
+  <strong><%= I18n.t('works.public_flag') %>:</strong>
   <%= @work.public_flag %>
 </p>
 
@@ -13,5 +13,5 @@
   <%= @work.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_work_path(@work) %> |
-<%= link_to 'Back', works_path %>
+<%= link_to I18n.t('show'), @work %> |
+<%= link_to I18n.t('back'), works_path %>

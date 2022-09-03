@@ -1,0 +1,63 @@
+ja:
+  edit: 編集
+  destroy: 削除
+  show: 詳細
+  back: 戻る
+  my_page: マイページ
+  my_work: マイワーク
+  logout: ログアウト
+  login_display: ログイン画面
+  new_account: 新規アカウント登録
+  privacy: プライバシー
+  terms_of_service: 利用規約
+  support: サポート
+  technology_pyramid: テクノロジーピラミッド
+  error:
+    display: エラー
+    save: 【保存エラー】
+  confirm:
+    destroy: 削除しますか？
+  
+  users:
+    display: ユーザー
+  favorites:
+    display: お気に入り数
+  my_pages:
+    display: マイページ
+  pyramids:
+    display: ピラミッド
+    confirm: ピラミッド一覧
+    edit: ピラミッド編集
+    name: ピラミッドネーム
+    public_flag: 公開有無
+  works:
+    name: ワーク名
+    display: ワーク
+    new: 新規ワーク作成
+    active: アクティブワーク
+    inactive: 非アクティブワーク
+    title: タイトル
+    public_flag: 公開フラグ
+    active_flag: アクティブワークフラグ
+    research:
+      display: ワーク検索
+      keyword: 検索キーワード
+  technologies:
+    display: テクノロジー
+    application: 応用技術
+    basic: 基礎技術
+    name: テクノロジーネーム
+    edit: テクノロジー編集
+    new: 新規テクノロジー作成
+    public_flag: 公開有無
+    transition:
+      index: 技術一覧へ遷移
+  searches:
+    result: 検索結果
+  links:
+    edit: リンク編集
+    display: リンク
+    new: リンク作成
+    title: タイトル
+    url: URL
+    good_counter: いいね数

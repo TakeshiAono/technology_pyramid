@@ -1,12 +1,11 @@
-<h1>Editing Technology</h1>
+<h1><%= I18n.t('technologies.edit') %></h1>
 
 <%= render 'form', technology: @technology %>
 
-<%# <% byebug %> %>
 <% if session[:before_controller_path] == 'pyramids' %>
-  <%= link_to 'Show', technology_path(session[:top_technology_id]) %> |
-  <%= link_to 'Back', pyramids_path(session[:top_technology_id]) %>
+  <%= link_to I18n.t("show"), technology_path(session[:top_technology_id]) %> |
+  <%= link_to I18n.t("back"), pyramids_path(session[:top_technology_id]) %>
 <% else %>
-  <%= link_to 'Show', @technology %> |
-  <%= link_to 'Back', technologies_path %>
+  <%= link_to I18n.t("show"), @technology %> |
+  <%= link_to I18n.t("back"), technologies_path %>
 <% end %>

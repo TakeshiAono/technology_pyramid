@@ -1,7 +1,7 @@
 <%= form_with(model: work, local: true) do |form| %>
   <% if work.errors.any? %>
     <div id="error_explanation" class = "alert alert-danger">
-      <h2><%= pluralize(work.errors.count, "error") %> prohibited this work from being saved:</h2>
+      <h2><%= pluralize(work.errors.count, I18n.t('error.display')) %> <%= I18n.t('error.save') %></h2>
 
       <ul>
         <% work.errors.full_messages.each do |message| %>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, placeholder: "title" %>
+    <%= form.text_field :title, placeholder: I18n.t('works.title') %>
   </div>
 
   <div class="field">

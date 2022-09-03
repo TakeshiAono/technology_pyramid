@@ -1,24 +1,24 @@
 <%# <p id="notice"><%= notice %></p> %>
 
 <p>
-  <strong>Title:</strong>
+  <strong><%= I18n.t("links.title") %>:</strong>
   <%= @link.title %>
 </p>
 
 <p>
-  <strong>Url:</strong>
+  <strong><%= I18n.t('links.url') %>:</strong>
   <%= @link.url %>
 </p>
 
 <p>
-  <strong>Good counter:</strong>
+  <strong><%= I18n.t('links.good_counter') %>::</strong>
   <%= @link.good_counter %>
 </p>
 
-<p>
-  <strong>Technology:</strong>
-  <%= @link.technology_id %>
-</p>
+<%# <p> %>
+  <%# <strong>Technology:</strong> %>
+  <%# <%= @link.technology_id %> %>
+<%# </p> %>
 
-<%= link_to 'Edit', edit_link_path(@link) %> |
-<%= link_to 'Back', links_path(session[:technology_id]) %>
+<%= link_to I18n.t("edit"), edit_link_path(@link) %> |
+<%= link_to I18n.t("back"), links_path(session[:technology_id]) %>

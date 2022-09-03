@@ -1,9 +1,9 @@
 <%# <p id="notice"><%= notice %></p> %>
 
-<h1>Search Results</h1>
+<h1><%= I18n.t('searches.result') %></h1>
 
 <%= search_form_for @q, url: searches_index_path do |f| %>
-      <%= f.label :title_cont, 'ワーク名' %>
+      <%= f.label :title_cont, I18n.t('works.name') %>
       <%= f.search_field :title_cont %>
       <%= f.submit '検索' %>
     <% end %>
@@ -11,10 +11,10 @@
 <table>
   <thead>
     <tr>
-      <th>Works</th>
-      <th>User</th>
-      <th>Favorite</th>
-      <th>Import</th>
+      <th><%= I18n.t('works.display') %></th>
+      <th><%= I18n.t('users.display') %></th>
+      <th><%= I18n.t('favorites.display') %></th>
+      <%# <th>Import</th> %>
     </tr>
   </thead>
 

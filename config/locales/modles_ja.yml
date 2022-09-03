@@ -11,6 +11,7 @@ ja:
         public_flag: '公開フラグ'
         active_flag: 'アクティブワークフラグ'
       technology:
+        to_upper_technology: 上位技術
         name: '名前'
         public_flag: '公開フラグ'
         basic_flag: '基礎技術ですか？'
