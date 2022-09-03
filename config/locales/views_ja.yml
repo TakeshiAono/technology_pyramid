@@ -8,6 +8,11 @@ ja:
     save: 【保存エラー】
   confirm:
     destroy: 削除しますか？
+  
+  users:
+    display: ユーザー
+  favorites:
+    display: お気に入り数
   my_pages:
     display: マイページ
   pyramids:
@@ -16,6 +21,7 @@ ja:
     name: ピラミッドネーム
     public_flag: 公開有無
   works:
+    name: ワーク名
     display: ワーク
     new: 新規ワーク作成
     active: アクティブワーク
@@ -36,3 +42,5 @@ ja:
     public_flag: 公開有無
     transition:
       index: 技術一覧へ遷移
+  searches:
+    result: 検索結果
