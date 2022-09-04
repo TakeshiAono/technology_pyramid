@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     set_q
     @works = @q.result

@@ -53,7 +53,7 @@ ja:
     transition:
       index: 技術一覧へ遷移
   searches:
-    result: 検索結果
+    page: 検索ページ
   links:
     edit: リンク編集
     display: リンク
