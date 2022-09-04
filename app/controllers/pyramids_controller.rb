@@ -1,5 +1,6 @@
 class PyramidsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
       session[:top_technology_id] = params[:format] if params[:format].present?
       @top_technology = Technology.find(session[:top_technology_id])

@@ -1,4 +1,5 @@
 class TechnologiesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_technology, only: %i[ show edit update destroy ]
 
   # GET /technologies or /technologies.json
