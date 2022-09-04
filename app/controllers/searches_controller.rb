@@ -1,5 +1,4 @@
 class SearchesController < ApplicationController
-
   def index
     set_q
     @works = @q.result
