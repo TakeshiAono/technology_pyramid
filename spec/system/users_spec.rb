@@ -2,16 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
   describe 'アカウント登録機能' do
+    def sign_up_form_input(name: "example", email: "guest@example.com", password: "example", password_confirmation: "example")
+      visit new_user_registration_path
+      fill_in "user[name]", with: name
+      fill_in "user[email]", with: email
+      fill_in "user[password]", with: password
+      fill_in "user[password_confirmation]", with: password_confirmation
+      click_on "commit"
+    end
     context 'sign upした場合' do
-      def sign_up_form_input(name: "example", email: "guest@example.com", password: "example", password_confirmation: "example")
-        visit new_user_registration_path
-        fill_in "user[name]", with: name
-        fill_in "user[email]", with: email
-        fill_in "user[password]", with: password
-        fill_in "user[password_confirmation]", with: password_confirmation
-        click_on "commit"
-      end
-
       context '入力値が不適でsign upした場合' do
         example 'nameが空の場合、エラーメッセージが表示され、マイページに遷移しない' do
           visit new_user_registration_path
@@ -61,41 +60,81 @@ RSpec.describe "Users", type: :system do
   end
 
   describe 'ログイン機能' do
-    context 'ユーザー以外がページにアクセスした場合' do
-      example 'pyramid、リンク、loginページ以外へアクセスさせない' do
-      end
-      example 'pyramidページへ遷移させる' do
-      end
-      example 'リンクページへアクセスできる' do
-      end
-      example 'loginページにクセスできる' do
+    describe 'アクセス禁止' do
+      context '登録ユーザー以外の場合' do
+        example 'マイページにアクセスさせない' do
+          visit my_pages_path
+          expect(current_path).not_to eq my_pages_path
+        end
+  
+        example 'ワークページにアクセスさせない' do
+          visit works_path
+          expect(current_path).not_to eq works_path
+        end
+  
+        example 'テクノロジーページにアクセスさせない' do
+          visit technologies_path
+          expect(current_path).not_to eq technologies_path
+        end
+  
+        example 'リンクページにアクセスさせない' do
+          visit links_path
+          expect(current_path).not_to eq links_path
+        end
+  
+        example 'リンクページにアクセスさせない' do
+          visit pyramids_path
+          expect(current_path).not_to eq pyramids_path
+        end
       end
     end
-    context 'ゲストユーザーがログインした場合' do
-      example '正常にログインできる' do
-      end
-    end
-    context '一般ユーザーがログインした場合' do
-      example '正常にログインできる' do
-      end
-    end
-  end
 
-  describe 'ゲストログイン機能' do
-    example 'ゲストログインできる' do
+    describe 'アクセス許可' do
+      let!(:user){FactoryBot.create(:user)}
+      context '登録ユーザー以外の場合' do
+        example 'loginページにクセスできる' do
+          visit new_user_session_path
+          expect(current_path).to eq new_user_session_path
+        end
+  
+        example 'sign upページにクセスできる' do
+          visit new_user_registration_path
+          expect(current_path).to eq new_user_registration_path
+        end
+      end
+
+      context 'ゲストユーザーがログインした場合' do
+        example '正常にログインできる' do
+          visit new_user_session_path
+          click_link 'ゲストログイン（閲覧用）'
+          expect(current_path).to eq my_pages_path
+        end
+      end
+
+      context '一般ユーザーがログインした場合' do
+        example '正常にログインできる' do
+          visit new_user_session_path
+          fill_in 'user[email]', with: 'guest@example.com'
+          fill_in 'user[password]', with: 'example'
+          click_on 'commit'
+          expect(current_path).to eq my_pages_path
+        end
+      end
     end
   end
 
   describe '管理画面機能' do
+    let!(:not_admin_user){FactoryBot.create(:user, email: 'not_admin@example.com', admin: false)}
+    let!(:admin_user){FactoryBot.create(:user)}
     context '管理者ユーザーの場合' do
       example '管理画面に遷移できる' do
-      end
-    end
-
-    context '管理者ユーザーではない場合' do
-      example '管理画面に遷移できない' do
+        visit new_user_session_path
+        fill_in 'user[email]', with: 'guest@example.com'
+        fill_in 'user[password]', with: 'example'
+        click_on 'commit'
+        visit rails_admin_path
+        expect(current_path).to eq rails_admin_path
       end
     end
   end
-
 end
