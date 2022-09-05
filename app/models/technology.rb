@@ -1,5 +1,5 @@
 class Technology < ApplicationRecord
-  validates :name, presence: true, length: {maximum: 20 }
+  validates :name, presence: true, length: {maximum: 10 }
 
   has_many :links, dependent: :destroy
   has_many :hierarckies, dependent: :destroy
