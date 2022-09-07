@@ -43,13 +43,17 @@ class TechnologiesController < ApplicationController
     respond_to do |format|
       if @technology.save
         @upper_hierarcky = Hierarcky.new(technology_id: params[:technology][:upper_technology_id], lower_technology_id: @technology.id)
-        if @upper_hierarcky.save
-          format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
+        @upper_hierarcky.save
+        format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
           format.json { render :show, status: :created, location: @technology }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @technology.errors, status: :unprocessable_entity }
-        end
+
+        # if @upper_hierarcky.save
+        #   format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
+        #   format.json { render :show, status: :created, location: @technology }
+        # else
+        #   format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
+        #   format.json { render :show, status: :created, location: @technology }
+        # end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @technology.errors, status: :unprocessable_entity }

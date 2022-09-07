@@ -24,6 +24,7 @@
         <td><%= technology.work_id %></td>
         <td><%= technology.basic_flag %></td>
         <td><%= link_to I18n.t('pyramids.confirm'), pyramids_path(technology), class: "btn btn-success" %></td>
+        <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
         <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
         <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
@@ -54,6 +55,7 @@
         <td><%= technology.work_id %></td>
         <td><%= technology.basic_flag %></td>
         <td><%= link_to I18n.t('pyramids.confirm'), pyramids_path(technology), class: "btn btn-success" %></td>
+        <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
         <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
         <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
