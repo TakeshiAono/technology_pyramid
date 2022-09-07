@@ -2,7 +2,7 @@
 
 <h1><%= I18n.t('links.display') %></h1>
 
-<%= link_to I18n.t('links.new'), new_link_path %>
+<%= link_to I18n.t('links.new'), new_link_path, class: "btn btn-primary" %>
 
 <table>
   <thead>
@@ -22,9 +22,9 @@
         <td><%= link_to "#{link.url}", link.url %></td>
         <td><%= link.good_counter %></td>
         <%# <td><%= link.technology_id %></td> %>
-        <%# <td><%= link_to I18n.t("show"), link %></td> %>
-        <td><%= link_to I18n.t("edit"), edit_link_path(link) %></td>
-        <td><%= link_to I18n.t("destroy"), link, method: :delete, data: {confirm: I18n.t("confirm.destroy")} %></td>
+        <td><%= link_to I18n.t("show"), link, class: "btn btn-secondary" %></td>
+        <td><%= link_to I18n.t("edit"), edit_link_path(link), class: "btn btn-warning" %></td>
+        <td><%= link_to I18n.t("destroy"), link, method: :delete, data: {confirm: I18n.t("confirm.destroy")}, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
