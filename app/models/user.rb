@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :name, presence: true, length: {maximum: 10}
-  validates :email, presence: true, length: {maximum: 30}
+  validates :email, presence: true, length: {maximum: 60}
 
   OCCUPATION = ['営業','設計','人事','オペレータ','データ管理・操作']
   

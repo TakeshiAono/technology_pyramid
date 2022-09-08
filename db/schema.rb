@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_08_19_042403) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.bigint "favorite_user", default: 3
+    t.bigint "favorite_user"
   end
 
   create_table "hierarckies", force: :cascade do |t|
