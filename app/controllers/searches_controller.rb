@@ -6,6 +6,14 @@ class SearchesController < ApplicationController
     @works = @q.result
   end
 
+  def create
+    set_q
+    @works = @q.result
+    Favorite.create(user_id: current_user.id, favorite_id: params[:user_id])
+    byebug
+    render :index
+  end
+
   private
   def set_q
     @q = Work.ransack(params[:q])

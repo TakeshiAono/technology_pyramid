@@ -3,10 +3,10 @@
 <h1><%= I18n.t('searches.page') %></h1>
 
 <%= search_form_for @q, url: searches_index_path do |f| %>
-      <%= f.label :title_cont, I18n.t('works.name') %>
-      <%= f.search_field :title_cont %>
-      <%= f.submit '検索' %>
-    <% end %>
+  <%= f.label :title_cont, I18n.t('works.name') %>
+  <%= f.search_field :title_cont %>
+  <%= f.submit '検索' %>
+<% end %>
 
 <table>
   <thead>
@@ -22,7 +22,17 @@
     <% @works.each do |work| %>
       <tr>
         <td><%= link_to "#{work.title}", technologies_path(work) %></td>
-        <td><%= work.user.name %></td>
+        <td>
+        <% unless current_user == work.user %>
+          <% if current_user.favorites.find_by(favorite_id: work.user.id).present? %>
+            <%= link_to "#{work.user.name}", {controller: "searches", action: "create", user_id: work.user, q: {title_cont: @q.conditions[0].values[0].value}, class:"btn btn-primary"}, method: :post unless current_user == work.user%>
+          <% else %>
+            <%= link_to "#{work.user.name}", {controller: "searches", action: "create", user_id: work.user, q: {title_cont: @q.conditions[0].values[0].value}}, method: :post unless current_user == work.user%>
+          <% end %>
+        <% else %>
+          <%= work.user.name %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
