@@ -1,6 +1,6 @@
 class MyPagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_my_page, only: %i[ show edit update destroy ]
+  before_action :set_my_page, only: %i[show edit update destroy]
   before_action :set_q, only: %i[index search]
 
   def index

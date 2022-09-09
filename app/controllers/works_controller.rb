@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_work, only: %i[ show edit update destroy ]
+  before_action :set_work, only: %i[show edit update destroy]
 
   def index
       @active_works = current_user.works.where(active_flag: true)
