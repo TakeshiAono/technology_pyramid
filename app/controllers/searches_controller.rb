@@ -4,29 +4,28 @@ class SearchesController < ApplicationController
   def index
     set_q
     @works = @q.result
+    if @q.conditions[0].present?
+      session[:search_word] = @q.conditions[0].values[0].value
+    end
   end
 
   def create
-    set_q
+    Favorite.create(user_id: current_user.id, favorite_id: params[:format])
+    @q = Work.ransack(title_cont: session[:search_word])
     @works = @q.result
-    Favorite.create(user_id: current_user.id, favorite_id: params[:user_id])
     render :index
-    # session[:q] = Work.ransack(params[:q])
-    # redirect_to searches_index_path
   end
 
   def destroy
-    set_q
+    Favorite.where(user_id: current_user.id, favorite_id: params[:id]).first.destroy
+    @q = Work.ransack(title_cont: session[:search_word])
     @works = @q.result
-    Favorite.where(user_id: current_user.id, favorite_id: params[:user_id]).first.destroy
     render :index
-    # session[:q] = Work.ransack(params[:q])
-    # redirect_to searches_index_path
   end
 
   private
   def set_q
-    @q = Work.ransack(params[:q])
+      @q = Work.ransack(params[:q])
   end
 
 end

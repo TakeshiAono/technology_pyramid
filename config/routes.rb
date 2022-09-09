@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   # root "users/sessions#new"
-  get 'searches/index'
-  post 'searches/create'
-  post 'searches/destroy'
+  # get 'searches/index'
+  # post 'searches/create'
+  # post 'searches/destroy'
   resources :links
+  resources :searches
   resources :pyramids
   resources :technologies
   resources :my_pages do
