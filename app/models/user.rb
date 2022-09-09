@@ -8,7 +8,8 @@ class User < ApplicationRecord
   
   has_many :works, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorite_users, through: :favorites, source: :favorite_user
+  has_many :favorited, class_name: "Favorite", foreign_key: :favorite_id, dependent: :destroy
+  # has_many :favorite_users, through: :favorites, source: :favorite
 
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
