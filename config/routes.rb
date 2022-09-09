@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # root "users/sessions#new"
-  # get 'searches/index'
-  # post 'searches/create'
-  # post 'searches/destroy'
   resources :links
   resources :searches
   resources :pyramids
@@ -15,10 +11,8 @@ Rails.application.routes.draw do
   resources :works
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :controllers => {
-    # :sessions => 'users/sessions',
     :registrations => 'users/registrations'
   }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
