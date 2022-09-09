@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # root "users/sessions#new"
   get 'searches/index'
   post 'searches/create'
+  post 'searches/destroy'
   resources :links
   resources :pyramids
   resources :technologies

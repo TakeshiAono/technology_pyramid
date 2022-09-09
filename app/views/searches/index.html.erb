@@ -23,14 +23,14 @@
       <tr>
         <td><%= link_to "#{work.title}", technologies_path(work) %></td>
         <td>
-        <% unless current_user == work.user %>
-          <% if current_user.favorites.find_by(favorite_id: work.user.id).present? %>
-            <%= link_to "#{work.user.name}", {controller: "searches", action: "create", user_id: work.user, q: {title_cont: @q.conditions[0].values[0].value}, class:"btn btn-primary"}, method: :post unless current_user == work.user%>
-          <% else %>
-            <%= link_to "#{work.user.name}", {controller: "searches", action: "create", user_id: work.user, q: {title_cont: @q.conditions[0].values[0].value}}, method: :post unless current_user == work.user%>
-          <% end %>
-        <% else %>
+        <% if current_user == work.user %>
           <%= work.user.name %>
+        <% else %>
+          <% if current_user.favorites.find_by(favorite_id: work.user.id).present? %>
+            <%= link_to "#{work.user.name}", {controller: "searches", action: "destroy", user_id: work.user, q: {title_cont: @q.conditions[0].values[0].value}},method: :post, class:"btn btn-success" unless current_user == work.user%>
+          <% else %>
+            <%= link_to "#{work.user.name}", {controller: "searches", action: "create", user_id: work.user, q: {title_cont: @q.conditions[0].values[0].value}}, method: :post, class:"btn btn-secondary" unless current_user == work.user%>
+          <% end %>
         <% end %>
         </td>
       </tr>
@@ -39,5 +39,3 @@
 </table>
 
 <br>
-
-<%# <%= link_to 'New Link', new_link_path %> %>

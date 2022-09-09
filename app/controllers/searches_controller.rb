@@ -10,8 +10,18 @@ class SearchesController < ApplicationController
     set_q
     @works = @q.result
     Favorite.create(user_id: current_user.id, favorite_id: params[:user_id])
-    byebug
     render :index
+    # session[:q] = Work.ransack(params[:q])
+    # redirect_to searches_index_path
+  end
+
+  def destroy
+    set_q
+    @works = @q.result
+    Favorite.where(user_id: current_user.id, favorite_id: params[:user_id]).first.destroy
+    render :index
+    # session[:q] = Work.ransack(params[:q])
+    # redirect_to searches_index_path
   end
 
   private
