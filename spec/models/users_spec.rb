@@ -30,8 +30,8 @@ RSpec.describe Users, type: :model do
         expect(test_user).to be_invalid
       end
 
-      example 'emailが30文字以上の場合、validationエラーになる' do
-        test_user = FactoryBot.build(:user, name: "example", email: 'a'*19+'@example.com', password: "example", password_confirmation: "example")
+      example 'emailが60文字以上の場合、validationエラーになる' do
+        test_user = FactoryBot.build(:user, name: "example", email: 'a'*49+'@example.com', password: "example", password_confirmation: "example")
         expect(test_user).to be_invalid
       end
       

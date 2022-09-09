@@ -31,8 +31,8 @@ RSpec.describe "Users", type: :system do
           expect(current_path).not_to eq my_pages_path
         end
 
-        example 'emailが30文字以上の場合、エラーメッセージが表示され、マイページに遷移しない' do
-          sign_up_form_input(email: "a"*19+"@example.com")
+        example 'emailが60文字以上の場合、エラーメッセージが表示され、マイページに遷移しない' do
+          sign_up_form_input(email: "a"*49+"@example.com")
           expect(page).to have_content "文字以内で入力してください"
           expect(current_path).not_to eq my_pages_path
         end

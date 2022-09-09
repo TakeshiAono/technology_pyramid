@@ -7,6 +7,7 @@ class MyPagesController < ApplicationController
   def index
     @my_pages = User.all
     @users = User.all
+    @favorites = Favorite.all
   end
 
   # GET /my_pages/1 or /my_pages/1.json
