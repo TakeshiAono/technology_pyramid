@@ -3,27 +3,22 @@ class MyPagesController < ApplicationController
   before_action :set_my_page, only: %i[ show edit update destroy ]
   before_action :set_q, only: [:index, :search]
 
-  # GET /my_pages or /my_pages.json
   def index
     @my_pages = User.all
     @users = User.all
     @favorites = Favorite.all
   end
 
-  # GET /my_pages/1 or /my_pages/1.json
   def show
   end
 
-  # GET /my_pages/new
   def new
     @my_page = User.new
   end
 
-  # GET /my_pages/1/edit
   def edit
   end
 
-  # POST /my_pages or /my_pages.json
   def create
     @my_page = User.new(my_page_params)
 
@@ -38,7 +33,6 @@ class MyPagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /my_pages/1 or /my_pages/1.json
   def update
     respond_to do |format|
       if @my_page.update(my_page_params)
@@ -51,7 +45,6 @@ class MyPagesController < ApplicationController
     end
   end
 
-  # DELETE /my_pages/1 or /my_pages/1.json
   def destroy
     @my_page.destroy
 
@@ -62,7 +55,6 @@ class MyPagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_q
       @q = Work.ransack(params[:q])
     end
@@ -71,7 +63,6 @@ class MyPagesController < ApplicationController
       @my_page = User.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def my_page_params
       params.fetch(:my_page, {})
     end

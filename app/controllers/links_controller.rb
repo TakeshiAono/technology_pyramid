@@ -2,26 +2,22 @@ class LinksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_link, only: %i[ show edit update destroy ]
 
-  # GET /links or /links.json
   def index
     session[:technology_id] = params[:format]
     @links = Link.where(technology_id: params[:format])
   end
 
-  # GET /links/1 or /links/1.json
+
   def show
   end
 
-  # GET /links/new
   def new
     @link = Link.new(technology_id: session[:technology_id])
   end
 
-  # GET /links/1/edit
   def edit
   end
 
-  # POST /links or /links.json
   def create
     @link = Link.new(link_params)
 
@@ -36,7 +32,6 @@ class LinksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /links/1 or /links/1.json
   def update
     respond_to do |format|
       if @link.update(link_params)
@@ -49,7 +44,6 @@ class LinksController < ApplicationController
     end
   end
 
-  # DELETE /links/1 or /links/1.json
   def destroy
     @link.destroy
 
@@ -60,12 +54,10 @@ class LinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def link_params
       params.require(:link).permit(:title, :url, :good_counter, :technology_id)
     end
