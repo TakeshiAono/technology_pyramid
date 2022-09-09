@@ -77,5 +77,4 @@ class TechnologiesController < ApplicationController
     def technology_params
       params.require(:technology).permit(:name, :public_flag,  :work_id, :basic_flag, hierarckies_attributes: %i[id lower_technology_id technology_id])
     end
-
 end
