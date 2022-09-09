@@ -147,7 +147,7 @@ ja:
       empty_value_for_associated_objects: "<empty>"
       click_to_reverse_selection: 'クリックで選択を反転します'
       csv:
-        header_for_root_methods: "%{name}" # 'model' is available
+        header_for_root_methods: "%{name}" 
         header_for_association_methods: "%{name} [%{association}]"
         encoding_to: "文字コード"
         encoding_to_help: "空白の場合は%{name}になります"
@@ -155,4 +155,4 @@ ja:
         skip_header_help: "チェックすると出力にヘッダ行を含めません"
         default_col_sep: ","
         col_sep: "区切り文字"
-        col_sep_help: "空白の場合は'%{value}'区切りです" # value is default_col_sep
+        col_sep_help: "空白の場合は'%{value}'区切りです"
