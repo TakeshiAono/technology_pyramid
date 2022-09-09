@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
   resources :links
-  resources :searches
-  resources :pyramids
+  resources :searches, only: %i[index create destroy]
+  resources :pyramids, only: %i[index]
   resources :technologies
-  resources :my_pages do
-    collection do
-      get 'search'
-    end
-  end
+  resources :my_pages, only: %i[index]
+  
   resources :works
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
