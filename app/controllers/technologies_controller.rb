@@ -2,7 +2,6 @@ class TechnologiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_technology, only: %i[ show edit update destroy ]
 
-  # GET /technologies or /technologies.json
   def index
     path = Rails.application.routes.recognize_path(request.referer)
     session[:before_controller_path] = path[:controller]
@@ -14,13 +13,11 @@ class TechnologiesController < ApplicationController
     @basic_technologies = work.technologies.where(basic_flag: true)
   end
 
-  # GET /technologies/1 or /technologies/1.json
   def show
     path = Rails.application.routes.recognize_path(request.referer)
     session[:before_controller_path] = path[:controller]
   end
 
-  # GET /technologies/new
   def new
     path = Rails.application.routes.recognize_path(request.referer)
     session[:before_controller_path] = path[:controller]
@@ -31,13 +28,11 @@ class TechnologiesController < ApplicationController
     @technology.hierarckies.build
   end
 
-  # GET /technologies/1/edit
   def edit
     path = Rails.application.routes.recognize_path(request.referer)
     session[:before_controller_path] = path[:controller]
   end
 
-  # POST /technologies or /technologies.json
   def create
     @technology = Technology.new(technology_params)
     respond_to do |format|
@@ -45,24 +40,14 @@ class TechnologiesController < ApplicationController
         @upper_hierarcky = Hierarcky.new(technology_id: params[:technology][:upper_technology_id], lower_technology_id: @technology.id)
         @upper_hierarcky.save
         format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
-          format.json { render :show, status: :created, location: @technology }
-
-        # if @upper_hierarcky.save
-        #   format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
-        #   format.json { render :show, status: :created, location: @technology }
-        # else
-        #   format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
-        #   format.json { render :show, status: :created, location: @technology }
-        # end
+        format.json { render :show, status: :created, location: @technology }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @technology.errors, status: :unprocessable_entity }
       end
     end
-    # Hierarcky.create(technology_id: session[:top_technology_id],lower_technology_id: @technology.id)
   end
 
-  # PATCH/PUT /technologies/1 or /technologies/1.json
   def update
     respond_to do |format|
       if @technology.update(technology_params)
@@ -75,7 +60,6 @@ class TechnologiesController < ApplicationController
     end
   end
 
-  # DELETE /technologies/1 or /technologies/1.json
   def destroy
     @technology.destroy
 
@@ -86,14 +70,11 @@ class TechnologiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_technology
       @technology = Technology.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def technology_params
       params.require(:technology).permit(:name, :public_flag,  :work_id, :basic_flag, hierarckies_attributes: %i[id lower_technology_id technology_id])
     end
-
 end

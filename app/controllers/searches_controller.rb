@@ -27,5 +27,4 @@ class SearchesController < ApplicationController
   def set_q
       @q = Work.ransack(params[:q])
   end
-
 end

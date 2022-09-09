@@ -1,5 +1,3 @@
-<%# <p id="notice"><%= notice %></p> %>
-
 <h1><%= I18n.t('technologies.display')  %></h1>
 
   <%= link_to I18n.t('technologies.new'), new_technology_path, class: "btn btn-primary" if current_user.works.find_by(id:session[:work_id]) %>
@@ -50,8 +48,6 @@
       <tr>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <%# <td><%= technology.upper_technology %></td> %>
-        <%# <td><%= technology.lower_technology %></td> %>
         <td><%= technology.work_id %></td>
         <td><%= technology.basic_flag %></td>
         <td><%= link_to I18n.t('pyramids.confirm'), pyramids_path(technology), class: "btn btn-success" %></td>
