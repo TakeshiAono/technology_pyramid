@@ -9,12 +9,4 @@ class Technology < ApplicationRecord
   belongs_to :work
 
   accepts_nested_attributes_for :hierarckies
-
-  technologies_hash = {}
-  technologies_hash.store("設定無", nil)
-  self.all.each do |technology|
-    technologies_hash.store(technology.name,technology.id)
-  end  
-  enum technology: technologies_hash
-
 end

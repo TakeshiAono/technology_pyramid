@@ -27,13 +27,13 @@
   
   <div class="field">
     <%= form.label :to_upper_technology %>
-    <%= form.select :upper_technology_id, Hash[*Technology.where(work_id: session[:work_id]).pluck(:name, :id).flatten] %>
+    <%= form.select :upper_technology_id, Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h %>
   </div>
 
   <div class="field">
     <%= form.fields_for :hierarckies do |hierarcky| %>
       <%= hierarcky.label :to_lower_technology %>
-      <%= hierarcky.select :lower_technology_id, Hash[*Technology.where(work_id: session[:work_id]).pluck(:name, :id).flatten] %>
+      <%= hierarcky.select :lower_technology_id, Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h %>
     <% end %>
   </div>
 
