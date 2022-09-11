@@ -62,7 +62,6 @@ class TechnologiesController < ApplicationController
 
   def destroy
     @technology.destroy
-
     respond_to do |format|
       format.html { redirect_to technologies_url, notice: "Technology was successfully destroyed." }
       format.json { head :no_content }
