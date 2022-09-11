@@ -32,7 +32,7 @@
 
   <div class="field">
     <%= form.fields_for :hierarckies do |hierarcky| %>
-      <%= hierarcky.label :to_lower_technology %>
+      <%= hierarcky.label I18n.t("technologies.low") %>
       <%= hierarcky.select :lower_technology_id, Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h %>
     <% end %>
   </div>
