@@ -13,6 +13,7 @@ class SearchesController < ApplicationController
     Favorite.create(user_id: current_user.id, favorite_id: params[:format])
     @q = Work.ransack(title_cont: session[:search_word])
     @works = @q.result
+    flash.now[:alert] = I18n.t('favorites.register_notice')
     render :index
   end
 
@@ -20,6 +21,7 @@ class SearchesController < ApplicationController
     Favorite.where(user_id: current_user.id, favorite_id: params[:id]).first.destroy
     @q = Work.ransack(title_cont: session[:search_word])
     @works = @q.result
+    flash.now[:alert] = I18n.t('favorites.unregister_notice')
     render :index
   end
 

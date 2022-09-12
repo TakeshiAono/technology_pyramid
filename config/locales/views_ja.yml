@@ -23,6 +23,8 @@ ja:
   favorites:
     display: お気に入り数
     button: お気に入りボタン
+    register_notice: お気に入り登録しました
+    unregister_notice: お気に入り登録を解除しました
   my_pages:
     display: マイページ
   pyramids:
