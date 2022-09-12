@@ -17,4 +17,11 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
     end
   end
+
+  def self.general
+    find_or_create_by!(name: 'general', email: 'general@example.com') do |user|
+      user.name = "general"
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end
