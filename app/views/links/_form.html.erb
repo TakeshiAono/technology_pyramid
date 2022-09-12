@@ -13,23 +13,15 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, placeholder: I18n.t('links.title') %>
   </div>
 
   <div class="field">
     <%= form.label :url %>
-    <%= form.text_field :url %>
+    <%= form.text_field :url, placeholder: I18n.t('links.url') %>
   </div>
 
-  <div class="field">
-    <%= form.label :good_counter %>
-    <%= form.number_field :good_counter %>
-  </div>
-
-  <div class="field">
-    <%= form.label :technology_id %>
-    <%= form.text_field :technology_id %>
-  </div>
+    <%= form.hidden_field :technology_id %>
 
   <div class="actions">
     <%= form.submit %>
