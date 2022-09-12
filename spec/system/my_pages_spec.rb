@@ -4,7 +4,7 @@ RSpec.describe "MyPages", type: :system do
   before do
     FactoryBot.create(:work)
     visit new_user_session_path
-    click_link 'ゲストログイン（閲覧用）'
+    click_link 'ゲストログイン（管理者用）'
   end
   describe 'ワーク検索機能' do
     context '検索に該当するものがあった場合' do

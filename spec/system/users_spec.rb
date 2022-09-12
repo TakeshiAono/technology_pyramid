@@ -103,10 +103,18 @@ RSpec.describe "Users", type: :system do
         end
       end
 
-      context 'ゲストユーザーがログインした場合' do
+      context '管理者ゲストユーザーがログインした場合' do
         example '正常にログインできる' do
           visit new_user_session_path
-          click_link 'ゲストログイン（閲覧用）'
+          click_link 'ゲストログイン（管理者用）'
+          expect(current_path).to eq my_pages_path
+        end
+      end
+
+      context '一般ユーザゲストユーザーがログインした場合' do
+        example '正常にログインできる' do
+          visit new_user_session_path
+          click_link 'ゲストログイン（一般ユーザ用）'
           expect(current_path).to eq my_pages_path
         end
       end
