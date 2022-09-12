@@ -4,13 +4,12 @@
 
 <div class = "active_works">
 <h2><%= I18n.t('works.active') %></h2>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th><%= I18n.t('works.title') %></th>
         <th><%= I18n.t('works.public_flag') %></th>
-        <td>User</td>
-        <th colspan="3"></th>
+        <th colspan="4"></th>
       </tr>
     </thead>
   
@@ -19,7 +18,6 @@
         <tr>
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>
-          <td><%= work.user_id %></td>
           <td><%= link_to I18n.t('technologies.transition.index'), technologies_path(work), class: "btn btn-success" %></td>
           <td><%= link_to I18n.t("show"), work_path(work), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t('edit'), edit_work_path(work), class: "btn btn-warning" %></td>
@@ -30,15 +28,16 @@
   </table>
 </div>
 
+<br>
+
 <div class = "inactive_works">
 <h2><%= I18n.t('works.inactive') %></h2>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th><%= I18n.t('works.title') %></th>
         <th><%= I18n.t('works.public_flag') %></th>
-        <td>User</td>
-        <th colspan="3"></th>
+        <th colspan="4"></th>
       </tr>
     </thead>
   
@@ -47,7 +46,6 @@
         <tr>
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>
-          <td><%= work.user_id %></td>
           <td><%= link_to I18n.t('technologies.transition.index'), technologies_path(work), class: "btn btn-success" %></td>
           <td><%= link_to I18n.t("show"), work_path(work), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t("edit"), edit_work_path(work), class: "btn btn-warning" %></td>
