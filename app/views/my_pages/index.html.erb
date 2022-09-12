@@ -2,6 +2,8 @@
 
   <div>
     <h2><%= I18n.t("works.research.display") %></h2>
+    <h5>興味のあるキーワードで検索して、<br>
+    参考にしたいユーザをお気に入り登録しましょう！</h5>
     <%= search_form_for @q, url: searches_path do |f| %>
       <%= f.label :title_cont, 'ワーク名' %>
       <%= f.search_field :title_cont, :placeholder => I18n.t('works.research.keyword') %>

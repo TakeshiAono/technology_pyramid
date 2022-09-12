@@ -3,14 +3,12 @@
   <%= link_to I18n.t('technologies.new'), new_technology_path, class: "btn btn-primary" if current_user.works.find_by(id:session[:work_id]) %>
 
 <h2><%= I18n.t('technologies.application') %></h2>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th><%= I18n.t('technologies.name') %></th>
       <th><%= I18n.t('technologies.public_flag') %></th>
-      <th>Work</th>
-      <th>basic_flag</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -19,8 +17,6 @@
       <tr>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <td><%= technology.work_id %></td>
-        <td><%= technology.basic_flag %></td>
         <td><%= link_to I18n.t('pyramids.confirm'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
         <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
@@ -31,15 +27,12 @@
 </table>
 
 <h2><%= I18n.t('technologies.basic')  %></h2>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Public flag</th>
-      <th>Upper technology</th>
-      <th>Work</th>
-      <th>basic_flag</th>
-      <th colspan="3"></th>
+      <th><%= I18n.t('technologies.name') %></th>
+      <th><%= I18n.t('technologies.public_flag') %></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -48,8 +41,6 @@
       <tr>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <td><%= technology.work_id %></td>
-        <td><%= technology.basic_flag %></td>
         <td><%= link_to I18n.t('pyramids.confirm'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
         <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>

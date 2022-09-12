@@ -5,7 +5,7 @@ RSpec.describe "Links", type: :system do
     before do
       FactoryBot.create(:link)
       visit new_user_session_path
-      click_link 'ゲストログイン（閲覧用）'
+      click_link 'ゲストログイン（管理者用）'
       visit links_path(Technology.first)
     end
     

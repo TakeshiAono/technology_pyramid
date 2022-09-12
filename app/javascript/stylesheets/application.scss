@@ -3,12 +3,6 @@
 *= require_tree .
 */
 
-// body, html{
-//   padding:0; /*　追加*/
-//   margin:0; /*　追加*/
-//   height: 100%;
-// }
-
 .container{
   padding-top: 50px;
 }
@@ -27,12 +21,6 @@ header{
 }
 
 footer{
-  // position: absolute;
-  // bottom: 0;
-//   left: 0;
-//   width: 100%;
-  // height: 70px;
-//   background-color: aqua;
   padding: 5px;
 }
 
@@ -44,3 +32,4 @@ footer{
 @import 'bootstrap';
 @import "session.scss";
 @import "pyramid.scss";
+@import "search.scss";
