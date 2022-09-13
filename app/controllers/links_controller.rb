@@ -46,11 +46,24 @@ class LinksController < ApplicationController
 
   def destroy
     @link.destroy
-
     respond_to do |format|
       format.html { redirect_to links_path(session[:technology_id]), notice: "Link was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def good_register
+    link = Link.find(params[:format])
+    good_counter = link[:good_counter]
+    link.update(good_counter: good_counter + 1)
+    redirect_to links_path(session[:technology_id])
+  end
+
+  def good_unregister
+    link = Link.find(params[:format])
+    good_counter = link[:good_counter]
+    link.update(good_counter: good_counter - 1)
+    redirect_to links_path(session[:technology_id])
   end
 
   private
