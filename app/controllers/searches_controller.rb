@@ -17,6 +17,13 @@ class SearchesController < ApplicationController
     render :index
   end
 
+  def show
+    @q = Work.ransack(title_cont: session[:search_word])
+    @works = @q.result
+    flash.now[:alert] = I18n.t('favorites.register_notice')
+    render :index
+  end
+
   def destroy
     Favorite.where(user_id: current_user.id, favorite_id: params[:id]).first.destroy
     @q = Work.ransack(title_cont: session[:search_word])
