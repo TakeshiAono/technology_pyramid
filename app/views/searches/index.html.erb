@@ -17,28 +17,30 @@
   </thead>
 
   <tbody class = "search-result-table">
-    <% @works.each do |work| %>
-      <tr>
-        <td><%= link_to "#{work.title}", technologies_path(work) %></td>
-        <td>
-          <%= work.user.name %>
-        </td>
-        <td>
-          <% if current_user == work.user %>
-            <span class = "favorite-button">-</span>
-          <% else %>
-            <% if current_user.favorites.find_by(favorite_id: work.user.id).present? %>
-              <%= link_to image_tag("hart.jpg", class:"favorite-button"), search_path(work.user), method: :delete unless current_user == work.user %>
+    <% if @works.present? %>
+      <% @works.each do |work| %>
+        <tr>
+          <td><%= link_to "#{work.title}", technologies_path(work) %></td>
+          <td>
+            <%= work.user.name %>
+          </td>
+          <td>
+            <% if current_user == work.user %>
+              <span class = "favorite-button">-</span>
             <% else %>
-              <%= link_to image_tag("black_hart.jpg", class:"favorite-button"), searches_path(work.user), method: :post unless current_user == work.user %>
+              <% if current_user.favorites.find_by(favorite_id: work.user.id).present? %>
+                <%= link_to image_tag("hart.jpg", class:"favorite-button"), search_path(work.user), method: :delete unless current_user == work.user %>
+              <% else %>
+                <%= link_to image_tag("black_hart.jpg", class:"favorite-button"), searches_path(work.user), method: :post unless current_user == work.user %>
+              <% end %>
             <% end %>
-          <% end %>
-        </td>
-        </td>
-        <td>
-          <%= work.user.favorited.count %>
-        </td>
-      </tr>
+          </td>
+          </td>
+          <td>
+            <%= work.user.favorited.count %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

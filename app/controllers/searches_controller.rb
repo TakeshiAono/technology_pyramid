@@ -6,6 +6,10 @@ class SearchesController < ApplicationController
     @works = @q.result
     if @q.conditions[0].present?
       session[:search_word] = @q.conditions[0].values[0].value
+      flash.now[:alert] = "検索キーワードに合致しませんでした" if @q.result[0] == nil
+    else
+      @works = nil
+      flash.now[:alert] = "検索キーワードを入力してください"
     end
   end
 
