@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :links
-  resources :searches, only: %i[index show create destroy]
+  resources :searches, only: %i[index show create destroy] do
+    collection do
+      post :favorite_registe
+      post :favorite_unregiste
+    end
+  end
   resources :pyramids, only: %i[index]
   resources :technologies
   resources :my_pages, only: %i[index]

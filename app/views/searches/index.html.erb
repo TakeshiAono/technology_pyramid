@@ -29,9 +29,9 @@
               <span class = "favorite-button">-</span>
             <% else %>
               <% if current_user.favorites.find_by(favorite_id: work.user.id).present? %>
-                <%= link_to image_tag("hart.jpg", class:"favorite-button"), search_path(work.user), method: :delete unless current_user == work.user %>
+                <%= link_to image_tag("hart.jpg", class:"favorite-button"), favorite_unregiste_searches_path({user_id: work.user.id, q: {title_cont: @q.conditions.first.value}}), method: :post unless current_user == work.user %>
               <% else %>
-                <%= link_to image_tag("black_hart.jpg", class:"favorite-button"), searches_path(work.user), method: :post unless current_user == work.user %>
+                <%= link_to image_tag("black_hart.jpg", class:"favorite-button"), favorite_registe_searches_path({user_id: work.user.id, q: {title_cont: @q.conditions.first.value}}), method: :post unless current_user == work.user %>
               <% end %>
             <% end %>
           </td>
