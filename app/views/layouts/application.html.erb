@@ -7,6 +7,7 @@
     <%= favicon_link_tag('logo.png') %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/9364dadfa7.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -14,6 +15,7 @@
       <div class = " navbar navbar-light" style="background-color: #e3f2fd";>
         <% if user_signed_in? %>
           <%= link_to image_tag("logo.png", class: 'icon' ), my_pages_path %>
+          <%= link_to "管理者用ページ", rails_admin_path if current_user.admin == true %>
           <%= link_to I18n.t('my_page'), my_pages_path %>
           <%= link_to I18n.t('my_work'), works_path %>
           <%= link_to I18n.t('logout'), destroy_user_session_path, method: :delete %>

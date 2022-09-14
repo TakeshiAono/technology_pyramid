@@ -20,7 +20,6 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(link_params)
-
     respond_to do |format|
       if @link.save
         format.html { redirect_to link_url(@link), notice: "Link was successfully created." }
@@ -46,10 +45,34 @@ class LinksController < ApplicationController
 
   def destroy
     @link.destroy
-
     respond_to do |format|
       format.html { redirect_to links_path(session[:technology_id]), notice: "Link was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def good_register
+    unless LinkGood.find_by(user_id: current_user.id, link_id: params[:format])
+      LinkGood.create(user_id: current_user.id,link_id: params[:format])
+      link = Link.find(params[:format])
+      link.update(good_counter: link.link_goods.count)
+      good_counter = link[:good_counter]
+      redirect_to links_path(session[:technology_id])
+    else
+      redirect_to links_path(session[:technology_id])
+    end
+  end
+
+  def good_unregister
+    if LinkGood.find_by(user_id: current_user.id,link_id: params[:format])
+      LinkGood.find_by(user_id: current_user.id,link_id: params[:format]).destroy
+      # @link_good = nil
+      link = Link.find(params[:format])
+      link.update(good_counter: link.link_goods.count)
+      good_counter = link[:good_counter]
+      redirect_to links_path(session[:technology_id])
+    else
+      redirect_to links_path(session[:technology_id])
     end
   end
 

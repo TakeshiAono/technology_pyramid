@@ -8,10 +8,5 @@
   <%= @link.url %>
 </p>
 
-<p>
-  <strong><%= I18n.t('links.good_counter') %>::</strong>
-  <%= @link.good_counter %>
-</p>
-
 <%= link_to I18n.t("edit"), edit_link_path(@link) %> |
 <%= link_to I18n.t("back"), links_path(session[:technology_id]) %>

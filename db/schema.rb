@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_19_042258) do
+ActiveRecord::Schema.define(version: 2022_09_14_015121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,10 +35,19 @@ ActiveRecord::Schema.define(version: 2022_08_19_042258) do
     t.index ["technology_id"], name: "index_hierarckies_on_technology_id"
   end
 
+  create_table "link_goods", force: :cascade do |t|
+    t.bigint "link_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["link_id"], name: "index_link_goods_on_link_id"
+    t.index ["user_id"], name: "index_link_goods_on_user_id"
+  end
+
   create_table "links", force: :cascade do |t|
     t.string "title"
     t.string "url"
-    t.integer "good_counter"
+    t.integer "good_counter", default: 0
     t.bigint "technology_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -94,6 +103,8 @@ ActiveRecord::Schema.define(version: 2022_08_19_042258) do
   add_foreign_key "favorites", "users", column: "favorite_id"
   add_foreign_key "hierarckies", "technologies"
   add_foreign_key "hierarckies", "technologies", column: "lower_technology_id"
+  add_foreign_key "link_goods", "links"
+  add_foreign_key "link_goods", "users"
   add_foreign_key "links", "technologies"
   add_foreign_key "technologies", "works"
   add_foreign_key "works", "users"
