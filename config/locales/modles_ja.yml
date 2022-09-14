@@ -1,6 +1,13 @@
 ---
 ja:
   activerecord:
+    models:
+      user: ユーザー
+      work: ワーク
+      technology: テクノロジー
+      hierarcky: 階層
+      link: リンク
+      favorite: お気に入り
     attributes:
       user:
         name: '名前'

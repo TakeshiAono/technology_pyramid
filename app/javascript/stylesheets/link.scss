@@ -1,0 +1,24 @@
+.good-column{
+  display: flex;
+  // text-align: right;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-thumbs-up{
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.good-counter{
+  font-size: 1.5em;
+  margin-right: 5px;
+}
+
+.good-unregister{
+  color:deeppink;
+}
+
+.good-register{
+  color:gray;
+}

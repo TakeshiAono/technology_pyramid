@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :links
+  resources :links do
+    collection do
+      get :good_register
+      get :good_unregister
+    end
+  end
   resources :searches, only: %i[index show create destroy]
   resources :pyramids, only: %i[index]
   resources :technologies
