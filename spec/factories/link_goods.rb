@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :link_good do
-    link { nil }
-    user { nil }
+    link { :link }
+    user { :user }
   end
 end
