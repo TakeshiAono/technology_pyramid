@@ -19,13 +19,16 @@
         <td><%= link_to "#{link.url}", link.url %></td>
         <td class = "good-column">
           <%# <div class = "good-content"> %>
-            <span class = "good-counter"><%= link.good_counter %></span>
+          <span class = "good-counter"><%= link.good_counter %></span>
+          <% unless LinkGood.find_by(user_id: current_user.id, link_id: link.id) %>
             <%= link_to good_register_links_path(link) do %>
               <i class="far fa-thumbs-up good-register"></i>
             <% end %>
+          <% else %>
             <%= link_to good_unregister_links_path(link) do %>
               <i class="far fa-thumbs-up good-unregister"></i>
             <% end %>
+          <% end %>
           <%# </div> %>
         </td>
         <td><%= link_to I18n.t("show"), link, class: "btn btn-secondary" %></td>
