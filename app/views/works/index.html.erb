@@ -56,7 +56,7 @@
           <td><%= work.public_flag %></td>
           <td><%= link_to I18n.t("show"), work_path(work), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t("edit"), edit_work_path(work), class: "btn btn-warning" %></td>
-          <td><%= link_to I18n.t("destroy"), work, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          <td><%= link_to I18n.t("destroy"), work, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>

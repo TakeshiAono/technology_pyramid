@@ -24,7 +24,7 @@
         <td><%= technology.public_flag %></td>
         <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
         <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
-        <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -49,7 +49,7 @@
         <td><%= technology.public_flag %></td>
         <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
         <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
-        <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
