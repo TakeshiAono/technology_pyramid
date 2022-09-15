@@ -1,23 +1,27 @@
-<h1><%= I18n.t('technologies.display')  %></h1>
+<h1>【<%= Work.find(session[:work_id]).title %>】<%= I18n.t('technologies.display')  %></h1>
+<p class = "explanation">
+  あなたが持っている「技術」を登録して「ピラミッド構造」を作りましょう!!
+</p>
 
-  <%= link_to I18n.t('technologies.new'), new_technology_path, class: "btn btn-primary" if current_user.works.find_by(id:session[:work_id]) %>
+<%= link_to I18n.t('technologies.new'), new_technology_path, class: "btn btn-primary" if current_user.works.find_by(id:session[:work_id]) %>
 
 <h2><%= I18n.t('technologies.application') %></h2>
 <table class="table">
   <thead>
     <tr>
+      <th colspan="1"></th>
       <th><%= I18n.t('technologies.name') %></th>
       <th><%= I18n.t('technologies.public_flag') %></th>
-      <th colspan="4"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @technologies.each do |technology| %>
       <tr>
+        <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <td><%= link_to I18n.t('pyramids.confirm'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
         <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
         <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
@@ -30,18 +34,19 @@
 <table class="table">
   <thead>
     <tr>
+      <th colspan="1"></th>
       <th><%= I18n.t('technologies.name') %></th>
       <th><%= I18n.t('technologies.public_flag') %></th>
-      <th colspan="4"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @basic_technologies.each do |technology| %>
       <tr>
+        <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <td><%= link_to I18n.t('pyramids.confirm'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
         <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
         <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>

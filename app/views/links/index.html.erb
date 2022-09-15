@@ -1,5 +1,10 @@
 <h1><%= I18n.t('links.display') %></h1>
 
+<p class = "explanation">
+  この技術を把握するための外部リンクです<br>
+  参考になった場合は「いいねボタン」で評価をしてあげましょう
+</p>
+
 <%= link_to I18n.t('links.new'), new_link_path, class: "btn btn-primary" %>
 
 <table class = "table links-table">

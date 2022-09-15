@@ -1,4 +1,9 @@
-<h1><%= I18n.t('pyramids.display') %></h1>
+<h1>【<%= @top_technology.name %>】<%= I18n.t('pyramids.display') %></h1>
+
+<p class = "explanation">
+  <%= @top_technology.name %>を構成する技術をピラミッド構造で示しています。<br>
+  各要素技術をクリックすると詳しい内容を把握することができます。
+</p>
 
 <p><%= link_to I18n.t('technologies.new'), new_technology_path(session[:top_technology_id]), class: "btn btn-primary" %></p>
 

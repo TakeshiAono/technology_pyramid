@@ -8,6 +8,7 @@ ja:
       hierarcky: 階層
       link: リンク
       favorite: お気に入り
+      link_good: リンクのいいね総数
     attributes:
       user:
         name: '名前'
