@@ -12,20 +12,26 @@
 
   <body>
     <header class = "fixed-top">
-      <div class = " navbar navbar-light" style="background-color: #e3f2fd";>
+      <div class = " navbar d-flex mb-3" style="background-color: #e3f2fd";>
         <% if user_signed_in? %>
-          <%= link_to image_tag("logo.png", class: 'icon' ), my_pages_path %>
-          <%= link_to "管理者用ページ", rails_admin_path if current_user.admin == true %>
-          <%= link_to I18n.t('my_page'), my_pages_path %>
-          <%= link_to I18n.t('my_work'), works_path %>
+          <%= link_to image_tag("logo.png", class: 'icon mr-auto' ), my_pages_path, class: "mr-5 mr-auto" %>
+          <%= link_to "管理者用ページ", rails_admin_path, class: "mr-5 " if current_user.admin == true %>
+          <%= link_to I18n.t('my_page'), my_pages_path, class: "mr-5" %>
+          <%= link_to I18n.t('my_work'), works_path, class: "mr-5" %>
           <%= link_to I18n.t('logout'), destroy_user_session_path, method: :delete %>
         <% else %>
-          <%= image_tag("logo.png", class: 'icon' ) %>
-          <%= link_to I18n.t('login_display'), new_user_session_path %>
+          <%= image_tag("logo.png", class: 'icon mr-auto' ) %>
+          <%= link_to I18n.t('login_display'), new_user_session_path, class: "mr-5" %>
           <%= link_to I18n.t('new_account'), new_user_registration_path %>
         <% end %>
       </div>
     </header>
+    <% if user_signed_in? %>
+      <div class = "user_info">
+        <span>user:</span>
+        <span><%= current_user.name %></span>
+      </div>
+    <% end %>
     <div class = "wrapper">
       <% if notice %>
         <p class= 'alert alert-notice alert-success'><%= notice %></p>
@@ -35,13 +41,8 @@
       <% end %>
       <%= yield %>
     </div>
-    <footer class=" text-center bg-secondary">
+    <footer class=" text-center bg-secondary p-3">
       <p>&copy; 2022~ Aono Co.,Ltd</p>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a href="#"><%= I18n.t('privacy')%></a></li>
-        <li class="list-inline-item"><a href="#"><%= I18n.t('terms_of_service')%></a></li>
-        <li class="list-inline-item"><a href="#"><%= I18n.t('support')%></a></li>
-      </ul>
     </footer>
   </body>
 </html>
