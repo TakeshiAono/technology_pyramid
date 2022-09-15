@@ -39,7 +39,7 @@ class TechnologiesController < ApplicationController
       if @technology.save
         @upper_hierarcky = Hierarcky.new(technology_id: params[:technology][:upper_technology_id], lower_technology_id: @technology.id)
         @upper_hierarcky.save
-        format.html { redirect_to technology_url(@technology), notice: "Technology was successfully created." }
+        format.html { redirect_to technology_url(@technology), notice: "Technology"+I18n.t("notice.success.created") }
         format.json { render :show, status: :created, location: @technology }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class TechnologiesController < ApplicationController
   def update
     respond_to do |format|
       if @technology.update(technology_params)
-        format.html { redirect_to technology_url(@technology), notice: "Technology was successfully updated." }
+        format.html { redirect_to technology_url(@technology), notice: "Technology" + I18n.t("notice.success.updated") }
         format.json { render :show, status: :ok, location: @technology }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class TechnologiesController < ApplicationController
   def destroy
     @technology.destroy
     respond_to do |format|
-      format.html { redirect_to technologies_url, notice: "Technology was successfully destroyed." }
+      format.html { redirect_to technologies_url, notice: "Technology"+I18n.t("notice.success.destroyed") }
       format.json { head :no_content }
     end
   end

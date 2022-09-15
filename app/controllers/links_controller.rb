@@ -4,6 +4,7 @@ class LinksController < ApplicationController
 
   def index
     session[:technology_id] = params[:format]
+    @owner = Technology.find(session[:technology_id]).work.user
     @links = Link.where(technology_id: params[:format])
   end
 
@@ -22,7 +23,7 @@ class LinksController < ApplicationController
     @link = Link.new(link_params)
     respond_to do |format|
       if @link.save
-        format.html { redirect_to link_url(@link), notice: "Link was successfully created." }
+        format.html { redirect_to link_url(@link), notice: "Link" + I18n.t("notice.success.created") }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,7 +35,7 @@ class LinksController < ApplicationController
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to link_url(@link), notice: "Link was successfully updated." }
+        format.html { redirect_to link_url(@link), notice: "Link" + I18n.t("notice.success.updated") }
         format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -46,7 +47,7 @@ class LinksController < ApplicationController
   def destroy
     @link.destroy
     respond_to do |format|
-      format.html { redirect_to links_path(session[:technology_id]), notice: "Link was successfully destroyed." }
+      format.html { redirect_to links_path(session[:technology_id]), notice: "Link" + I18n.t("notice.success.destroyed") }
       format.json { head :no_content }
     end
   end

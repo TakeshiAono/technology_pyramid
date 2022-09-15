@@ -15,7 +15,7 @@ class SearchesController < ApplicationController
 
   def favorite_registe
     Favorite.create(user_id: current_user.id, favorite_id: params[:user_id])
-    flash.now[:alert] = I18n.t('favorites.register_notice')
+    flash.now[:notice] = I18n.t('favorites.register_notice')
     render :index
   end
 

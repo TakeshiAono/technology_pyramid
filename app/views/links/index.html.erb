@@ -1,6 +1,12 @@
 <h1><%= I18n.t('links.display') %></h1>
 
-<%= link_to I18n.t('links.new'), new_link_path, class: "btn btn-primary" %>
+<p class = "explanation">
+  この技術を把握するための外部リンクです<br>
+  参考になった場合は「いいねボタン」で評価をしてあげましょう
+</p>
+<% if @owner == current_user %>
+  <%= link_to I18n.t('links.new'), new_link_path, class: "btn btn-primary" %>
+<% end %>
 
 <table class = "table links-table">
   <thead>
@@ -18,8 +24,7 @@
         <td><%= link.title %></td>
         <td><%= link_to "#{link.url}", link.url %></td>
         <td class = "good-column">
-          <%# <div class = "good-content"> %>
-          <span class = "good-counter"><%= link.good_counter %></span>
+          <span class = "good-counter"><%= link.link_goods.count %></span>
           <% unless LinkGood.find_by(user_id: current_user.id, link_id: link.id) %>
             <%= link_to good_register_links_path(link) do %>
               <i class="far fa-thumbs-up good-register"></i>
@@ -29,11 +34,12 @@
               <i class="far fa-thumbs-up good-unregister"></i>
             <% end %>
           <% end %>
-          <%# </div> %>
         </td>
-        <td><%= link_to I18n.t("show"), link, class: "btn btn-secondary" %></td>
-        <td><%= link_to I18n.t("edit"), edit_link_path(link), class: "btn btn-warning" %></td>
-        <td><%= link_to I18n.t("destroy"), link, method: :delete, data: {confirm: I18n.t("confirm.destroy")}, class: "btn btn-danger" %></td>
+        <% if current_user == link.technology.work.user %>
+          <td><%= link_to I18n.t("show"), link, class: "btn btn-secondary" %></td>
+          <td><%= link_to I18n.t("edit"), edit_link_path(link), class: "btn btn-warning" %></td>
+          <td><%= link_to I18n.t("destroy"), link, method: :delete, data: {confirm: I18n.t("confirm.destroy")}, class: "btn btn-danger" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

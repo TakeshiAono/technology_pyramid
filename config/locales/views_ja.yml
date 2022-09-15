@@ -1,4 +1,9 @@
 ja:
+  notice:
+    success:
+      created: の作成に成功しました。
+      updated: のアップデートに成功しました。
+      destroyed: の削除に成功しました。
   edit: 編集
   destroy: 削除
   show: 詳細
@@ -17,7 +22,6 @@ ja:
     save: 【保存エラー】
   confirm:
     destroy: 削除しますか？
-  
   users:
     display: ユーザー
   favorites:
@@ -29,6 +33,7 @@ ja:
     display: マイページ
   pyramids:
     display: ピラミッド
+    structure: ピラミッド構造
     confirm: ピラミッド一覧
     edit: ピラミッド編集
     name: ピラミッドネーム
@@ -54,6 +59,7 @@ ja:
     new: 新規テクノロジー作成
     public_flag: 公開有無
     low: 下位技術
+    index: 技術一覧
     transition:
       index: 技術一覧へ遷移
   searches:

@@ -29,6 +29,14 @@ footer{
   min-height: calc(100vh - 70px - 70px); 
 }
 
+.explanation { 
+  width: 600px;
+  border: thick double #000;
+  border-radius: 10px;
+
+  
+}
+
 @import 'bootstrap';
 @import "session.scss";
 @import "pyramid.scss";

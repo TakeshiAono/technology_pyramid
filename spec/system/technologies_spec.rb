@@ -21,7 +21,7 @@ RSpec.describe "Technologies", type: :system do
     context 'テクノロジーの詳細確認をした場合' do
       example 'showページで表示される' do
         click_link '詳細'
-        expect(page).to have_content "test"
+        expect(page).to have_content "test_tech"
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe "Technologies", type: :system do
       example '削除したテクノロジーがテクノロジー一覧ページから消えている' do
         click_link '削除'
         page.driver.browser.switch_to.alert.accept
-        expect(page).not_to have_content "test"
+        expect(page).not_to have_content "test_tech"
       end
     end
   end
