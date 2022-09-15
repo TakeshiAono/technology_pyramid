@@ -1,8 +1,13 @@
 <h1><%= I18n.t('searches.page') %></h1>
 
+<p>
+  気になるワークを検索して他のユーザーが作ったワークの内容を見てみよう！<br>
+  気になったユーザーはお気に入り登録もできるよ！
+</p>
+
 <%= search_form_for @q, url: searches_path do |f| %>
   <%= f.label :title_cont, I18n.t('works.name') %>
-  <%= f.search_field :title_cont %>
+  <%= f.search_field :title_cont, placeholder: "検索キーワード" %>
   <%= f.submit '検索' %>
 <% end %>
 
