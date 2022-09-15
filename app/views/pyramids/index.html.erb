@@ -5,7 +5,9 @@
   各要素技術をクリックすると詳しい内容を把握することができます。
 </p>
 
-<p><%= link_to I18n.t('technologies.new'), new_technology_path(session[:top_technology_id]), class: "btn btn-primary" %></p>
+<% if @top_technology.work.user == current_user %>
+  <p><%= link_to I18n.t('technologies.new'), new_technology_path(session[:top_technology_id]), class: "btn btn-primary" %></p>
+<% end %>
 
 <div class = "pyramid_wrapper">
   <div class = "pyramid_content">

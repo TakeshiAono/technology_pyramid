@@ -22,9 +22,11 @@
         <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
-        <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
-        <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
+        <% if current_user == technology.work.user %>
+          <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
+          <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
+          <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -47,9 +49,11 @@
         <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
-        <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
-        <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
-        <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
+        <% if current_user == technology.work.user %>
+          <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
+          <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
+          <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

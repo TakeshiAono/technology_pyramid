@@ -4,6 +4,7 @@ class LinksController < ApplicationController
 
   def index
     session[:technology_id] = params[:format]
+    @owner = Technology.find(session[:technology_id]).work.user
     @links = Link.where(technology_id: params[:format])
   end
 
