@@ -1,46 +1,41 @@
 <div class = "session_wrapper">
   <div class = "apply_summary">
-    
-    <h1>アプリ概要</h1>
+    <h2 class = "apply-description">アプリ概要</h2>
     <ul class = "list-group">
-      <div class = "apply_concept list-group-item">
-        <h2>【コンセプト】</h2>
+      <li class = "apply_concept">
+        <h4>【コンセプト】</h4>
         <ul>
           <li>テクノロジーを調べて見たけど、分かるような分からないような、そんな感覚を味わった事はありませんか？</li>
           <li>テクノロジーを説明してくれてるけど、専門用語が多くて理解できない…</li>
           <li>抽象的なものに例えて説明してくれるけど、なんとなくでしかわからない…</li>
+          <p class = "font-weight-bold" >この問題を解決するためには、その応用テクノロジーを構成する基礎テクノロジーを知る必要があります。<br>
+          このアプリは応用テクノロジーと基礎テクノロジーの繋がりを階層で把握し、皆さんの理解に助けになることを目指します。
+          </p>
         </ul>
-        <p class = "font-weight-bold" >この問題を解決するためには、その応用テクノロジーを構成する基礎テクノロジーを知る必要があります。
-        このアプリは応用テクノロジーと基礎テクノロジーの繋がりを階層で把握し、皆さんの理解に助けになることを目指します。
-        </p>
-      </div>
-      
-      <div class = "apply_service list-group-item">
-        <h2>【サービス概要】</h2>
+      </li>
+      <li class = "apply_service">
+        <h4>【サービス概要】</h4>
         <ul>
           <li>自分が持っているテクノロジーをピラミッド構造で整理・整頓できる</li>
           <li>他の人とテクノロジーピラミッドを共有できる</li>
           <li>テクノロジーを支えているベーシックテクノロジーが何かを理解できる</li>
         </ul>
-      </div>
-    
-      <div class = "apply_function list-group-item">
-        <h2>【機能について】</h2>
-        <p>テクノロジーごとに</p>
+      </li>
+      <li class = "apply_function">
+        <h4>【機能について】</h4>
         <ul>
-          <li>外部リンク（記事）を持たせる事ができます。</li>
+          <li>テクノロジーごとに外部リンク（記事）を持たせる事ができます。</li>
           <li>オリジナルの記事を書くことができます。</li>
           <li>他の人が持っているテクノロジーに質問・回答することができます。</li>
           <li>他の人が作ったピラミッドを自分のピラミッドにインポートして、他人のテクノロジーをコピーすることができます。</li>
         </ul>
-      </div>
+      </li>
     </ul>
   </div>
-  
   <div class = "login_wrapper">
     <div class = "login_box  d-flex justify-content-center">
       <div class = "login_content">
-        <h1><%= t('.sign_in') %></h1>
+        <h2><%= t('.sign_in') %></h2>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
             <%= f.label :email %><br />
@@ -63,7 +58,6 @@
             <%= f.submit t('.sign_in') %>
           </div>
         <% end %>
-        
         <%= render "devise/shared/links" %>
         <%= link_to 'ゲストログイン（管理者用）', users_guest_sign_in_path, method: :post %>
         <br>

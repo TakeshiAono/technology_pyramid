@@ -1,16 +1,42 @@
-.login_box{
-  height: 400px;
-  width: 350px;
-  margin: auto;
-  padding: 30px;
-  border: solid;
-  border-radius: 10px
+.session_wrapper{
+  width: 90%;
+  margin: 50px auto;
+
+  .apply_summary{
+    background-color: #FBF9FF;
+    border: solid;
+    border-radius: 5px;
+    overflow: hidden;
+    opacity: 85%;
+    padding: 10px 0;
+  }
+
+  .login_wrapper{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: fit-content;
+    // width: 50%;
+    // background-color: #FFABA1;
+    // padding: 10px 0;
+    // padding: 30px;
+
+    .login_box{
+      height: 380px;
+      width: 350px;
+      margin: auto;
+      padding: 5px;
+      border: solid;
+      border-radius: 10px;
+      // background-color: white;
+      background-color: rgba(255,255,255, 100);
+
+      .login_content{
+        width: 80%;
+        margin: 0 auto;
+        padding: 5px;
+        // text-align: center;
+      }
+    }
+  }
 }
 
-.login_content{
-  margin: auto;
-}
-
-.login_wrapper{
-  margin: 30px 0;
-}
