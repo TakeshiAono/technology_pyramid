@@ -29,15 +29,17 @@
       </div>
     </header>
     <div class = "video-box">
+      <% if request.fullpath == "/"  %>
       <%= video_tag("/space.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+      <% end %>
     </div>
-    <% if user_signed_in? %>
-      <div class = "user_info">
-        <span>user:</span>
-        <span><%= current_user.name %></span>
-      </div>
-    <% end %>
     <div class = "wrapper">
+      <% if user_signed_in? %>
+        <div class = "user_info">
+          <span>user:</span>
+          <span><%= current_user.name %></span>
+        </div>
+      <% end %>
       <% if notice %>
         <p class= 'alert alert-notice alert-success'><%= notice %></p>
       <% end %>
