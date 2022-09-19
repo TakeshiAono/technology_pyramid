@@ -29,7 +29,7 @@
       </div>
     </header>
     <div class = "video-box">
-      <% if request.fullpath == "/"  %>
+      <% if request.fullpath == "/" || request.fullpath == "/users/sign_in" %>
       <%= video_tag("/space.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
       <% end %>
     </div>

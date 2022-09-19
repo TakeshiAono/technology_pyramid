@@ -10,7 +10,7 @@
 <div class = "active_works">
 <h2><%= I18n.t('works.active') %></h2>
   <table class="table">
-    <thead>
+    <thead class="thead-dark">
       <tr>
         <th colspan="1"></th>
         <th><%= I18n.t('works.title') %></th>
@@ -21,7 +21,7 @@
   
     <tbody>
       <% @active_works.each do |work| %>
-        <tr>
+        <tr class = "table-warning">
           <td><%= link_to I18n.t('technologies.index'), technologies_path(work), class: "btn btn-success" %></td>
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>
@@ -41,7 +41,7 @@
 <div class = "inactive_works">
 <h2><%= I18n.t('works.inactive') %></h2>
   <table class="table">
-    <thead>
+    <thead class="thead-dark">
       <tr>
         <th colspan="1"></th>
         <th><%= I18n.t('works.title') %></th>
@@ -52,7 +52,7 @@
   
     <tbody>
       <% @inactive_works.each do |work| %>
-        <tr>
+        <tr class = "table-warning">
           <td><%= link_to I18n.t('technologies.index'), technologies_path(work), class: "btn btn-success" %></td>
           <td><%= work.title %></td>
           <td><%= work.public_flag %></td>

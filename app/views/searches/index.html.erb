@@ -11,8 +11,8 @@
   <%= f.submit '検索' %>
 <% end %>
 
-<table class="table ">
-  <thead>
+<table class="table">
+  <thead class="thead-dark">
     <tr>
       <th><%= I18n.t('works.display') %></th>
       <th><%= I18n.t('users.display') %></th>
@@ -24,11 +24,9 @@
   <tbody class = "search-result-table">
     <% if @works.present? %>
       <% @works.each do |work| %>
-        <tr>
+        <tr class = "table-warning">
           <td><%= link_to "#{work.title}", technologies_path(work) %></td>
-          <td>
-            <%= work.user.name %>
-          </td>
+          <td><%= work.user.name %></td>
           <td>
             <% if current_user == work.user %>
               <span class = "favorite-button">-</span>
@@ -39,7 +37,6 @@
                 <%= link_to image_tag("black_hart.jpg", class:"favorite-button"), favorite_registe_searches_path({user_id: work.user.id, q: {title_cont: @q.conditions.first.value}}), method: :post unless current_user == work.user %>
               <% end %>
             <% end %>
-          </td>
           </td>
           <td>
             <%= work.user.favorited.count %>
