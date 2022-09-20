@@ -47,6 +47,7 @@ ja:
     title: タイトル
     public_flag: 公開フラグ
     active_flag: アクティブワークフラグ
+    show: ワーク詳細
     research:
       display: ワーク検索
       keyword: 検索キーワード
@@ -60,6 +61,7 @@ ja:
     public_flag: 公開有無
     low: 下位技術
     index: 技術一覧
+    show: テクノロジー詳細
     transition:
       index: 技術一覧へ遷移
   searches:
@@ -71,3 +73,4 @@ ja:
     title: タイトル
     url: URL
     good_counter: いいね数
+    show: リンク詳細

@@ -8,7 +8,7 @@ table{
   margin: 20px 0;
 }
 
-form:not(.new_user):not(.work_search){
+form:not(.new_user):not(.work_search), .show-content{
   background-color: #ccf8fa;
   // display: inline-block;
   width: fit-content;
@@ -20,6 +20,11 @@ form:not(.new_user):not(.work_search){
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 50%);
 }
 
+.show-content{
+  background-color: #fce5ba;
+}
+
+
 .wrapper{
   // text-align: center;
   .link_word{
@@ -30,7 +35,7 @@ form:not(.new_user):not(.work_search){
   }
 }
 
-.edit-link-word{
+.edit-link-word, .show-link-word{
   margin: auto;
   width: 350px;
   text-align: end;

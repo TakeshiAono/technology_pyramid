@@ -1,23 +1,23 @@
-<p>
-  <strong>Name:</strong>
-  <%= @technology.name %>
-</p>
+<h1><%= I18n.t('technologies.show') %></h1>
 
-<p>
-  <strong>Public flag:</strong>
-  <%= @technology.public_flag %>
-</p>
+<div class = "show-content">
+  <p>
+    <strong>Name:</strong>
+    <%= @technology.name %>
+  </p>
 
-<p>
-  <strong>Work:</strong>
-  <%= @technology.work_id %>
-</p>
+  <p>
+    <strong>Public flag:</strong>
+    <%= @technology.public_flag %>
+  </p>
 
-
-<% if session[:before_controller_path] == 'pyramids' %>
-  <%= link_to I18n.t("edit"), edit_technology_path(session[:top_technology_id]) %> |
-  <%= link_to I18n.t("back"), pyramids_path(session[:top_technology_id]) %>
-<% else %>
-  <%= link_to I18n.t("edit"), edit_technology_path(@technology) %> |
-  <%= link_to I18n.t("back"), technologies_path %>
-<% end %>
+  <div class = "show-link-word">
+    <% if session[:before_controller_path] == 'pyramids' %>
+      <%= link_to I18n.t("edit"), edit_technology_path(session[:top_technology_id]) %> |
+      <%= link_to I18n.t("back"), pyramids_path(session[:top_technology_id]) %>
+    <% else %>
+      <%= link_to I18n.t("edit"), edit_technology_path(@technology) %> |
+      <%= link_to I18n.t("back"), technologies_path %>
+    <% end %>
+  </div>
+</div>
