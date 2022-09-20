@@ -4,6 +4,8 @@ ja:
       created: の作成に成功しました。
       updated: のアップデートに成功しました。
       destroyed: の削除に成功しました。
+  password: パスワード
+  email: Eメール
   edit: 編集
   destroy: 削除
   show: 詳細
