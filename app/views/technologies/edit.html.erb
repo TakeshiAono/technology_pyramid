@@ -6,6 +6,8 @@
   <%= link_to I18n.t("show"), technology_path(session[:top_technology_id]) %> |
   <%= link_to I18n.t("back"), pyramids_path(session[:top_technology_id]) %>
 <% else %>
-  <%= link_to I18n.t("show"), @technology %> |
-  <%= link_to I18n.t("back"), technologies_path %>
+  <div class = "edit-link-word">
+    <%= link_to I18n.t("show"), @technology %> |
+    <%= link_to I18n.t("back"), technologies_path %>
+  </div>
 <% end %>

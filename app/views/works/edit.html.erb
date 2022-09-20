@@ -2,5 +2,7 @@
 
 <%= render 'form', work: @work %>
 
-<%= link_to I18n.t('show'), @work %> |
-<%= link_to I18n.t('back'), works_path %>
+<div class = "edit-link-word">
+  <%= link_to I18n.t('show'), @work %> |
+  <%= link_to I18n.t('back'), works_path %>
+</div>
