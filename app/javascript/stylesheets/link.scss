@@ -22,3 +22,17 @@
 .good-register{
   color:gray;
 }
+
+@media screen and (max-width: 800px) {
+  table{
+    table-layout: fixed;
+    td {
+      a{
+        word-wrap:break-word;
+      }
+    }
+  }
+  .link-url{
+    word-wrap:break-word;
+  }
+}

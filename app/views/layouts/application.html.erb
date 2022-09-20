@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <header class = "fixed-top">
+    <header>
       <div class = " navbar d-flex" style="background-color: #e3f2fd";>
         <% if user_signed_in? %>
           <%= link_to image_tag("logo.png", class: 'icon' ), my_pages_path, class: "mr-2" %>
@@ -33,22 +33,22 @@
       <%= video_tag("/space.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
       <% end %>
     </div>
+    <% if user_signed_in? %>
+      <div class = "user_info">
+        <span>user:</span>
+        <span><%= current_user.name %></span>
+      </div>
+    <% end %>
+    <% if notice %>
+      <p class= 'alert alert-notice alert-success'><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error alert-danger"><%= alert %></p>
+    <% end %>
     <div class = "wrapper">
-      <% if user_signed_in? %>
-        <div class = "user_info">
-          <span>user:</span>
-          <span><%= current_user.name %></span>
-        </div>
-      <% end %>
-      <% if notice %>
-        <p class= 'alert alert-notice alert-success'><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-error alert-danger"><%= alert %></p>
-      <% end %>
       <%= yield %>
     </div>
-    <footer class=" text-center bg-secondary p-3">
+    <footer class="bg-secondary">
       <p>&copy; 2022~ Aono Co.,Ltd</p>
     </footer>
   </body>

@@ -40,3 +40,12 @@ form:not(.new_user):not(.work_search), .show-content{
   width: 350px;
   text-align: end;
 }
+
+@media screen and (max-width: 500px) {
+  form:not(.new_user):not(.work_search), .show-content{
+    width: 80%;
+  }
+  .link_word, .edit-link-word, .show-link-word{
+    width: 80% !important;
+    }
+}
