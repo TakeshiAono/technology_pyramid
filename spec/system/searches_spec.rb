@@ -20,7 +20,6 @@ RSpec.describe "Searches", type: :system do
       before do
         visit my_pages_path
         click_on 'commit'
-        expect(page).not_to have_content "example"
       end
 
       example '「キーワードを入力してください」というnoticeが表示される' do
