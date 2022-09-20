@@ -6,6 +6,7 @@ RSpec.describe "MyPages", type: :system do
     visit new_user_session_path
     click_link 'ゲストログイン（管理者用）'
   end
+  
   describe 'ワーク検索機能' do
     context '検索に該当するものがあった場合' do
       example 'ワーク名を表示する' do
