@@ -1,15 +1,15 @@
 <h1><%= I18n.t("my_pages.display") %></h1>
 
-  <div>
+  <div class = "my-page-content">
     <h2><%= I18n.t("works.research.display") %></h2>
-    <p class = "explanation">
+    <p class = "my-page-explanation">
       興味のあるキーワードで検索して、<br>
       参考にしたいユーザをお気に入り登録しましょう！
     </p>
     <%= search_form_for @q, url: searches_path do |f| %>
       <%= f.label :title_cont, 'ワーク名' %>
       <%= f.search_field :title_cont, :placeholder => I18n.t('works.research.keyword') %>
-      <%= f.submit '検索' %>
+      <%= f.submit '検索', class: 'btn btn-primary' %>
     <% end %>
   </div>
 

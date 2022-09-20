@@ -1,0 +1,42 @@
+.explanation{
+  margin: 20px auto;
+  background-color: white;
+}
+
+table{
+  width: 500px;
+  margin: 20px 0;
+}
+
+form:not(.new_user):not(.work_search), .show-content{
+  background-color: #ccf8fa;
+  // display: inline-block;
+  width: fit-content;
+  // height:150px;
+  padding: 50px;
+  border: solid;
+  border-radius: 15px;
+  margin: auto;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 50%);
+}
+
+.show-content{
+  background-color: #fce5ba;
+}
+
+
+.wrapper{
+  // text-align: center;
+  .link_word{
+    display: block;
+    width: 350px;
+    margin: auto;
+    text-align: end;
+  }
+}
+
+.edit-link-word, .show-link-word{
+  margin: auto;
+  width: 350px;
+  text-align: end;
+}

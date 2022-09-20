@@ -1,17 +1,17 @@
-<p>
-  <strong><%= I18n.t('works.title') %>:</strong>
-  <%= @work.title %>
-</p>
+<h1><%= I18n.t('works.show') %></h1>
+<div class = "show-content">
+  <p>
+    <strong><%= I18n.t('works.title') %>:</strong>
+    <%= @work.title %>
+  </p>
 
-<p>
-  <strong><%= I18n.t('works.public_flag') %>:</strong>
-  <%= @work.public_flag %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @work.user_id %>
-</p>
-
-<%= link_to I18n.t('show'), @work %> |
-<%= link_to I18n.t('back'), works_path %>
+  <p>
+    <strong><%= I18n.t('works.public_flag') %>:</strong>
+    <%= @work.public_flag %>
+  </p>
+  
+  <div class = "show-link-word">
+    <%= link_to I18n.t('show'), @work %> |
+    <%= link_to I18n.t('back'), works_path %>
+  </div>
+</div>

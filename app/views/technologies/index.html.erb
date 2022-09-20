@@ -7,7 +7,7 @@
 
 <h2><%= I18n.t('technologies.application') %></h2>
 <table class="table">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th colspan="1"></th>
       <th><%= I18n.t('technologies.name') %></th>
@@ -18,7 +18,7 @@
 
   <tbody>
     <% @technologies.each do |technology| %>
-      <tr>
+      <tr class = "table-warning">
         <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>
@@ -34,7 +34,7 @@
 
 <h2><%= I18n.t('technologies.basic')  %></h2>
 <table class="table">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th colspan="1"></th>
       <th><%= I18n.t('technologies.name') %></th>
@@ -45,7 +45,7 @@
 
   <tbody>
     <% @basic_technologies.each do |technology| %>
-      <tr>
+      <tr class = "table-warning">
         <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td><%= technology.public_flag %></td>

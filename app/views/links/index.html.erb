@@ -9,7 +9,7 @@
 <% end %>
 
 <table class = "table links-table">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th><%= I18n.t('links.title') %></th>
       <th><%= I18n.t('links.url') %></th>
@@ -20,7 +20,7 @@
 
   <tbody>
     <% @links.each do |link| %>
-      <tr>
+      <tr class = "table-warning">
         <td><%= link.title %></td>
         <td><%= link_to "#{link.url}", link.url %></td>
         <td class = "good-column">

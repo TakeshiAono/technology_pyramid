@@ -1,12 +1,18 @@
-<p>
-  <strong><%= I18n.t("links.title") %>:</strong>
-  <%= @link.title %>
-</p>
+<h1><%= I18n.t('links.show') %></h1>
 
-<p>
-  <strong><%= I18n.t('links.url') %>:</strong>
-  <%= @link.url %>
-</p>
-
-<%= link_to I18n.t("edit"), edit_link_path(@link) %> |
-<%= link_to I18n.t("back"), links_path(session[:technology_id]) %>
+<div class = "show-content">
+  <p>
+    <strong><%= I18n.t("links.title") %>:</strong>
+    <%= @link.title %>
+  </p>
+  
+  <p>
+    <strong><%= I18n.t('links.url') %>:</strong>
+    <%= @link.url %>
+  </p>
+  
+  <div class = "show-link-word">
+    <%= link_to I18n.t("edit"), edit_link_path(@link) %> |
+    <%= link_to I18n.t("back"), links_path(session[:technology_id]) %>
+  </div>
+</div>

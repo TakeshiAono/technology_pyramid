@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
   <head>
     <title><%= I18n.t('technology_pyramid') %></title>
     <%= csrf_meta_tags %>
@@ -12,27 +12,34 @@
 
   <body>
     <header class = "fixed-top">
-      <div class = " navbar d-flex mb-3" style="background-color: #e3f2fd";>
+      <div class = " navbar d-flex" style="background-color: #e3f2fd";>
         <% if user_signed_in? %>
-          <%= link_to image_tag("logo.png", class: 'icon mr-auto' ), my_pages_path, class: "mr-5 mr-auto" %>
-          <%= link_to "管理者用ページ", rails_admin_path, class: "mr-5 " if current_user.admin == true %>
-          <%= link_to I18n.t('my_page'), my_pages_path, class: "mr-5" %>
-          <%= link_to I18n.t('my_work'), works_path, class: "mr-5" %>
+          <%= link_to image_tag("logo.png", class: 'icon' ), my_pages_path, class: "mr-2" %>
+          <span>Technology Pyramid</span>
+          <%= link_to "管理者用ページ", rails_admin_path, class: "ml-auto mr-4" if current_user.admin == true %>
+          <%= link_to I18n.t('my_page'), my_pages_path, class: "mr-4" %>
+          <%= link_to I18n.t('my_work'), works_path, class: "mr-4" %>
           <%= link_to I18n.t('logout'), destroy_user_session_path, method: :delete %>
         <% else %>
-          <%= image_tag("logo.png", class: 'icon mr-auto' ) %>
-          <%= link_to I18n.t('login_display'), new_user_session_path, class: "mr-5" %>
+          <%= image_tag("logo.png", class: 'icon mr-2' ) %>
+          <span>Technology Pyramid</span>
+          <%= link_to I18n.t('login_display'), new_user_session_path, class: "ml-auto mr-4" %>
           <%= link_to I18n.t('new_account'), new_user_registration_path %>
         <% end %>
       </div>
     </header>
-    <% if user_signed_in? %>
-      <div class = "user_info">
-        <span>user:</span>
-        <span><%= current_user.name %></span>
-      </div>
-    <% end %>
+    <div class = "video-box">
+      <% if request.fullpath == "/" || request.fullpath == "/users/sign_in" || request.fullpath == "/users/sign_up" %>
+      <%= video_tag("/space.mp4", autoplay: :true, loop: :true, muted: :true, class: 'video-content') %>
+      <% end %>
+    </div>
     <div class = "wrapper">
+      <% if user_signed_in? %>
+        <div class = "user_info">
+          <span>user:</span>
+          <span><%= current_user.name %></span>
+        </div>
+      <% end %>
       <% if notice %>
         <p class= 'alert alert-notice alert-success'><%= notice %></p>
       <% end %>
