@@ -3,11 +3,23 @@
   text-align: center;
 }
 
-.my-page-explanation{
-  width: 600px;
-  background-color: white;
-  border: thick double #000;
-  border-radius: 10px;
-  margin: 20px auto;
+
+@media screen and (max-width: 480px) {
+  .my-page-explanation{
+    width: 80%;
+    background-color: white;
+    border: thick double #000;
+    border-radius: 10px;
+    margin: 20px auto;
+  }
 }
 
+@media screen and (min-width: 480px) {
+  .my-page-explanation{
+    width: 550px;
+    background-color: white;
+    border: thick double #000;
+    border-radius: 10px;
+    margin: 20px auto;
+  }
+}

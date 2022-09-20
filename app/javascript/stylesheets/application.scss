@@ -12,7 +12,7 @@
 @import "link.scss";
 
 body{
-  padding-top: 55px;
+  // padding-top: 60px;
   background: #E8E6E6;
   // background-image: url("/sabaku.jpg");
 }
@@ -27,10 +27,8 @@ body{
 }
 
 header{
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 60px;
+  // height: 90px;
   div span {
     font-size: 15px;
     background-color:white;
@@ -42,19 +40,25 @@ header{
 
 
 footer{
-  padding: 5px;
+  // padding: 5px;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
 }
 
 .wrapper { 
-  min-height: calc(100vh - 70px - 70px);
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  width: 100%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  // margin-top: 30px;
+  // min-height: calc(100vh - 70px - 70px);
+  // position: relative;
+  padding: 30px 0;
+
+  // top: 20px;
+  // left: 50%;
+  // width: 100%;
+  // -webkit-transform: translate(-50%, -50%);
+  // -moz-transform: translate(-50%, -50%);
+  // transform: translate(-50%, -50%);
+  // // margin-top: 30px;
 }
 
 .explanation { 
@@ -64,7 +68,8 @@ footer{
 }
 
 .user_info{
-  margin-top: -100px;
+  // margin-top: -100px;
+  z-index: 0;
   text-align: right;
   font-size: 1.5rem;
 }
@@ -110,19 +115,59 @@ footer{
 // }
 
 .video-box {
-  position: relative;
+  position: fixed;
+  z-index: -1;/*最背面に設定*/
+  top: 0;
+  right:0;
+  left:0;
+  bottom:0;
   overflow: hidden;
-  width: 100%;
-  height: 100vh;
 }
 
 video{
   position: absolute;
+  z-index: -1;
   top: 50%;
   left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  /*縦横幅指定*/
+  width: 177.77777778vh; /* 16:9 の幅→16 ÷ 9＝ 177.77% */
+  height: 56.25vw; /* 16:9の幅 → 9 ÷ 16 = 56.25% */
+  min-height: 100%;
+  min-width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  .explanation { 
+    width: 80%;
+    border: thick double #000;
+    border-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .wrapper { 
+    height: max-content;
+    margin-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 565px) {
+  .wrapper { 
+    margin-bottom: 200px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .wrapper { 
+    margin-bottom: 350px;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .explanation { 
+    width: 600px;
+    border: thick double #000;
+    border-radius: 10px;
+  }
 }
