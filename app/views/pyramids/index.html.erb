@@ -12,15 +12,9 @@
 <div class = "pyramid_wrapper">
   <div class = "pyramid_content">
     <div id = "hierarcky-1">
+    <%# <% byebug %>
       <%=link_to @top_technology.name, links_path(@top_technology), id: "#{@top_technology.id}" , class: "technology-1 border border-primary", data:{lower_technologies: @top_technology.lower_technologies.ids} %>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
     <div id = "hierarcky-2">
       <% counter = 1 %>
       <% @first_hierarckies.each do |technology| %>
@@ -30,13 +24,6 @@
           <% end %>
       <% end %>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
     <div id = "hierarcky-3" >
       <% @second_hierarckies.each do |technology| %>
         <% unless technology == nil %>
@@ -44,12 +31,6 @@
         <% end %>
       <% end %>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
     <div id = "hierarcky-4" >
       <% @third_hierarckies.each do |technology| %>
         <% unless technology == nil %>
@@ -57,7 +38,6 @@
         <% end %>
       <% end %>
     </div>
-    
     <div id = "hierarcky-5" >
       <% @fourth_hierarckies.each do |technology| %>
         <% unless technology == nil %>
@@ -65,7 +45,6 @@
         <% end %>
       <% end %>
     </div>
-
   </div>
 </div>
 <%= javascript_pack_tag 'pyramid', 'data-turbolinks-track': 'reload' %>
