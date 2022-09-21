@@ -1,7 +1,6 @@
 .session_wrapper{
   width: 90%;
   margin: 40px auto;
-
   .apply_summary{
     background-color: #FBF9FF;
     border: solid;
@@ -14,26 +13,17 @@
 
   .login_wrapper{
     margin: 20px auto;
-    // margin-top: 20px;
-    // width: 80%;
     width: 50%;
     height: 300px;
-    // background-color: #FFABA1;
-    // padding: 10px 0;
-    // padding: 30px;
-    
     .login_box{
       height: fit-content;
-      // width: fit-content;
-      padding: 0;
+      padding: 30px 0;
       border: solid;
       border-color: rgba(0, 183, 255, 0.452);
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 100);
-      // border-radius: 10px;
       background-color: rgba(255,255,255, 100);
-      margin: auto;
+      margin:  auto;
       .login_content{
-        // display: flex;
         height: fit-content;
         justify-content: space-evenly;
         margin: 0 auto;
@@ -55,30 +45,22 @@
 }
 
 .registrations-wrapper{
-  // width: 90%;
   margin: 10px auto;
   .login_wrapper{
     margin: 0 auto;
     margin-top: 20px;
     width: fit-content;
     height: fit-content;
-    // height: 80%;
     .login_box{
       padding: 20px;
       height: fit-content;
-      // height: 280px;
-      // width: 550px;
-      // padding: 0;
       border: solid;
       border-color: rgba(0, 183, 255, 0.452);
       box-shadow: 15px 15px 10px rgba(0, 0, 0, 100);
-      // border-radius: 10px;
       text-align: center;
       background-color: rgba(255,255,255, 100);
       margin: auto;
       .login_content{
-        // display: flex;
-        // justify-content: space-evenly;
         margin: 0 auto;
         form{
           .actions{
@@ -97,7 +79,6 @@
     }
   }
 }
-
 
 @media screen and (min-width: 750px) {
   .login_content{
