@@ -31,6 +31,8 @@ class TechnologiesController < ApplicationController
   def edit
     path = Rails.application.routes.recognize_path(request.referer)
     session[:before_controller_path] = path[:controller]
+    @technology.hierarckies.build
+    @technology.hierarckies.build
   end
 
   def create
