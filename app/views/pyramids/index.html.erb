@@ -12,7 +12,6 @@
 <div class = "pyramid_wrapper">
   <div class = "pyramid_content">
     <div id = "hierarcky-1">
-    <%# <% byebug %>
       <%=link_to @top_technology.name, links_path(@top_technology), id: "#{@top_technology.id}" , class: "technology-1 border border-primary", data:{lower_technologies: @top_technology.lower_technologies.ids} %>
     </div>
     <div id = "hierarcky-2">
@@ -41,7 +40,7 @@
     <div id = "hierarcky-5" >
       <% @fourth_hierarckies.each do |technology| %>
         <% unless technology == nil %>
-            <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}", class: "border border-warning" %>
+            <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}", class: "border border-warning", data:{lower_technologies: technology.lower_technologies.ids} %>
         <% end %>
       <% end %>
     </div>

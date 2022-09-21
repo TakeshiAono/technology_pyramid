@@ -33,5 +33,13 @@ class PyramidsController < ApplicationController
         @fourth_hierarckies << technology2
       end
     end
+    same_object_filter
+  end
+
+  def same_object_filter
+    @fourth_hierarckies = @fourth_hierarckies - @third_hierarckies - @second_hierarckies - @first_hierarckies
+    @third_hierarckies = @third_hierarckies - @second_hierarckies - @first_hierarckies
+    @second_hierarckies = @second_hierarckies - @first_hierarckies
+    @first_hierarckies = @first_hierarckies
   end
 end
