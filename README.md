@@ -2,7 +2,6 @@
 - ruby on rails
 
 # アプリケーションに取り入れる技術
-- AWS EC2
 - お気に入り機能
 - devise
 
