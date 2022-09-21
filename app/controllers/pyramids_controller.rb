@@ -41,5 +41,10 @@ class PyramidsController < ApplicationController
     @third_hierarckies = @third_hierarckies - @second_hierarckies - @first_hierarckies
     @second_hierarckies = @second_hierarckies - @first_hierarckies
     @first_hierarckies = @first_hierarckies
+
+    @fourth_hierarckies.uniq!
+    @third_hierarckies.uniq!
+    @second_hierarckies.uniq!
+    @first_hierarckies.uniq!
   end
 end

@@ -27,10 +27,6 @@
 
   <% if Technology.where(work_id: session[:work_id]).first != nil %>
     <div class="field">
-      <%= form.label :to_upper_technology %>
-      <%= form.select :upper_technology_id, {"該当無し": nil}.merge(Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h) %>
-    </div>
-    <div class="field">
       <%= form.fields_for :hierarckies do |hierarcky| %>
         <%= hierarcky.label I18n.t("technologies.low") %>
         <%= hierarcky.select :lower_technology_id, {"該当無し": nil}.merge(Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h) %>
