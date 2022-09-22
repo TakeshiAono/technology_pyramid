@@ -10,23 +10,27 @@
     padding: 10px 0;
     box-shadow: 15px 15px 5px rgba(0, 0, 0, 100%);
   }
-
   .login_wrapper{
     margin: 20px auto;
-    width: 50%;
     height: 300px;
+    display: flex;
+    justify-content: space-evenly;
     .login_box{
+      width: 40%;
       height: fit-content;
       padding: 30px 0;
       border: solid;
       border-color: rgba(0, 183, 255, 0.452);
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 100);
       background-color: rgba(255,255,255, 100);
-      margin:  auto;
+      h2{
+        text-align: center;
+      }
       .login_content{
         height: fit-content;
         justify-content: space-evenly;
         margin: 0 auto;
+        
         form{
           .actions{
             text-align: center;
@@ -39,6 +43,20 @@
             margin: 0;
           }
         }
+      }
+    }
+    .description-video-box {
+      background-color: white;
+      border: solid;
+      border-color: rgba(0, 183, 255, 0.452);
+      width: 40%;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 100);
+      max-height: 500px;
+      iframe{
+        height: 80%;
+        aspect-ratio: 5 / 3;
       }
     }
   }
@@ -83,5 +101,61 @@
 @media screen and (min-width: 750px) {
   .login_content{
     display: flex;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .session_wrapper{
+    height: fit-content;
+    margin-bottom: 30px;
+    .login_wrapper{
+      flex-flow: column;
+      margin: 20px auto;
+      height: fit-content;
+      justify-content: space-between;
+      .login_box{
+        width: 100%;
+        padding: 30px 0;
+        border: solid;
+        border-color: rgba(0, 183, 255, 0.452);
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 100);
+        background-color: rgba(255,255,255, 100);
+        margin:  auto;
+        h2{
+          text-align: center;
+        }
+        .login_content{
+          height: fit-content;
+          justify-content: space-evenly;
+          margin: 0 auto;
+          text-align: center;
+          
+          form{
+            .actions{
+              text-align: center;
+            }
+          }
+          div{
+            margin: auto 0;
+            a {
+              display:block;
+              margin: 0;
+            }
+          }
+        }
+      }
+      .description-video-box {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  iframe{
+    height: unset;
+    max-height: unset;
   }
 }
