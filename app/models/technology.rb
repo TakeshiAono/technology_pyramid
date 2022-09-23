@@ -8,5 +8,5 @@ class Technology < ApplicationRecord
   has_many :upper_technologies, through: :lower_hierarckies, source: :technology
   belongs_to :work
 
-  accepts_nested_attributes_for :hierarckies
+  accepts_nested_attributes_for :hierarckies, reject_if: proc {|attributes| attributes['lower_technology_id'].blank?}, allow_destroy: true
 end
