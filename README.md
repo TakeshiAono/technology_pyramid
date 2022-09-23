@@ -29,4 +29,4 @@ https://drive.google.com/file/d/1WFCqzV-Tp8rHO04OJK3SfiudiGbpFqgP/view?usp=shari
 <img src= "document/ER図.jpg">
 
 # 画面遷移図
-<img src= "document/画面遷移図.jpg">
+<img src= "document/画面遷移図.drawio.png">
