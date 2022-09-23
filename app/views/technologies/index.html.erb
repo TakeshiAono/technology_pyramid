@@ -21,7 +21,12 @@
       <tr class = "table-warning">
         <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
-        <td><%= technology.public_flag %></td>
+        <td>
+          <% if technology.public_flag == true %>
+            <i class="far fa-eye"></i>
+          <% else %>
+            <i class="far fa-eye-slash"></i>
+          <% end %></td>
         <% if current_user == technology.work.user %>
           <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
@@ -48,7 +53,13 @@
       <tr class = "table-warning">
         <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
-        <td><%= technology.public_flag %></td>
+        <td>
+          <% if technology.public_flag == true %>
+            <i class="far fa-eye"></i>
+          <% else %>
+            <i class="far fa-eye-slash"></i>
+          <% end %>
+        </td>
         <% if current_user == technology.work.user %>
           <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
