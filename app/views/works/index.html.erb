@@ -24,7 +24,7 @@
         <tr class = "table-warning">
           <td><%= link_to I18n.t('technologies.index'), technologies_path(work), class: "btn btn-success" %></td>
           <td><%= work.title %></td>
-          <td><%= work.public_flag %></td>
+          <td><i class="far fa-eye"></i></td>
           <% if current_user == work.user %>
             <td><%= link_to I18n.t("show"), work_path(work), class: "btn btn-secondary" %></td>
             <td><%= link_to I18n.t('edit'), edit_work_path(work), class: "btn btn-warning" %></td>
@@ -55,7 +55,7 @@
         <tr class = "table-warning">
           <td><%= link_to I18n.t('technologies.index'), technologies_path(work), class: "btn btn-success" %></td>
           <td><%= work.title %></td>
-          <td><%= work.public_flag %></td>
+          <td><i class="far fa-eye-slash"></i></td>
           <% if current_user == work.user %>
             <td><%= link_to I18n.t("show"), work_path(work), class: "btn btn-secondary" %></td>
             <td><%= link_to I18n.t("edit"), edit_work_path(work), class: "btn btn-warning" %></td>
