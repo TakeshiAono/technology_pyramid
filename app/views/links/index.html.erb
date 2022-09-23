@@ -22,7 +22,7 @@
     <% @links.each do |link| %>
       <tr class = "table-warning">
         <td><%= link.title %></td>
-        <td><%= link_to "#{link.url}", link.url %></td>
+        <td><%= link_to "#{link.url}", link.url, target: :_blank, rel: "noopener noreferrer" %></td>
         <td class = "good-column">
           <span class = "good-counter"><%= link.link_goods.count %></span>
           <% unless LinkGood.find_by(user_id: current_user.id, link_id: link.id) %>
