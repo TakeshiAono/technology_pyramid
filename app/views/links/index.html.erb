@@ -1,11 +1,12 @@
-<h1><%= I18n.t('links.display') %></h1>
+<h1>【<%= Technology.find(session[:technology_id]).name %>】<%= I18n.t('links.display') %></h1>
 
 <p class = "explanation">
   この技術を把握するための外部リンクです<br>
   参考になった場合は「いいねボタン」で評価をしてあげましょう
 </p>
 <% if @owner == current_user %>
-  <%= link_to I18n.t('links.new'), new_link_path, class: "btn btn-primary" %>
+  <p><%= link_to "テクノロジー一覧へ戻る",technologies_path(session[:work_id]) %></p>
+  <p><%= link_to I18n.t('links.new'), new_link_path, class: "btn btn-primary" %></p>
 <% end %>
 
 <table class = "table links-table">
@@ -22,7 +23,7 @@
     <% @links.each do |link| %>
       <tr class = "table-warning">
         <td><%= link.title %></td>
-        <td><%= link_to "#{link.url}", link.url %></td>
+        <td><%= link_to "#{link.url}", link.url, target: :_blank, rel: "noopener noreferrer" %></td>
         <td class = "good-column">
           <span class = "good-counter"><%= link.link_goods.count %></span>
           <% unless LinkGood.find_by(user_id: current_user.id, link_id: link.id) %>
