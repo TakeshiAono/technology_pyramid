@@ -28,8 +28,13 @@
   <% if Technology.where(work_id: session[:work_id]).first != nil %>
     <div class="field">
       <%= form.fields_for :hierarckies do |hierarcky| %>
-        <%= hierarcky.label I18n.t("technologies.low") %>
-        <%= hierarcky.select :lower_technology_id, {"該当無し": nil}.merge(Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h) %>
+        <p>
+          <%= hierarcky.label I18n.t("technologies.low") %>
+          <%= hierarcky.select :lower_technology_id, {"該当無し": nil}.merge(Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h) %>
+          <% unless hierarcky.object.id == nil %>
+          <%= link_to "リセット", reset_technologies_path({"hierarcky_id": hierarcky.object.id, "technology_id": technology.id}), method: :delete, class: "btn btn-danger" %>
+          <% end %>
+        </p>
       <% end %>
     </div>
   <% end %>

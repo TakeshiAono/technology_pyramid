@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   end
 
   resources :pyramids, only: %i[index]
-  resources :technologies
+  resources :technologies do
+    collection do
+      delete :reset
+    end
+  end
   resources :my_pages, only: %i[index]
   resources :works
 

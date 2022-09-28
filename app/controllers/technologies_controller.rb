@@ -70,6 +70,11 @@ class TechnologiesController < ApplicationController
     end
   end
 
+  def reset
+    Hierarcky.find(params[:hierarcky_id]).destroy
+    redirect_to edit_technology_path(params[:technology_id])
+  end
+
   private
     def set_technology
       @technology = Technology.find(params[:id])
