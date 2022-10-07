@@ -26,7 +26,10 @@ https://docs.google.com/spreadsheets/d/1vCe_cmu4S1NYoPXZupQ2RX5F0JeSJOf7jvdnvQJ7
 https://drive.google.com/file/d/1WFCqzV-Tp8rHO04OJK3SfiudiGbpFqgP/view?usp=sharing
 
 # ER図
-<img src= "document/ER図.jpg">
+<img src= "document/ER図.drawio.jpg">
 
 # 画面遷移図
 <img src= "document/画面遷移図.drawio.png">
+
+# クラス図
+<img src= "document/クラス図.drawio.png">
