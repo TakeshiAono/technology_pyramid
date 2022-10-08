@@ -36,9 +36,10 @@ RSpec.describe "Links", type: :system do
 
     context 'リンクを削除した場合' do
       example '削除したリンクがリンク一覧ページから消えている' do
-        click_link '削除'
-        page.driver.browser.switch_to.alert.accept
-        expect(page).not_to have_content 'test'
+        page.accept_confirm do
+          click_link '削除'
+        end
+        expect(page).not_to have_content 'link_test'
       end
     end
   end
