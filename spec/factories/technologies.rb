@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :technology do
-    name {'test_tech'}
+    name {'test_tech1'}
     public_flag {true}
     basic_flag {true}
     association :work
