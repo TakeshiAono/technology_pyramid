@@ -11,6 +11,13 @@
     <%= @technology.public_flag %>
   </p>
 
+  <p>
+    <strong>lower_technologies:</strong>
+    <% @technology.lower_technologies.each do |technology|%>
+      <p><%= technology.name %></p>
+    <% end %>
+  </p>
+
   <div class = "show-link-word">
     <% if session[:before_controller_path] == 'pyramids' %>
       <%= link_to I18n.t("edit"), edit_technology_path(session[:top_technology_id]) %> |

@@ -1,11 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Works", type: :system do
+  let!(:work) {FactoryBot.create(:work)}
+
   describe 'CRUD機能' do
     before do
-      FactoryBot.create(:work)
       visit new_user_session_path
-      click_link 'ゲストログイン（管理者用）'
+      fill_in 'user[email]', with: User.first.email
+      fill_in 'user[password]', with: 'example'
+      click_on 'commit'
       visit works_path
     end
     

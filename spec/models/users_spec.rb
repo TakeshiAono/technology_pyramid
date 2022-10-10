@@ -20,8 +20,7 @@ RSpec.describe Users, type: :model do
       end
 
       example '他のemailと重複した場合、validationエラーになる' do
-        user
-        test_user = FactoryBot.build(:user, name: "example", email: 'guest@example.com', password: "example", password_confirmation: "example")
+        test_user = FactoryBot.build(:user, name: "example", email: user.email, password: "example", password_confirmation: "example")
         expect(test_user).to be_invalid
       end
 
@@ -43,8 +42,7 @@ RSpec.describe Users, type: :model do
 
     context 'バリデーション成功の場合' do
       example 'ユーザーテーブルに保存できる' do
-        user
-        expect(User.find_by(email: 'guest@example.com')).to eq(user)
+        expect(User.find_by(email: user.email)).to eq(user)
       end
     end
   end

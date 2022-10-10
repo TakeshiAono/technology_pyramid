@@ -119,11 +119,11 @@ RSpec.describe "Users", type: :system do
         end
       end
 
-      context '一般ユーザーがログインした場合' do
+      context '登録済のユーザーがログインした場合' do
         example '正常にログインできる' do
           visit new_user_session_path
-          fill_in 'user[email]', with: 'guest@example.com'
-          fill_in 'user[password]', with: 'example'
+          fill_in 'user[email]', with: user.email
+          fill_in 'user[password]', with: user.password
           click_on 'commit'
           expect(current_path).to eq my_pages_path
         end
@@ -137,8 +137,8 @@ RSpec.describe "Users", type: :system do
     context '管理者ユーザーの場合' do
       example '管理画面に遷移できる' do
         visit new_user_session_path
-        fill_in 'user[email]', with: 'guest@example.com'
-        fill_in 'user[password]', with: 'example'
+        fill_in 'user[email]', with: admin_user.email
+        fill_in 'user[password]', with: admin_user.password
         click_on 'commit'
         visit rails_admin_path
         expect(current_path).to eq rails_admin_path
