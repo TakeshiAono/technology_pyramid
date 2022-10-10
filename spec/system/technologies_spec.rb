@@ -7,7 +7,9 @@ RSpec.describe "Technologies", type: :system do
 
     before do
       visit new_user_session_path
-      click_link 'ゲストログイン（管理者用）'
+      fill_in 'user[email]', with: User.first.email
+      fill_in 'user[password]', with: 'example'
+      click_on 'commit'
       visit technologies_path(Work.first)
     end
     
@@ -18,9 +20,9 @@ RSpec.describe "Technologies", type: :system do
       end
 
       example '任意のテクノロジーを下位テクノロジーとして紐づけができる' do
-        select 'test_tech2', from: "technology[hierarckies_attributes][0][lower_technology_id]"
+        select technology.name, from: "technology[hierarckies_attributes][0][lower_technology_id]"
         click_on 'commit'
-        expect(page).to have_content "test_tech2"
+        expect(page).to have_content technology.name
       end
       
       example '新しいテクノロジーレコードがテクノロジー一覧ページで表示される' do
