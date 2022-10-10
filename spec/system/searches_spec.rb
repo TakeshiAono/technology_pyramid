@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Searches", type: :system do
   describe '検索機能' do
+    let!(:work) {FactoryBot.create(:work, title: "rails")}
+    let!(:second_work) {FactoryBot.create(:work, title: "rails")}
     before do
-      FactoryBot.create(:work, title: "rails")
       visit new_user_session_path
       click_link 'ゲストログイン（管理者用）'
     end
@@ -28,11 +29,25 @@ RSpec.describe "Searches", type: :system do
     end
 
     context '存在するタイトル名で検索した場合' do
-      example '変更した内容がテクノロジー一覧ページに反映される' do
+      before do
         visit my_pages_path
         fill_in "q[title_cont]", with: 'rails'
         click_on 'commit'
+      end
+
+      example '検索で引っかかったものが一覧で表示される' do
         expect(page).to have_content "example"
+      end
+
+      example 'userをお気に入り登録できる' do
+        find_all(".favorite-button").first.click
+        expect(Favorite.first.present?).to eq true
+      end
+
+      example 'userをお気に入り解除できる' do
+        find_all(".favorite-button").first.click
+        find_all(".favorite-button").first.click
+        expect(Favorite.first.present?).to eq false
       end
     end
   end
