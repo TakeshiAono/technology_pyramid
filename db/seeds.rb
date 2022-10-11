@@ -12,8 +12,8 @@ k = 0
 User.create!(
   name: "guest", 
   email: "guest@example.com", 
-  password: "aoao0101",
-  password_confirmation: "aoao0101",
+  password: ENV['ADMIN_PASSWORD'],
+  password_confirmation: ENV['ADMIN_PASSWORD'],
   industry: "製造業",
   occupation: "設計",
   admin: true
