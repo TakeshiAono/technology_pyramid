@@ -28,8 +28,8 @@
             <i class="far fa-eye-slash"></i>
           <% end %>
         </td>
+        <td><%= link_to I18n.t("links.display"), links_path(technology), class: "btn btn-info" %></td>
         <% if current_user == technology.work.user %>
-          <td><%= link_to I18n.t("links.display"), links_path(technology), class: "btn btn-info" %></td>
           <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
           <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
@@ -62,8 +62,8 @@
             <i class="far fa-eye-slash"></i>
           <% end %>
         </td>
+        <td><%= link_to I18n.t("links.display"), links_path(technology), class: "btn btn-info" %></td>
         <% if current_user == technology.work.user %>
-          <td><%= link_to I18n.t("links.display"), links_path(technology), class: "btn btn-info" %></td>
           <td><%= link_to I18n.t("show"), technology_path(technology), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t('technologies.edit'), edit_technology_path(technology), class: "btn btn-warning" %></td>
           <td><%= link_to I18n.t("destroy"), technology, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
