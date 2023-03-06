@@ -32,14 +32,22 @@
               <span class = "favorite-button">-</span>
             <% else %>
               <% if current_user.favorites.find_by(favorite_id: work.user.id).present? %>
-                <%= link_to image_tag("hart.png", class:"favorite-button"), favorite_unregiste_searches_path({user_id: work.user.id, q: {title_cont: @q.conditions.first.value}}), method: :post unless current_user == work.user %>
+                <%= link_to image_tag("hart.png", class:"favorite-button"),
+                  favorite_unregister_searches_path(
+                    {user_id: work.user.id, q: {title_cont: @q.conditions.first.value}}
+                  ) unless current_user == work.user 
+                %>
               <% else %>
-                <%= link_to image_tag("black_hart.png", class:"favorite-button"), favorite_registe_searches_path({user_id: work.user.id, q: {title_cont: @q.conditions.first.value}}), method: :post unless current_user == work.user %>
+                <%= link_to image_tag("black_hart.png", class:"favorite-button"),
+                  favorite_register_searches_path(
+                    {user_id: work.user.id, q: {title_cont: @q.conditions.first.value}}
+                  ) unless current_user == work.user 
+                %>
               <% end %>
             <% end %>
           </td>
           <td>
-            <%= work.user.favorited.count %>
+            <%= work.user.favorite.count %>
           </td>
         </tr>
       <% end %>

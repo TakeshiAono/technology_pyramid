@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   resources :searches, only: %i[index show create destroy] do
     collection do
-      post :favorite_registe
-      post :favorite_unregiste
+      get :favorite_register
+      get :favorite_unregister
     end
   end
 

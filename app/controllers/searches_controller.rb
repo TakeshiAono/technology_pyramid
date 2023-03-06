@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
     end
   end
 
-  def favorite_registe
+  def favorite_register
     Favorite.create(user_id: current_user.id, favorite_id: params[:user_id])
     flash.now[:notice] = I18n.t('favorites.register_notice')
     render :index
@@ -23,8 +23,8 @@ class SearchesController < ApplicationController
     render :index
   end
 
-  def favorite_unregiste
-    Favorite.where(user_id: current_user.id, favorite_id: params[:user_id]).first.destroy
+  def favorite_unregister
+    Favorite.where(user_id: current_user.id, favorite_id: params[:user_id]).first&.destroy
     flash.now[:alert] = I18n.t('favorites.unregister_notice')
     render :index
   end
