@@ -1,1 +1,1 @@
-json.partial! "technologies/technology", technology: @technology
+json.partial! 'technologies/technology', technology: @technology

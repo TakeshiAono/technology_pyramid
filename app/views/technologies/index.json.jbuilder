@@ -1,1 +1,1 @@
-json.array! @technologies, partial: "technologies/technology", as: :technology
+json.array! @technologies, partial: 'technologies/technology', as: :technology

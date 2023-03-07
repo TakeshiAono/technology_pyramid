@@ -1,12 +1,9 @@
 <h1>【<%= current_user.name %>】<%= I18n.t('works.display') %></h1>
-
 <p class = "explanation">
   あなたが気になっているキーワードでワークグループを作成してみましょう<br>
   「技術一覧」ボタンで「技術」を登録してください
 </p>
-
 <%= link_to I18n.t('works.new'), new_work_path, class: "btn btn-primary" %>
-
 <div class = "active_works">
 <h2><%= I18n.t('works.active') %></h2>
   <table class="table">
@@ -18,7 +15,6 @@
         <th colspan="3"></th>
       </tr>
     </thead>
-  
     <tbody>
       <% @active_works.each do |work| %>
         <tr class = "table-warning">
@@ -41,9 +37,7 @@
     </tbody>
   </table>
 </div>
-
 <br>
-
 <div class = "inactive_works">
 <h2><%= I18n.t('works.inactive') %></h2>
   <table class="table">
@@ -55,7 +49,6 @@
         <th colspan="3"></th>
       </tr>
     </thead>
-  
     <tbody>
       <% @inactive_works.each do |work| %>
         <tr class = "table-warning">
@@ -78,4 +71,3 @@
     </tbody>
   </table>
 </div>
-

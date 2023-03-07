@@ -1,1 +1,1 @@
-json.array! @pyramids, partial: "pyramids/pyramid", as: :pyramid
+json.array! @pyramids, partial: 'pyramids/pyramid', as: :pyramid

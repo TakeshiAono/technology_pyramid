@@ -2,14 +2,14 @@ class SearchesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_q
   before_action :set_work
-  
+
   def index
     if @q.conditions.present?
       session[:search_word] = @q.conditions[0].value
-      flash.now[:alert] = "検索キーワードに合致しませんでした" if @q.result.first == nil
+      flash.now[:alert] = '検索キーワードに合致しませんでした' if @q.result.first.nil?
     else
       @works = nil
-      flash.now[:alert] = "検索キーワードを入力してください"
+      flash.now[:alert] = '検索キーワードを入力してください'
     end
   end
 
@@ -30,6 +30,7 @@ class SearchesController < ApplicationController
   end
 
   private
+
   def set_q
     @q = Work.ransack(params[:q])
   end

@@ -1,13 +1,11 @@
 class TechnologiesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_technology, only: %i[ show edit update destroy ]
+  before_action :set_technology, only: %i[show edit update destroy]
 
   def index
     path = Rails.application.routes.recognize_path(request.referer)
     session[:before_controller_path] = path[:controller]
-    if params[:format].present?
-      session[:work_id] = params[:format]
-    end
+    session[:work_id] = params[:format] if params[:format].present?
     work = Work.find(session[:work_id])
     @technologies = work.technologies.where(basic_flag: false)
     @basic_technologies = work.technologies.where(basic_flag: true)
@@ -21,9 +19,7 @@ class TechnologiesController < ApplicationController
   def new
     path = Rails.application.routes.recognize_path(request.referer)
     session[:before_controller_path] = path[:controller]
-    if session[:before_controller_path] == "pyramids"
-      session[:top_technology_id] = params[:format]
-    end
+    session[:top_technology_id] = params[:format] if session[:before_controller_path] == 'pyramids'
     @technology = Technology.new(work_id: session[:work_id])
     @technology.hierarckies.build
   end
@@ -39,9 +35,10 @@ class TechnologiesController < ApplicationController
     @technology = Technology.new(technology_params)
     respond_to do |format|
       if @technology.save
-        @upper_hierarcky = Hierarcky.new(technology_id: params[:technology][:upper_technology_id], lower_technology_id: @technology.id)
+        @upper_hierarcky = Hierarcky.new(technology_id: params[:technology][:upper_technology_id],
+                                         lower_technology_id: @technology.id)
         @upper_hierarcky.save
-        format.html { redirect_to technology_url(@technology), notice: "Technology"+I18n.t("notice.success.created") }
+        format.html { redirect_to technology_url(@technology), notice: 'Technology' + I18n.t('notice.success.created') }
         format.json { render :show, status: :created, location: @technology }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -53,7 +50,7 @@ class TechnologiesController < ApplicationController
   def update
     respond_to do |format|
       if @technology.update(technology_params)
-        format.html { redirect_to technology_url(@technology), notice: "Technology" + I18n.t("notice.success.updated") }
+        format.html { redirect_to technology_url(@technology), notice: 'Technology' + I18n.t('notice.success.updated') }
         format.json { render :show, status: :ok, location: @technology }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,7 +62,7 @@ class TechnologiesController < ApplicationController
   def destroy
     @technology.destroy
     respond_to do |format|
-      format.html { redirect_to technologies_url, notice: "Technology"+I18n.t("notice.success.destroyed") }
+      format.html { redirect_to technologies_url, notice: 'Technology' + I18n.t('notice.success.destroyed') }
       format.json { head :no_content }
     end
   end
@@ -76,11 +73,13 @@ class TechnologiesController < ApplicationController
   end
 
   private
-    def set_technology
-      @technology = Technology.find(params[:id])
-    end
 
-    def technology_params
-      params.require(:technology).permit(:name, :public_flag,  :work_id, :basic_flag, hierarckies_attributes: %i[id lower_technology_id technology_id])
-    end
+  def set_technology
+    @technology = Technology.find(params[:id])
+  end
+
+  def technology_params
+    params.require(:technology).permit(:name, :public_flag, :work_id, :basic_flag,
+                                       hierarckies_attributes: %i[id lower_technology_id technology_id])
+  end
 end
