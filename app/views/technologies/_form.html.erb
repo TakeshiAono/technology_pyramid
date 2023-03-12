@@ -1,4 +1,4 @@
-<%= form_with(model: technology, local: true) do |form| %>
+<%= form_with(model: [@work, @technology], local: true) do |form| %>
   <% if technology.errors.any? %>
     <div id="error_explanation" class = "alert alert-danger">
       <h2><%= pluralize(technology.errors.count, I18n.t('error.display')) %> <%= I18n.t('error.save') %></h2>
@@ -38,10 +38,6 @@
       <% end %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.hidden_field :work_id %>
-  </div>
 
   <div class="actions">
     <%= form.submit '登録する', class: 'btn btn-primary' %>

@@ -18,7 +18,7 @@
     <tbody>
       <% @active_works.each do |active_work| %>
         <tr class = "table-warning">
-          <td><%= link_to I18n.t('technologies.index'), technologies_path(active_work), class: "btn btn-success" %></td>
+          <td><%= link_to I18n.t('technologies.index'), work_technologies_path(active_work), class: "btn btn-success" %></td>
           <td><%= active_work.title %></td>
           <td>
             <% if active_work.public_flag == true%>
@@ -52,7 +52,7 @@
     <tbody>
       <% @inactive_works.each do |inactive_work| %>
         <tr class = "table-warning">
-          <td><%= link_to I18n.t('technologies.index'), technologies_path(inactive_work), class: "btn btn-success" %></td>
+          <td><%= link_to I18n.t('technologies.index'), work_technologies_path(inactive_work), class: "btn btn-success" %></td>
           <td><%= inactive_work.title %></td>
           <td>
             <% if inactive_work.public_flag == true%>

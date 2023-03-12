@@ -19,8 +19,11 @@ Rails.application.routes.draw do
       delete :reset
     end
   end
+
   resources :my_pages, only: %i[index]
-  resources :works
+  resources :works do
+    resources :technologies
+  end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
