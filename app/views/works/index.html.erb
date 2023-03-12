@@ -16,21 +16,21 @@
       </tr>
     </thead>
     <tbody>
-      <% @active_works.each do |work| %>
+      <% @active_works.each do |active_work| %>
         <tr class = "table-warning">
-          <td><%= link_to I18n.t('technologies.index'), technologies_path(work), class: "btn btn-success" %></td>
-          <td><%= work.title %></td>
+          <td><%= link_to I18n.t('technologies.index'), technologies_path(active_work), class: "btn btn-success" %></td>
+          <td><%= active_work.title %></td>
           <td>
-            <% if work.public_flag == true%>
+            <% if active_work.public_flag == true%>
               <i class="far fa-eye"></i>
             <% else %>
               <i class="far fa-eye-slash"></i>
             <% end %>
           </td>
-          <% if current_user == work.user %>
-            <td><%= link_to I18n.t("show"), work_path(work), class: "btn btn-secondary" %></td>
-            <td><%= link_to I18n.t('edit'), edit_work_path(work), class: "btn btn-warning" %></td>
-            <td><%= link_to I18n.t('destroy'), work, method: :delete, data: { confirm: I18n.t('confirm.destroy') }, class: "btn btn-danger" %></td>
+          <% if current_user == active_work.user %>
+            <td><%= link_to I18n.t("show"), work_path(active_work), class: "btn btn-secondary" %></td>
+            <td><%= link_to I18n.t('edit'), edit_work_path(active_work), class: "btn btn-warning" %></td>
+            <td><%= link_to I18n.t('destroy'), active_work, method: :delete, data: { confirm: I18n.t('confirm.destroy') }, class: "btn btn-danger" %></td>
           <% end %>
         </tr>
       <% end %>
@@ -50,21 +50,21 @@
       </tr>
     </thead>
     <tbody>
-      <% @inactive_works.each do |work| %>
+      <% @inactive_works.each do |inactive_work| %>
         <tr class = "table-warning">
-          <td><%= link_to I18n.t('technologies.index'), technologies_path(work), class: "btn btn-success" %></td>
-          <td><%= work.title %></td>
+          <td><%= link_to I18n.t('technologies.index'), technologies_path(inactive_work), class: "btn btn-success" %></td>
+          <td><%= inactive_work.title %></td>
           <td>
-            <% if work.public_flag == true%>
+            <% if inactive_work.public_flag == true%>
               <i class="far fa-eye"></i>
             <% else %>
               <i class="far fa-eye-slash"></i>
             <% end %>
           </td>
-          <% if current_user == work.user %>
-            <td><%= link_to I18n.t("show"), work_path(work), class: "btn btn-secondary" %></td>
-            <td><%= link_to I18n.t("edit"), edit_work_path(work), class: "btn btn-warning" %></td>
-            <td><%= link_to I18n.t("destroy"), work, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
+          <% if current_user == inactive_work.user %>
+            <td><%= link_to I18n.t("show"), work_path(inactive_work), class: "btn btn-secondary" %></td>
+            <td><%= link_to I18n.t("edit"), edit_work_path(inactive_work), class: "btn btn-warning" %></td>
+            <td><%= link_to I18n.t("destroy"), inactive_work, method: :delete, data: { confirm: I18n.t("confirm.destroy") }, class: "btn btn-danger" %></td>
           <% end %>
         </tr>
       <% end %>
