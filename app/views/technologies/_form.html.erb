@@ -25,14 +25,14 @@
     <%= form.check_box :basic_flag %>
   </div>
 
-  <% if Technology.where(work_id: session[:work_id]).first != nil %>
+  <% if Technology.where(work_id: @work.id).first != nil %>
     <div class="field">
       <%= form.fields_for :hierarckies do |hierarcky| %>
         <p>
           <%= hierarcky.label I18n.t("technologies.low") %>
-          <%= hierarcky.select :lower_technology_id, {"該当無し": nil}.merge(Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h) %>
+          <%= hierarcky.select :lower_technology_id, {"該当無し": nil}.merge(Technology.where(work_id: @work.id).pluck(:name, :id).to_h) %>
           <% unless hierarcky.object.id == nil %>
-          <%= link_to "リセット", reset_technologies_path({"hierarcky_id": hierarcky.object.id, "technology_id": technology.id}), method: :delete, class: "btn btn-danger" %>
+            <%= link_to "リセット", reset_technologies_path({"hierarcky_id": hierarcky.object.id, "technology_id": technology.id}), method: :delete, class: "btn btn-danger" %>
           <% end %>
         </p>
       <% end %>

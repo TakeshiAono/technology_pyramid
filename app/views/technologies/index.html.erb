@@ -1,4 +1,4 @@
-<h1>【<%= Work.find(session[:work_id]).title %>】<%= I18n.t('technologies.display')  %></h1>
+<h1>【<%= @work.title %>】<%= I18n.t('technologies.display')  %></h1>
 <p class = "explanation">
   あなたが持っている「技術」を登録して「ピラミッド構造」を作りましょう!!
 </p>
@@ -17,7 +17,7 @@
   <tbody>
     <% @technologies.each do |technology| %>
       <tr class = "table-warning">
-        <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
+        <td><%= link_to I18n.t('pyramids.structure'), work_technology_pyramids_path(@work, technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td>
           <% if technology.public_flag == true %>

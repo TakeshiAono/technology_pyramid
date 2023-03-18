@@ -41,12 +41,15 @@ RSpec.describe 'Searches', type: :system do
 
       example 'userをお気に入り登録できる' do
         find_all('.favorite-button').first.click
+        sleep(1)
         expect(Favorite.first.present?).to eq true
       end
 
       example 'userをお気に入り解除できる' do
         find_all('.favorite-button').first.click
+        sleep(0.5)
         find_all('.favorite-button').first.click
+        sleep(0.5)
         expect(Favorite.first.present?).to eq false
       end
     end

@@ -18,12 +18,12 @@
     </tr>
   </thead>
   <tbody class = "search-result-table">
-  <% searched_word = @q.conditions.first.value %>
+  <% searched_word = @q.conditions.first.value unless @q.conditions.first.nil? %>
     <% if @works.present? %>
       <% @works.each do |work| %>
         <tr class = "table-warning">
           <% work_owner = work.user %>
-          <td><%= link_to "#{work.title}", technologies_path(work) %></td>
+          <td><%= link_to "#{work.title}", work_technologies_path(work) %></td>
           <td><%= work_owner.name %></td>
           <td>
             <% unless current_user == work_owner %>

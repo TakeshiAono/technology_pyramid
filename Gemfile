@@ -46,7 +46,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'rexml'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'rails_admin', '~> 3.0'
+gem 'rails_admin', '~> 3.0.0'
 # gem 'rails_admin', '~> 3.1.0.rc2'
 # gem 'rails_admin', '= 2.2.1'
 gem 'bootstrap'

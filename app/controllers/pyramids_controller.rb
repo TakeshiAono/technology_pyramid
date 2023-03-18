@@ -3,7 +3,7 @@ class PyramidsController < ApplicationController
 
   def index
     session[:top_technology_id] = params[:format] if params[:format].present?
-    @top_technology = Technology.find(session[:top_technology_id])
+    @top_technology = Technology.find(params[:technology_id])
 
     @top_hierarckies = []
     @first_hierarckies = []
