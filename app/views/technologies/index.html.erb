@@ -2,7 +2,7 @@
 <p class = "explanation">
   あなたが持っている「技術」を登録して「ピラミッド構造」を作りましょう!!
 </p>
-<%= link_to I18n.t('technologies.new'), new_work_technology_path, class: "btn btn-primary" if current_user.works.find_by(id:session[:work_id]) %>
+<%= link_to I18n.t('technologies.new'), new_work_technology_path, class: "btn btn-primary" if current_user.works.find_by(id: @work.id) %>
 
 <h2><%= I18n.t('technologies.application') %></h2>
 <table class="table">
@@ -20,7 +20,7 @@
         <td><%= link_to I18n.t('pyramids.structure'), work_technology_pyramids_path(@work, technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td>
-          <% if technology.public_flag == true %>
+          <% if technology.public_flag %>
             <i class="far fa-eye"></i>
           <% else %>
             <i class="far fa-eye-slash"></i>
@@ -50,7 +50,7 @@
   <tbody>
     <% @basic_technologies.each do |technology| %>
       <tr class = "table-warning">
-        <td><%= link_to I18n.t('pyramids.structure'), pyramids_path(technology), class: "btn btn-success" %></td>
+        <td><%= link_to I18n.t('pyramids.structure'), work_technology_pyramids_path(@work, technology), class: "btn btn-success" %></td>
         <td><%= technology.name %></td>
         <td>
           <% if technology.public_flag == true %>
