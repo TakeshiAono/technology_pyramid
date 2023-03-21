@@ -12,7 +12,7 @@
   </p>
   
   <div class = "show-link-word">
-    <%= link_to I18n.t("edit"), edit_link_path(@link) %> |
-    <%= link_to I18n.t("back"), links_path(session[:technology_id]) %>
+    <%= link_to I18n.t("edit"), edit_work_technology_link_path(@work, @technology, @link) %> |
+    <%= link_to I18n.t("back"), work_technology_links_path(@work, @technology) %>
   </div>
 </div>

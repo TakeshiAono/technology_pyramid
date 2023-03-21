@@ -1,5 +1,5 @@
 <h1><%= I18n.t('links.new') %></h1>
 
-<%= render 'form', link: @link %>
+<%= render 'form', work: @work, technology: @technology, link: @link %>
 
-<%= link_to I18n.t("back"), links_path, class: 'link_word'%>
+<%= link_to I18n.t("back"), work_technology_links_path(@work, @technology), class: 'link_word'%>

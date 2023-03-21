@@ -26,7 +26,7 @@
             <i class="far fa-eye-slash"></i>
           <% end %>
         </td>
-        <td><%= link_to I18n.t("links.display"), links_path(technology), class: "btn btn-info" %></td>
+        <td><%= link_to I18n.t("links.display"), work_technology_links_path(@work, technology), class: "btn btn-info" %></td>
         <% if current_user == technology.work.user %>
           <td><%= link_to I18n.t("show"), work_technology_path(@work, technology), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t('technologies.edit'), edit_work_technology_path(@work, technology), class: "btn btn-warning" %></td>
@@ -59,7 +59,7 @@
             <i class="far fa-eye-slash"></i>
           <% end %>
         </td>
-        <td><%= link_to I18n.t("links.display"), links_path(technology), class: "btn btn-info" %></td>
+        <td><%= link_to I18n.t("links.display"), work_technology_links_path(@work, technology), class: "btn btn-info" %></td>
         <% if current_user == technology.work.user %>
           <td><%= link_to I18n.t("show"), work_technology_path(@work,technology), class: "btn btn-secondary" %></td>
           <td><%= link_to I18n.t('technologies.edit'), edit_work_technology_path(@work, technology), class: "btn btn-warning" %></td>
