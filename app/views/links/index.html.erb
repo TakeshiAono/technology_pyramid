@@ -1,12 +1,12 @@
-<h1>【<%= Technology.find(session[:technology_id]).name %>】<%= I18n.t('links.display') %></h1>
+<h1>【<%= @technology.name %>】<%= I18n.t('links.display') %></h1>
 
 <p class = "explanation">
   この技術を把握するための外部リンクです<br>
   参考になった場合は「いいねボタン」で評価をしてあげましょう
 </p>
 <% if @owner == current_user %>
-  <p><%= link_to "テクノロジー一覧へ戻る",technologies_path(session[:work_id]) %></p>
-  <p><%= link_to I18n.t('links.new'), new_link_path, class: "btn btn-primary" %></p>
+  <p><%= link_to "テクノロジー一覧へ戻る",work_technologies_path(@work) %></p>
+  <p><%= link_to I18n.t('links.new'), new_work_technology_link_path, class: "btn btn-primary" %></p>
 <% end %>
 
 <table class = "table links-table">
@@ -29,19 +29,19 @@
         <td class = "good-column">
           <span class = "good-counter"><%= link.link_goods.count %></span>
           <% unless LinkGood.find_by(user_id: current_user.id, link_id: link.id) %>
-            <%= link_to good_register_links_path(link) do %>
+            <%= link_to good_register_work_technology_link_path(@work, @technology, link) do %>
               <i class="far fa-thumbs-up good-register"></i>
             <% end %>
           <% else %>
-            <%= link_to good_unregister_links_path(link) do %>
+            <%= link_to good_unregister_work_technology_link_path(@work, @technology, link) do %>
               <i class="far fa-thumbs-up good-unregister"></i>
             <% end %>
           <% end %>
         </td>
         <% if current_user == link.technology.work.user %>
-          <td><%= link_to I18n.t("show"), link, class: "btn btn-secondary" %></td>
-          <td><%= link_to I18n.t("edit"), edit_link_path(link), class: "btn btn-warning" %></td>
-          <td><%= link_to I18n.t("destroy"), link, method: :delete, data: {confirm: I18n.t("confirm.destroy")}, class: "btn btn-danger" %></td>
+          <td><%= link_to I18n.t("show"), work_technology_link_path(@work, @technology, link), class: "btn btn-secondary" %></td>
+          <td><%= link_to I18n.t("edit"), edit_work_technology_link_path(@work, @technology, link), class: "btn btn-warning" %></td>
+          <td><%= link_to I18n.t("destroy"), work_technology_link_path(@work, @technology, link), method: :delete, data: {confirm: I18n.t("confirm.destroy")}, class: "btn btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>

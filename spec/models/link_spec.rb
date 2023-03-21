@@ -9,7 +9,7 @@ RSpec.describe Link, type: :model do
       end
 
       example 'titleが11文字以上場合、validationエラーになる' do
-        link = FactoryBot.build(:link, title: "a"*61)
+        link = FactoryBot.build(:link, title: 'a' * 61)
         expect(link).to be_invalid
       end
     end

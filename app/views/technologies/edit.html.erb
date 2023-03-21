@@ -2,12 +2,8 @@
 
 <%= render 'form', technology: @technology %>
 
-<% if session[:before_controller_path] == 'pyramids' %>
-  <%= link_to I18n.t("show"), technology_path(session[:top_technology_id]) %> |
-  <%= link_to I18n.t("back"), pyramids_path(session[:top_technology_id]) %>
-<% else %>
-  <div class = "edit-link-word">
-    <%= link_to I18n.t("show"), @technology %> |
-    <%= link_to I18n.t("back"), technologies_path %>
-  </div>
-<% end %>
+<div class = "edit-link-word">
+  <%= link_to I18n.t("show"), work_technology_path(@work, @technology) %> |
+  <%= link_to I18n.t("back"), work_technologies_path(@work) %>
+</div>
+

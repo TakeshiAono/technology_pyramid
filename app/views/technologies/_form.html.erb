@@ -1,4 +1,4 @@
-<%= form_with(model: technology, local: true) do |form| %>
+<%= form_with(model: [@work, @technology], local: true) do |form| %>
   <% if technology.errors.any? %>
     <div id="error_explanation" class = "alert alert-danger">
       <h2><%= pluralize(technology.errors.count, I18n.t('error.display')) %> <%= I18n.t('error.save') %></h2>
@@ -25,23 +25,19 @@
     <%= form.check_box :basic_flag %>
   </div>
 
-  <% if Technology.where(work_id: session[:work_id]).first != nil %>
+  <% if Technology.where(work_id: @work.id).first != nil %>
     <div class="field">
       <%= form.fields_for :hierarckies do |hierarcky| %>
         <p>
           <%= hierarcky.label I18n.t("technologies.low") %>
-          <%= hierarcky.select :lower_technology_id, {"該当無し": nil}.merge(Technology.where(work_id: session[:work_id]).pluck(:name, :id).to_h) %>
+          <%= hierarcky.select :lower_technology_id, {"該当無し": nil}.merge(Technology.where(work_id: @work.id).pluck(:name, :id).to_h) %>
           <% unless hierarcky.object.id == nil %>
-          <%= link_to "リセット", reset_technologies_path({"hierarcky_id": hierarcky.object.id, "technology_id": technology.id}), method: :delete, class: "btn btn-danger" %>
+            <%= link_to "リセット", reset_technologies_path({"hierarcky_id": hierarcky.object.id, "technology_id": technology.id}), method: :delete, class: "btn btn-danger" %>
           <% end %>
         </p>
       <% end %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.hidden_field :work_id %>
-  </div>
 
   <div class="actions">
     <%= form.submit '登録する', class: 'btn btn-primary' %>

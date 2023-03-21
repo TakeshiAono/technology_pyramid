@@ -9,7 +9,7 @@ RSpec.describe Work, type: :model do
       end
 
       example 'titleが11文字以上場合、validationエラーになる' do
-        work = FactoryBot.build(:work, title: "a"*11)
+        work = FactoryBot.build(:work, title: 'a' * 11)
         expect(work).to be_invalid
       end
     end

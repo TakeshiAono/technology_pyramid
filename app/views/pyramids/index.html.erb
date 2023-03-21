@@ -5,20 +5,31 @@
   各要素技術をクリックすると詳しい内容を把握することができます。
 </p>
 
-<% if @top_technology.work.user == current_user %>
-  <p><%= link_to I18n.t('technologies.new'), new_technology_path(session[:top_technology_id]), class: "btn btn-primary" %></p>
+<% if @top_technology.work.user === current_user %>
+  <p><%= link_to I18n.t('technologies.new'), new_work_technology_path, class: "btn btn-primary" %></p>
 <% end %>
 
 <div class = "pyramid_wrapper">
   <div class = "pyramid_content">
     <div id = "hierarcky-1">
-      <%=link_to @top_technology.name, links_path(@top_technology), id: "#{@top_technology.id}" , class: "technology-1 border border-primary", data:{lower_technologies: @top_technology.lower_technologies.ids} %>
+      <%=link_to @top_technology.name,
+        work_technology_links_path(@work, @top_technology),
+        # links_path(),
+        id: "#{@top_technology.id}",
+        class: "technology-1 border border-primary",
+        data:{lower_technologies: @top_technology.lower_technologies.ids}
+      %>
     </div>
     <div id = "hierarcky-2">
       <% counter = 1 %>
       <% @first_hierarckies.each do |technology| %>
           <% unless technology == nil %>
-              <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}" , class: "technology-2 border border-primary", data:{lower_technologies: technology.lower_technologies.ids} %>
+              <%= link_to "#{technology.name}",
+                links_path(),
+                id: "#{technology.id}",
+                class: "technology-2 border border-primary",
+                data:{lower_technologies: technology.lower_technologies.ids}
+              %>
             <% counter += 1 %>
           <% end %>
       <% end %>
@@ -26,21 +37,36 @@
     <div id = "hierarcky-3" >
       <% @second_hierarckies.each do |technology| %>
         <% unless technology == nil %>
-              <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}", class: "border border-secondary", data:{lower_technologies: technology.lower_technologies.ids} %>
+          <%= link_to "#{technology.name}",
+            links_path(technology),
+            id: "#{technology.id}",
+            class: "border border-secondary",
+            data:{lower_technologies: technology.lower_technologies.ids}
+          %>
         <% end %>
       <% end %>
     </div>
     <div id = "hierarcky-4" >
       <% @third_hierarckies.each do |technology| %>
         <% unless technology == nil %>
-            <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}", class: "border border-success", data:{lower_technologies: technology.lower_technologies.ids} %>
+          <%= link_to "#{technology.name}",
+            links_path(technology),
+            id: "#{technology.id}",
+            class: "border border-success",
+            data:{lower_technologies: technology.lower_technologies.ids}
+          %>
         <% end %>
       <% end %>
     </div>
     <div id = "hierarcky-5" >
       <% @fourth_hierarckies.each do |technology| %>
         <% unless technology == nil %>
-            <%= link_to "#{technology.name}", links_path(technology), id: "#{technology.id}", class: "border border-warning", data:{lower_technologies: technology.lower_technologies.ids} %>
+          <%= link_to "#{technology.name}",
+            links_path(technology),
+            id: "#{technology.id}",
+            class: "border border-warning",
+            data:{lower_technologies: technology.lower_technologies.ids}
+          %>
         <% end %>
       <% end %>
     </div>

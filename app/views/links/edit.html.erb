@@ -1,8 +1,8 @@
 <h1><%= I18n.t('links.edit') %></h1>
 
-<%= render 'form', link: @link %>
+<%= render 'form', work: @work, technology: @technology, link: @link %>
 
 <div class = "edit-link-word">
-  <%= link_to I18n.t("show"), @link %> |
-  <%= link_to I18n.t("back"), links_path %>
+  <%= link_to I18n.t("show"), work_technology_link_path(@link) %> |
+  <%= link_to I18n.t("back"), work_technology_links_path %>
 </div>

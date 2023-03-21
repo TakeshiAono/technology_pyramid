@@ -1,4 +1,4 @@
-<%= form_with(model: link, local: true) do |form| %>
+<%= form_with(model: [work, technology, link], local: true) do |form| %>
   <% if link.errors.any? %>
     <div id="error_explanation" class = "alert alert-danger">
       <h2><%= pluralize(link.errors.count, I18n.t("error.display")) %> <%= I18n.t("error.save") %></h2>

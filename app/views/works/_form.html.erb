@@ -2,7 +2,6 @@
   <% if work.errors.any? %>
     <div id="error_explanation" class = "alert alert-danger">
       <h2><%= pluralize(work.errors.count, I18n.t('error.display')) %> <%= I18n.t('error.save') %></h2>
-
       <ul>
         <% work.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,24 +9,19 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, placeholder: I18n.t('works.title') %>
   </div>
-
   <div class="field">
     <%= form.label :public_flag %>
     <%= form.check_box :public_flag %>
   </div>
-
   <div class="field">
     <%= form.label :active_flag %>
     <%= form.check_box :active_flag %>
   </div>
-
-    <%= form.hidden_field :user_id, :value => current_user.id %>
-
+  <%= form.hidden_field :user_id, :value => current_user.id %>
   <div class="actions">
     <%= form.submit "登録する", class: 'btn btn-primary' %>
   </div>

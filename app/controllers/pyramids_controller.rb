@@ -3,7 +3,8 @@ class PyramidsController < ApplicationController
 
   def index
     session[:top_technology_id] = params[:format] if params[:format].present?
-    @top_technology = Technology.find(session[:top_technology_id])
+    @work = Work.find(params[:work_id])
+    @top_technology = Technology.find(params[:technology_id])
 
     @top_hierarckies = []
     @first_hierarckies = []
@@ -15,7 +16,7 @@ class PyramidsController < ApplicationController
     @top_technology.lower_technologies.each do |technology|
       @first_hierarckies << technology
     end
-    
+
     @first_hierarckies.each do |technology|
       technology.lower_technologies.each do |technology2|
         @second_hierarckies << technology2
@@ -39,7 +40,7 @@ class PyramidsController < ApplicationController
   def same_object_filter
     @fourth_hierarckies = @fourth_hierarckies - @third_hierarckies - @second_hierarckies - @first_hierarckies
     @third_hierarckies = @third_hierarckies - @second_hierarckies - @first_hierarckies
-    @second_hierarckies = @second_hierarckies - @first_hierarckies
+    @second_hierarckies -= @first_hierarckies
     @first_hierarckies = @first_hierarckies
 
     @fourth_hierarckies.uniq!

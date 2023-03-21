@@ -10,34 +10,33 @@ i = 0
 k = 0
 
 User.create!(
-  name: "guest", 
-  email: "guest@example.com", 
+  name: 'guest',
+  email: 'guest@example.com',
   password: ENV['ADMIN_PASSWORD'],
   password_confirmation: ENV['ADMIN_PASSWORD'],
-  industry: "製造業",
-  occupation: "設計",
+  industry: '製造業',
+  occupation: '設計',
   admin: true
 )
 
-4.times do 
+4.times do
   User.create!(
-    name: Faker::Name.name, 
-    email: Faker::Internet.email, 
-    password: "aoao0101",
-    password_confirmation: "aoao0101",
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: 'aoao0101',
+    password_confirmation: 'aoao0101',
     industry: Faker::IndustrySegments.industry,
     occupation: User::OCCUPATION[rand(0..5)]
   )
 end
 
-
-work_example = ['rails', 'ruby', 'php', 'python', 'laravel']
-User::count.times do
+work_example = %w[rails ruby php python laravel]
+User.count.times do
   i += 1
   k = 0
   5.times do
     Work.create!(
-      title: work_example[k], 
+      title: work_example[k],
       public_flag: true,
       user_id: i,
       active_flag: true
@@ -46,13 +45,13 @@ User::count.times do
   end
 end
 
-technology_example = ['プログラミング言語','ruby','クラス', 'インスタンス', 'クラスメソッド', 'rails','ruby']
+technology_example = %w[プログラミング言語 ruby クラス インスタンス クラスメソッド rails ruby]
 
-basic_technology_example = ['インスタンス変数', 'selfメソッド','アクセスメソッド','プライベートメソッド','パブリックメソッド']
+basic_technology_example = %w[インスタンス変数 selfメソッド アクセスメソッド プライベートメソッド パブリックメソッド]
 k = 0
 5.times do
   Technology.create!(
-    name: technology_example[k], 
+    name: technology_example[k],
     public_flag: true,
     work_id: 1,
     basic_flag: false
@@ -63,7 +62,7 @@ end
 k = 0
 5.times do
   Technology.create!(
-    name: basic_technology_example[k], 
+    name: basic_technology_example[k],
     public_flag: true,
     work_id: 1,
     basic_flag: true
@@ -71,35 +70,35 @@ k = 0
   k += 1
 end
 
-k=2
+k = 2
 5.times do
   Hierarcky.create!(
-    technology_id: 1 ,
+    technology_id: 1,
     lower_technology_id: k,
     access_counter: k,
-    good_counter: k,
+    good_counter: k
   )
   k += 1
 end
 
-k=3
+k = 3
 5.times do
   Hierarcky.create!(
-    technology_id: 2 ,
+    technology_id: 2,
     lower_technology_id: k,
     access_counter: k,
-    good_counter: k,
+    good_counter: k
   )
   k += 1
 end
 
-k=4
+k = 4
 5.times do
   Hierarcky.create!(
-    technology_id: 3 ,
+    technology_id: 3,
     lower_technology_id: k,
     access_counter: k,
-    good_counter: k,
+    good_counter: k
   )
   k += 1
 end
@@ -111,45 +110,45 @@ Hierarcky.find(7).destroy
 Hierarcky.find(8).destroy
 Hierarcky.find(10).destroy
 Hierarcky.find(13).destroy
-Hierarcky.find(6).update(technology_id:1)
+Hierarcky.find(6).update(technology_id: 1)
 
 # k = 1
 # 5.times do
 #   Pyramid.create!(
-#     parent_technology_id: 1, 
-#     child_technology_id: k, 
+#     parent_technology_id: 1,
+#     child_technology_id: k,
 #     public_flag: true,
 #   )
 #   k += 1
 # end
 
 Link.create!(
-  title: "クラスについて（qiita記事）",
-  url: "https://qiita.com/shizen-shin/items/09cf07f9b9f5c4977a14",
+  title: 'クラスについて（qiita記事）',
+  url: 'https://qiita.com/shizen-shin/items/09cf07f9b9f5c4977a14',
   technology_id: 2
 )
 
 Link.create!(
-  title: "クラスの基礎知識まとめ（qiita記事）",
-  url: "https://qiita.com/naotospace/items/654b285a7bcbd82b1cff",
+  title: 'クラスの基礎知識まとめ（qiita記事）',
+  url: 'https://qiita.com/naotospace/items/654b285a7bcbd82b1cff',
   technology_id: 2
 )
 
 Link.create!(
-  title: "クラスの概念整理してみた（qiita記事）",
-  url: "https://qiita.com/kohei_04/items/df462ac6578c0fb670bc",
+  title: 'クラスの概念整理してみた（qiita記事）',
+  url: 'https://qiita.com/kohei_04/items/df462ac6578c0fb670bc',
   technology_id: 2
 )
 
 Link.create!(
-  title: "クラス毎のよく使う操作まとめ（qiita記事）",
-  url: "https://qiita.com/ren0826jam/items/24d28839d307ffa825fc",
+  title: 'クラス毎のよく使う操作まとめ（qiita記事）',
+  url: 'https://qiita.com/ren0826jam/items/24d28839d307ffa825fc',
   technology_id: 2
 )
 
 Link.create!(
-  title: "クラスとインスタンスの違い（qiita記事）",
-  url: "https://qiita.com/yamaday0u/items/dca132e46b390c9af51b",
+  title: 'クラスとインスタンスの違い（qiita記事）',
+  url: 'https://qiita.com/yamaday0u/items/dca132e46b390c9af51b',
   technology_id: 2
 )
 

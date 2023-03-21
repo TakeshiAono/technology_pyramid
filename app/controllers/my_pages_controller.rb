@@ -9,7 +9,8 @@ class MyPagesController < ApplicationController
   end
 
   private
-    def set_q
-      @q = Work.ransack(params[:q])
-    end
+
+  def set_q
+    @q = Work.ransack(params[:q])
+  end
 end

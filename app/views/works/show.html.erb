@@ -4,12 +4,10 @@
     <strong><%= I18n.t('works.title') %>:</strong>
     <%= @work.title %>
   </p>
-
   <p>
     <strong><%= I18n.t('works.public_flag') %>:</strong>
     <%= @work.public_flag %>
   </p>
-  
   <div class = "show-link-word">
     <%= link_to I18n.t('show'), @work %> |
     <%= link_to I18n.t('back'), works_path %>
