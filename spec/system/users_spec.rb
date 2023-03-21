@@ -2,8 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
   describe 'アカウント登録機能' do
-    def sign_up_form_input(name: 'example', email: 'guest@example.com', password: 'example',
-                           password_confirmation: 'example')
+    def sign_up_form_input(
+      name: 'example',
+      email: 'guest@example.com',
+      password: 'example',
+      password_confirmation: 'example'
+    )
       visit new_user_registration_path
       fill_in 'user[name]', with: name
       fill_in 'user[email]', with: email
@@ -62,6 +66,7 @@ RSpec.describe 'Users', type: :system do
 
   describe 'ログイン機能' do
     describe 'アクセス禁止' do
+      let!(:link) { FactoryBot.create(:link) }
       context '登録ユーザー以外の場合' do
         example 'マイページにアクセスさせない' do
           visit my_pages_path
@@ -74,18 +79,18 @@ RSpec.describe 'Users', type: :system do
         end
 
         example 'テクノロジーページにアクセスさせない' do
-          visit technologies_path
-          expect(current_path).not_to eq technologies_path
+          visit work_technologies_path(Work.first)
+          expect(current_path).not_to eq work_technologies_path(Work.first)
         end
 
         example 'リンクページにアクセスさせない' do
-          visit links_path
-          expect(current_path).not_to eq links_path
+          visit work_technology_links_path(Work.first, Technology.first)
+          expect(current_path).not_to eq work_technology_links_path(Work.first, Technology.first)
         end
 
         example 'リンクページにアクセスさせない' do
-          visit pyramids_path
-          expect(current_path).not_to eq pyramids_path
+          visit work_technology_pyramids_path(Work.first, Technology.first)
+          expect(current_path).not_to eq work_technology_pyramids_path(Work.first, Technology.first)
         end
       end
     end

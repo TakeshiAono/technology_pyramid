@@ -10,7 +10,7 @@ RSpec.describe 'Links', type: :system do
       fill_in 'user[email]', with: User.first.email
       fill_in 'user[password]', with: 'example'
       click_on 'commit'
-      visit links_path(Technology.first)
+      visit work_technology_links_path(link.technology.work.id, link.technology.id)
     end
 
     after do
@@ -19,7 +19,7 @@ RSpec.describe 'Links', type: :system do
 
     context '新規リンクを作成した場合' do
       example '新しいリンクレコードがリンク一覧ページで表示される' do
-        click_link '新規リンク作成'
+        click_on '新規リンク作成'
         fill_in 'link[title]', with: 'example'
         click_on 'commit'
         expect(page).to have_content 'example'
@@ -61,7 +61,7 @@ RSpec.describe 'Links', type: :system do
       fill_in 'user[email]', with: User.first.email
       fill_in 'user[password]', with: 'example'
       click_on 'commit'
-      visit links_path(Technology.first)
+      visit work_technology_links_path(link.technology.work.id, link.technology.id)
     end
 
     after do
@@ -71,13 +71,19 @@ RSpec.describe 'Links', type: :system do
     context '該当記事のいいねボタンを押した場合' do
       example 'いいねが未押下の場合いいねカウントが増える' do
         find_all('.fa-thumbs-up').first.click
-        expect(LinkGood.first.present?).to eq true
+        sleep(0.5)
+        visit work_technology_links_path(link.technology.work.id, link.technology.id)
+        expect(all('.good-counter')[0].text).to eq "1"
       end
 
       example 'いいねが押下済の場合いいねカウントが減る' do
         find_all('.fa-thumbs-up').first.click
+        visit work_technology_links_path(link.technology.work.id, link.technology.id)
+        sleep(0.5)
         find_all('.fa-thumbs-up').first.click
-        expect(LinkGood.first.present?).to eq false
+        visit work_technology_links_path(link.technology.work.id, link.technology.id)
+        sleep(0.5)
+        expect(all('.good-counter')[0].text).to eq "0"
       end
     end
   end
