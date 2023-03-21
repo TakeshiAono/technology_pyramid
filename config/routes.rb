@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  resources :links do
-    collection do
-      get :good_register
-      get :good_unregister
-    end
-  end
-
+  resources :my_pages, only: %i[index]
   resources :searches, only: %i[index show create destroy] do
     collection do
       get :favorite_register
@@ -13,21 +7,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :pyramids, only: %i[index]
-  resources :technologies do
-    collection do
-      delete :reset
-    end
-    resources :pyramids
-  end
-
-  resources :my_pages, only: %i[index]
   resources :works do
     resources :technologies do
       collection do
         delete :reset
       end
       resources :pyramids
+      resources :links do
+        member do
+          get :good_register
+          get :good_unregister
+        end
+      end
     end
   end
 
