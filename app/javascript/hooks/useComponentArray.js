@@ -2,7 +2,6 @@ import React, { useRef } from "react"
 
 const useComponentArray = (props, Component, callbacks) => {
   const technologyRefs = useRef([])
-  console.log('callbacks',callbacks)
   const constructComponents = () => {
     return(
       props.map((prop, i) => {

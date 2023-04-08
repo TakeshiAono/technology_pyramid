@@ -1,38 +1,26 @@
+import './Workspace.css'
 import React, { useEffect, useState, useRef } from "react"
 import Technology from "./Technology";
 import Arrow from "./Arrow";
-import './Workspace.css'
-import { render } from "react-dom";
+import useArrow from "../hooks/useArrow";
 import useComponentArray from "../hooks/useComponentArray";
-
 
 const Workspace = (props) => {
   const [selectedNodes, setSelectedNodes] = useState([])
   const [topTechnology, setTopTechnology] = useState(null)
   const [positions, setPositions] = useState([])
-  const [arrows, setArrows] = useState(null)
-
-  const renderArrow = (startElement, endElement) => {
-    const startElementInfo = startElement.getBoundingClientRect()
-    const startElementCenterY = startElementInfo.top + startElementInfo.height / 2
-    const startElementCenterX = startElementInfo.left + startElementInfo.width / 2
-    const endElementInfo = endElement.getBoundingClientRect()
-    const endElementCenterY = endElementInfo.top + endElementInfo.height / 2
-    const endElementCenterX = endElementInfo.left + endElementInfo.width / 2
-    const arrowWidth = Math.abs(startElementCenterX - endElementCenterX)
-    const arrowHeight = Math.abs(startElementCenterY - endElementCenterY)
-    return(
-      <Arrow width={arrowWidth} height={arrowHeight} startPosition={[startElementCenterX, startElementCenterY]} endPosition={[endElementCenterX, endElementCenterY]}/>
-    )
-  }
+  const [arrows, setArrows] = useState([])
+  const [getArrowProperties] = useArrow(null)
 
   const arrowHandler = () => {
     const childElements = selectedNodes.map((selectedId) => 
-      technologies.find((element) => element.id == selectedId
-      )
-    )
-    const arrows = childElements.map((element) => renderArrow(topTechnology, element))
-    setArrows(arrows)
+    technologies.find((element) => element.id == selectedId
+    ))
+    childElements.forEach((element) => {
+      const arrowProperties = getArrowProperties(topTechnology, element)
+      console.log('arrowProperties',arrowProperties)
+      setArrows(prevArrows => [...prevArrows, <Arrow width={arrowProperties.rect.width} height={arrowProperties.rect.height} startPosition={[arrowProperties.positions.startPosition.x, arrowProperties.positions.startPosition.y]}/>])
+    })
   }
 
   const mousePosition = (evt) => {
