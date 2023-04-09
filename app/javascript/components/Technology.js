@@ -14,8 +14,9 @@ const Technology = forwardRef((props, technologyRef) => {
 
   return(
     <>
-      <div ref={technologyRef} className='technology' id={props.id}
-        onMouseDown={props.onMouseDown}
+      <div ref={technologyRef}
+        className='technology'
+        id={props.id}
         style={{cursor: "pointer"}}
       >
       {props.name}

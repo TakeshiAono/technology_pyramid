@@ -8,17 +8,18 @@ import useComponentArray from "../hooks/useComponentArray";
 const Workspace = (props) => {
   const [selectedNodes, setSelectedNodes] = useState([])
   const [topTechnology, setTopTechnology] = useState(null)
-  const [positions, setPositions] = useState([])
   const [arrows, setArrows] = useState([])
   const [getArrowProperties] = useArrow(null)
+  const technologyRefs = useRef([])
+  const beforeMovePosition = useRef()
+  const afterMovePosition = useRef()
 
   const arrowHandler = () => {
-    const childElements = selectedNodes.map((selectedId) => 
-    technologies.find((element) => element.id == selectedId
-    ))
+    const childElements = selectedNodes.map((selectedId) => {
+      return(technologyRefs.current.find((element) => element.current.id == selectedId)
+    )})
     childElements.forEach((element) => {
-      const arrowProperties = getArrowProperties(topTechnology, element)
-      console.log('arrowProperties',arrowProperties)
+      const arrowProperties = getArrowProperties(topTechnology, element.current)
       setArrows(prevArrows => [...prevArrows, <Arrow width={arrowProperties.rect.width} height={arrowProperties.rect.height} startPosition={[arrowProperties.positions.startPosition.x, arrowProperties.positions.startPosition.y]}/>])
     })
   }
@@ -27,74 +28,82 @@ const Workspace = (props) => {
     return {x: evt.pageX, y: evt.pageY}
   }
 
-  const haveNode = (techNodeEvt) => {
-    const handler = (winEvt) => {
+  const haveNode = (evt) => {
+      const techElement = evt.target
       techElement.style.position = 'absolute'
-      const movedMousePosition = mousePosition(winEvt)
-      const differentialMousePosX = movedMousePosition.x - beforeMousePosition.x
-      const differentialMousePosY = movedMousePosition.y - beforeMousePosition.y
-      techElement.style.left = (techNodeEvt.pageX - techNodeEvt.nativeEvent.offsetX + differentialMousePosX) + "px"
-      techElement.style.top = (techNodeEvt.pageY - techNodeEvt.nativeEvent.offsetY + differentialMousePosY) + "px"
-    }
-    const techElement = techNodeEvt.target
-    let beforeMousePosition
-    beforeMousePosition = mousePosition(techNodeEvt)
-    window.addEventListener("mousemove", handler)
-    window.addEventListener("mouseup", (winEvt) => {
-      beforeMousePosition = mousePosition(winEvt)
-      window.removeEventListener("mousemove", handler)
-    })
+      beforeMovePosition.current = mousePosition(evt)
+      console.log("beforeMovePosition", beforeMovePosition)
+  }
+
+  const dragEndHandler = (evt) => {
+    afterMovePosition.current = mousePosition(evt)
+    console.log('beforeMovePosition',beforeMovePosition.current)
+    const differentialMousePosX = afterMovePosition.current.x - beforeMovePosition.current.x
+    const differentialMousePosY = afterMovePosition.current.y - beforeMovePosition.current.y
+    evt.target.style.left = (evt.pageX - evt.nativeEvent.offsetX + differentialMousePosX) + "px"
+    evt.target.style.top = (evt.pageY - evt.nativeEvent.offsetY + differentialMousePosY) + "px"
   }
 
   const selectHandler = (e) => {
+    //TODO:topTechnologyHandlerと順序依存関係あるため要修正
     if (e.ctrlKey) {
       if (!selectedNodes.includes(e.target.id)) {
         setSelectedNodes([...selectedNodes, e.target.id])
       }
-    }else if(e.keydown == null) {
+    }
+    else if(e.keydown == null) {
       setSelectedNodes([e.target.id])
       setTopTechnology(null)
     }
   }
 
   const topTechnologyHandler = (e) => {
+    //TODO:selectHandlerと順序依存関係あるため要修正
     if (e.shiftKey) {
       setTopTechnology(e.target)
       setSelectedNodes(selectedNodes.filter((value) => value !== e.target.id))
     }
   }
 
-  const mouseDownHandler = (e) => {
+  const technologyHandler = (e) => {
     haveNode(e)
-    selectHandler(e)
     e.stopPropagation()
-    topTechnologyHandler(e)
   }
-
-  const callbacks = {
-    selectedNodes,
-    setSelectedNodes,
-    topTechnology,
-    setTopTechnology,
-    onMouseDown: mouseDownHandler,
-    test: (e) => {setPositions(e)}
-  }
-
-  const [technologies, constructTechnologies] = useComponentArray(props.technologies, Technology, callbacks)
 
   return(
     <div className="workspace" onMouseDown={() =>{
-      console.log("workspace")
-      setSelectedNodes([])
+      //resetアクション
+      setSelectedNodes([null])
       setTopTechnology(null)
     }}>
+      {arrows}
       <button onMouseDown={(e) =>{
         arrowHandler(e)
         e.stopPropagation()
       }
       }>矢印描画</button>
-        {constructTechnologies()}
-      {arrows}
+        {props.technologies.map((technology, i) => {
+          technologyRefs.current[i] = React.createRef()
+          return(
+            <div draggable onMouseDown={(e) => {
+              selectHandler(e)
+              topTechnologyHandler(e)
+              e.stopPropagation()
+              }
+              } 
+              onDragStart={technologyHandler} onDragEnd={dragEndHandler}
+              >
+              <Technology
+                name={technology.name}
+                key={technology.id}
+                id={technology.id}
+                ref={technologyRefs.current[i]}
+                selectedNodes={selectedNodes}
+                topTechnology={topTechnology}
+              />
+            </div>
+          )
+        })}
     </div>
   )
 }
