@@ -10,7 +10,7 @@ const Technology = forwardRef((props, technologyRef) => {
     if (props.topTechnology?.id == props.id) {
       technologyRef.current.style.borderColor  = "red"
     }
-  })
+  }, [props.topTechnology, props.selectedNodes])
 
   return(
     <>
