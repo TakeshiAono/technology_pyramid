@@ -9,6 +9,19 @@
   <p><%= link_to I18n.t('technologies.new'), new_work_technology_path, class: "btn btn-primary" %></p>
 <% end %>
 
+<% test = [] %>
+<% @second_hierarckies.each do |technology| %>
+  <% test.push(technology) %>
+<% end %>
+<%= react_component(
+  "Workspace",
+  {
+    work_id: @work.id,
+    technologies: @second_hierarckies
+  },
+  {class: 'pyramid-area'})
+%>
+
 <div class = "pyramid_wrapper">
   <div class = "pyramid_content">
     <div id = "hierarcky-1">

@@ -12,6 +12,19 @@ gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'unicorn'
 gem 'webpacker', '~> 5.0'
+gem 'devise'
+gem 'devise-i18n'
+gem 'rexml'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'rails_admin', '~> 3.0.0'
+gem 'bootstrap'
+gem 'cancancan'
+gem 'faker'
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
+gem 'ransack'
+gem 'react-rails'
 
 group :development, :test do
   gem 'bcrypt_pbkdf'
@@ -41,18 +54,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
-gem 'devise'
-gem 'devise-i18n'
-gem 'rexml'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'rails_admin', '~> 3.0.0'
-# gem 'rails_admin', '~> 3.1.0.rc2'
-# gem 'rails_admin', '= 2.2.1'
-gem 'bootstrap'
-gem 'cancancan'
-gem 'faker'
-gem 'net-imap'
-gem 'net-pop'
-gem 'net-smtp'
-gem 'ransack'
