@@ -2,15 +2,15 @@ import React, { useEffect, useState, useRef, forwardRef } from "react"
 
 const Technology = forwardRef((props, technologyRef) => {
   useEffect(() => {
-    if (props.selectedNodes.includes(props.id.toString())) {
+    if (props.selectedNodeIds.includes(props.id.toString())) {
       technologyRef.current.style.border = 'dashed'
     }else{
       technologyRef.current.style.border = 'solid'
     }
-    if (props.topTechnology?.id == props.id) {
+    if (props.topTechnologyId == props.id) {
       technologyRef.current.style.borderColor  = "red"
     }
-  }, [props.topTechnology, props.selectedNodes])
+  }, [props.topTechnologyId, props.selectedNodeIds])
 
   return(
     <>

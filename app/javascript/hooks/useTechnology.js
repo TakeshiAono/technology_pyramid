@@ -3,8 +3,11 @@ import React, { useRef, useState } from "react";
 const useTechnology = () => {
   const [selectedNodes, setSelectedNodes] = useState([])
   const [topTechnology, setTopTechnology] = useState(null)
+  const [selectedNodeIds, setSelectedNodeIds] = useState([])
+  const [topTechnologyId, setTopTechnologyId] = useState(null)
   const beforeMovePosition = useRef()
   const afterMovePosition = useRef()
+  const technologyRefs = useRef([])
 
     // useEffect(() => {
   //   if (selectedNodes.includes(clickedTechnologyId)) {
@@ -37,7 +40,7 @@ const useTechnology = () => {
 
   const selectTechnology = (e) => {
     if (e.ctrlKey) {
-      if (!selectedNodes.includes(e.target.id)) {setSelectedNodes([...selectedNodes, e.target.id])}
+      if (!selectedNodeIds.includes(e.target.id)) {setSelectedNodeIds([...selectedNodeIds, e.target.id])}
     }
     else if(e.shiftKey) {
       topTechnologySelect(e)
@@ -49,11 +52,13 @@ const useTechnology = () => {
   }
 
   const topTechnologySelect = (e) => {
-    setTopTechnology(e.target)
-    setSelectedNodes(selectedNodes.filter((value) => value !== e.target.id))
+    // console.log('technologyRefs',technologyRefs.current[0])
+    setTopTechnologyId(e.target.id)
+    setSelectedNodeIds(selectedNodeIds.filter((value) => value !== e.target.id))
+    console.log(selectedNodeIds)
   }
 
-  return [topTechnology, setTopTechnology, selectedNodes, setSelectedNodes, liftUpTechnology, liftDown, selectTechnology]
+  return [technologyRefs, topTechnologyId, setTopTechnologyId, selectedNodeIds, setSelectedNodeIds, liftUpTechnology, liftDown, selectTechnology]
 }
 
 export default useTechnology

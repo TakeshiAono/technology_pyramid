@@ -8,26 +8,23 @@ import useTechnology from '../hooks/useTechnology';
 
 const Workspace = (props) => {
   const [arrows, setArrows] = useState([])
-  const [getArrowProperties] = useArrow(null)
-  const technologyRefs = useRef([])
-  const [topTechnology, setTopTechnology, selectedNodes, setSelectedNodes, liftUpTechnology, liftDown, selectTechnology] = useTechnology()
+  const [technologyRefs, topTechnologyId, setTopTechnologyId, selectedNodeIds, setSelectedNodeIds, liftUpTechnology, liftDown, selectTechnology] = useTechnology()
+  const [getArrowProperties] = useArrow(technologyRefs)
 
   const arrowHandler = () => {
-    const childElements = selectedNodes.map((selectedId) => {
-      return(technologyRefs.current.find((element) => element.current.id == selectedId)
-    )})
-    childElements.forEach((element) => {
-      const arrowProperties = getArrowProperties(topTechnology, element.current)
+    selectedNodeIds.forEach((selectedNodeId) => {
+      const arrowProperties = getArrowProperties(topTechnologyId, selectedNodeId)
       setArrows(prevArrows => [...prevArrows, <Arrow width={arrowProperties.rect.width} height={arrowProperties.rect.height} startPosition={[arrowProperties.positions.startPosition.x, arrowProperties.positions.startPosition.y]}/>])
     })
   }
 
+  const resetTechnologies = () => {
+    setSelectedNodeIds([])
+    setTopTechnologyId(null)
+  }
+
   return(
-    <div className="workspace" onMouseDown={() =>{
-      //resetアクション
-      setSelectedNodes([null])
-      setTopTechnology(null)
-    }}>
+    <div className="workspace" onMouseDown={resetTechnologies}>
       {arrows}
       <button onMouseDown={(e) =>{
         arrowHandler(e)
@@ -50,8 +47,8 @@ const Workspace = (props) => {
                 key={technology.id}
                 id={technology.id}
                 ref={technologyRefs.current[i]}
-                selectedNodes={selectedNodes}
-                topTechnology={topTechnology}
+                selectedNodeIds={selectedNodeIds}
+                topTechnologyId={topTechnologyId}
               />
             </div>
           )
