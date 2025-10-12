@@ -21,5 +21,18 @@ require("channels")
 
 
 import "../stylesheets/application.scss";
+import ReactRailsUJS from "react_ujs";
+
+const context = require.context("../components", true); // packs/components 配下の場合
+ReactRailsUJS.useContext(context);
+
+document.addEventListener('turbolinks:load', () => {
+  ReactRailsUJS.mountComponents();
+});
+
+document.addEventListener('turbolinks:before-cache', () => {
+  ReactRailsUJS.unmountComponents();
+});
+
 
 // import "./pyramid.js";
