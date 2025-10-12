@@ -20,30 +20,38 @@ class Technology < ApplicationRecord
       WITH
         RECURSIVE pyramid_relations AS (
           --　一番上の親はここでは取得せず本sqlの最後で追加している。
-          SELECT h.lower_technology_id AS child_tech_id, 1 AS layer
+          SELECT
+            h.technology_id AS upper_tech_id,
+            h.lower_technology_id AS current_tech_id,
+            1 AS layer
           FROM hierarckies h
           WHERE h.technology_id = ?
           UNION ALL
           -- 前段のレコードの子テクノロジーidを親とする子要素をunionする
-          SELECT h2.lower_technology_id AS child_tech_id, pr.layer + 1
+          SELECT
+            h2.technology_id AS upper_tech_id,
+            h2.lower_technology_id AS current_tech_id,
+            pr.layer + 1
           FROM hierarckies h2
-          JOIN pyramid_relations pr ON h2.technology_id = pr.child_tech_id
+          JOIN pyramid_relations pr ON h2.technology_id = pr.current_tech_id
         ),
         top_technology AS (SELECT * FROM technologies WHERE id = ?)
 
       -- 親と子がセットになったレコードを取得
       SELECT
-        t.*,
-        pr.layer,
-        pr.child_tech_id
+        pr.upper_tech_id,
+        pr.current_tech_id,
+        t.name AS current_tech_name,
+        pr.layer AS current_layer
       FROM technologies t
-      JOIN pyramid_relations pr ON t.id = pr.child_tech_id
+      JOIN pyramid_relations pr ON t.id = pr.current_tech_id
       UNION ALL
       -- トップの親と子がセットになったレコードを取得
       SELECT
-        t.*,
-        0 AS layer,
-        h.lower_technology_id AS child_tech_id
+        NULL AS upper_tech_id,
+        t.id AS current_tech_id,
+        t.name AS current_tech_name,
+        0 AS current_layer
       FROM top_technology t
       -- 子要素ができたと時に初めてhierarckiesレコードが生成されるため
       -- 子要素が1つもないトップテクノロジーがあり得るため、inner join で消えないようleft outer joinを使用
