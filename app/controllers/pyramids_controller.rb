@@ -5,6 +5,7 @@ class PyramidsController < ApplicationController
     session[:top_technology_id] = params[:format] if params[:format].present?
     @work = Work.find(params[:work_id])
     @top_technology = Technology.find(params[:technology_id])
+    @technologies_and_hierarckies = @top_technology.get_technologies_and_hierarckies
 
     @top_hierarckies = []
     @first_hierarckies = []
