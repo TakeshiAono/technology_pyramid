@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       collection do
         delete :reset
       end
+      member do
+        post :api_create, path: "api"
+      end
       resources :pyramids
       resources :links do
         member do

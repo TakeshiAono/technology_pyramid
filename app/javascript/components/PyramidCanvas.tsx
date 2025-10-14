@@ -20,6 +20,7 @@ export type TechnologyRefInfo = {
 }
 
 const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: TechnologyParams[] }) => {
+  const [technologyParamsListState, setTechnologyParamsListState] = useState(technologyParamsList)
   const [isChildNodeCahnge, setIsChildNodeCahnge] = useState(false)
   const [documentElementMaxWidth, setDocumentElementMaxWidth] = useState(document.scrollingElement.scrollWidth);
   const [documentElementMaxHeight, setDocumentElementMaxHeight] = useState(document.scrollingElement.scrollHeight);
@@ -32,8 +33,8 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
   }, [isChildNodeCahnge])
 
   const technologiesByLayer = useMemo(() =>
-    _.groupBy(technologyParamsList, technologyParams => technologyParams.current_layer)
-    , [technologyParamsList]
+    _.groupBy(technologyParamsListState, technologyParams => technologyParams.current_layer)
+    , [technologyParamsListState]
   )
 
   // 矢印を出力する時にTechnologyNodeのDOM要素が必要
@@ -72,11 +73,16 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
     );
   }
 
+  const addNewTechnologyNode = (technologyParams: TechnologyParams) => {
+    setTechnologyParamsListState([...technologyParamsListState, technologyParams])
+  }
+
   const technologyNodes = useMemo(() => {
-    return _.map(technologiesByLayer, (technologyParamsList, layerIndexString) =>
-      technologyParamsList.map((technologyParams, index) => <TechnologyNode
+    return _.map(technologiesByLayer, (technologyParamsListState, layerIndexString) =>
+      technologyParamsListState.map((technologyParams, index) => <TechnologyNode
         mountRef={createTechnologyInfo}
         updateRef={updateRef}
+        addNewTechnology={addNewTechnologyNode}
         technologyParams={technologyParams}
         xPos={100 + index * 350}
         yPos={Number(layerIndexString) * 250}
@@ -84,7 +90,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
         onClickCallBack={(selectedTechId) => { setClickTechnologyId(selectedTechId); console.log("selectedTechId", selectedTechId) }}
       />)
     )
-  }, [technologiesByLayer, clickTechnologyId])
+  }, [technologiesByLayer, clickTechnologyId, technologyParamsListState])
 
   const createArrows = useMemo(() => {
     return technologyInfos.current.map(technologyInfo => {
@@ -108,7 +114,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
         strokeWidth={2}
       />
     })
-  }, [technologyInfos.current])
+  }, [technologyInfos.current, technologyParamsListState])
 
   return (
     <>

@@ -1,9 +1,8 @@
-import React, { act, RefObject, useEffect, useRef, useState } from "react"
-import { Stage, Layer, Rect, Circle, Text, Arrow, Transformer, Group, Label, Tag } from 'react-konva';
+import React, { useEffect, useRef, useState } from "react"
+import { Rect, Text, Transformer, Group } from 'react-konva';
 import { Html } from "react-konva-utils";
 import { TechnologyParams, TechnologyRefInfo } from "./PyramidCanvas";
 import Konva from "konva";
-import { initial } from "lodash";
 
 type TechnologyNode = {
   technologyParams: TechnologyParams;
@@ -13,9 +12,19 @@ type TechnologyNode = {
   updateRef: (val: TechnologyRefInfo) => void;
   clickTechnologyId: number | null;
   onClickCallBack: (technologyId: number | null) => void;
+  addNewTechnology: (technologyParams: TechnologyParams) => void;
 }
 
-const TechnologyNode = ({ technologyParams, mountRef, updateRef, xPos, yPos, clickTechnologyId, onClickCallBack }: TechnologyNode) => {
+const TechnologyNode = ({
+  technologyParams,
+  mountRef,
+  updateRef,
+  xPos,
+  yPos,
+  clickTechnologyId,
+  onClickCallBack,
+  addNewTechnology
+}: TechnologyNode) => {
   const [canTitleEdit, setCanTitleEdit] = useState(false)
   const [canDescriptionEdit, setCanDescriptionEdit] = useState(false)
   const [title, setTitle] = useState(technologyParams.current_tech_name)
@@ -66,7 +75,7 @@ const TechnologyNode = ({ technologyParams, mountRef, updateRef, xPos, yPos, cli
     }
   }
 
-  const postTechnology = () => {
+  const postTechnology = async () => {
     const path = location.pathname;
 
     const match = path.match(/\/works\/(\d+)\/technologies\/(\d+)/);
@@ -76,42 +85,35 @@ const TechnologyNode = ({ technologyParams, mountRef, updateRef, xPos, yPos, cli
     const csrfToken = document
       .querySelector('meta[name="csrf-token"]')
       ?.getAttribute("content");
-    fetch(
-      `/works/${workId}/technologies/${technologyId}/api`,
-      {
-        headers: {
-          "Content-Type": "application/json", // JSONを送ることを明示
-          "X-CSRF-Token": csrfToken || "", // Railsがこれをチェックする
-        },
-        method: "post",
-        body: JSON.stringify({
-          technology: {
-            name: "xxx",
-            upper_technology_id: technologyParams.current_tech_id,
-            description: "test"
-          }
-        })
-      }
-    )
+    try {
+      const response = await fetch(
+        `/works/${workId}/technologies/${technologyId}/api`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken || "",
+          },
+          method: "post",
+          body: JSON.stringify({
+            technology: {
+              name: "xxx",
+              upper_technology_id: technologyParams.current_tech_id,
+              description: "test"
+            }
+          })
+        }
+      )
+      const data = await response.json();
+      addNewTechnology({
+        current_layer: technologyParams.current_layer + 1,
+        current_tech_name: "xxx",
+        current_tech_id: data.technology_id,
+        upper_tech_id: technologyParams.current_tech_id
+      })
+    } catch (error) {
+      console.error(`Error: ${error}`)
+    }
   }
-
-
-  // const textRef = useRef(null);
-  // const inputRef = useRef(null);
-  // const [invScale, setInvScale] = useState({ x: 1, y: 1 });
-
-  // const updateInvScale = () => {
-  //   const g = groupRef.current;
-  //   if (!g) return;
-  //   const s = g.getAbsoluteScale();
-  //   // Text は見た目サイズを保つため逆スケールを当てる
-  //   textRef.current?.scale({ x: 1 / s.x, y: 1 / s.y });
-  //   textRef.current?.getLayer()?.batchDraw();
-  //   // HTML入力は invScale を state で渡す
-  //   setInvScale({ x: 1 / s.x, y: 1 / s.y });
-  // };
-
-  // const staticScale = `scale(${invScale.x}, ${invScale.y})`
 
   return (
     <>

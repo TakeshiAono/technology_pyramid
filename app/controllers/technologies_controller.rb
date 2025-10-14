@@ -78,6 +78,27 @@ class TechnologiesController < ApplicationController
     redirect_to edit_technology_path(params[:technology_id])
   end
 
+  def api_create
+    technology = Technology.new(
+      name: api_technology_params[:name],
+      work_id: params[:work_id]
+    )
+
+    result = nil
+    ActiveRecord::Base.transaction do
+      result = technology.save!  # ← 先に保存して ID を確定
+
+      Hierarcky.create!(
+        technology_id:       api_technology_params[:upper_technology_id],
+        lower_technology_id: technology.id
+      )
+    end
+
+    render json: { ok: true, technology_id: technology.id }, status: :created
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { ok: false, error: e.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
   private
 
   def set_technology
@@ -90,7 +111,16 @@ class TechnologiesController < ApplicationController
       :public_flag,
       :work_id,
       :basic_flag,
-      hierarckies_attributes: %i[id lower_technology_id technology_id])
+      hierarckies_attributes: %i[id lower_technology_id technology_id]
+    )
+  end
+
+  def api_technology_params
+    params.require(:technology).permit(
+      :name,
+      :upper_technology_id,
+      :description,
+    )
   end
 
   def work_params
