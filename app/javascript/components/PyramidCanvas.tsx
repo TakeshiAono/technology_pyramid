@@ -12,6 +12,9 @@ export type TechnologyParams = {
   // 最上位のテクノロジーはそれより上位のテクノロジーが存在しないためnullを許容する
   current_tech_id: number | null;
   upper_tech_id: number | null;
+  x_pos: number;
+  y_pos: number;
+  top_technology_id: number;
 }
 
 export type TechnologyRefInfo = {
@@ -20,7 +23,7 @@ export type TechnologyRefInfo = {
 }
 
 const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: TechnologyParams[] }) => {
-  const [technologyParamsListState, setTechnologyParamsListState] = useState(technologyParamsList)
+  const [technologyParamsListState, setTechnologyParamsListState] = useState<TechnologyParams[]>(technologyParamsList)
   const [isChildNodeCahnge, setIsChildNodeCahnge] = useState(false)
   const [documentElementMaxWidth, setDocumentElementMaxWidth] = useState(document.scrollingElement.scrollWidth);
   const [documentElementMaxHeight, setDocumentElementMaxHeight] = useState(document.scrollingElement.scrollHeight);
@@ -78,16 +81,17 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
   }
 
   const technologyNodes = useMemo(() => {
-    return _.map(technologiesByLayer, (technologyParamsListState, layerIndexString) =>
-      technologyParamsListState.map((technologyParams, index) => <TechnologyNode
+    return _.map(technologiesByLayer, (technologyParamsListState) =>
+      technologyParamsListState.map((technologyParams) => <TechnologyNode
         mountRef={createTechnologyInfo}
         updateRef={updateRef}
         addNewTechnology={addNewTechnologyNode}
         technologyParams={technologyParams}
-        xPos={100 + index * 350}
-        yPos={Number(layerIndexString) * 250}
+        xPos={technologyParams.x_pos}
+        yPos={technologyParams.y_pos}
         clickTechnologyId={clickTechnologyId}
         onClickCallBack={(selectedTechId) => { setClickTechnologyId(selectedTechId); console.log("selectedTechId", selectedTechId) }}
+        topTechnologyId={technologyParams.top_technology_id}
       />)
     )
   }, [technologiesByLayer, clickTechnologyId, technologyParamsListState])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_14_015121) do
+ActiveRecord::Schema.define(version: 2025_10_14_143057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,18 @@ ActiveRecord::Schema.define(version: 2022_09_14_015121) do
     t.index ["work_id"], name: "index_technologies_on_work_id"
   end
 
+  create_table "technology_positions", force: :cascade do |t|
+    t.bigint "top_technology_id", null: false
+    t.bigint "target_technology_id", null: false
+    t.integer "x_pos", default: 0, null: false
+    t.integer "y_pos", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["target_technology_id"], name: "index_technology_positions_on_target_technology_id"
+    t.index ["top_technology_id", "target_technology_id"], name: "index_tech_positions_on_top_tech_id_and_target_tech_id", unique: true
+    t.index ["top_technology_id"], name: "index_technology_positions_on_top_technology_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -107,5 +119,7 @@ ActiveRecord::Schema.define(version: 2022_09_14_015121) do
   add_foreign_key "link_goods", "users"
   add_foreign_key "links", "technologies"
   add_foreign_key "technologies", "works"
+  add_foreign_key "technology_positions", "technologies", column: "target_technology_id"
+  add_foreign_key "technology_positions", "technologies", column: "top_technology_id"
   add_foreign_key "works", "users"
 end

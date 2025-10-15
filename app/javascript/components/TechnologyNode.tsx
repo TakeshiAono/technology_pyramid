@@ -13,6 +13,7 @@ type TechnologyNode = {
   clickTechnologyId: number | null;
   onClickCallBack: (technologyId: number | null) => void;
   addNewTechnology: (technologyParams: TechnologyParams) => void;
+  topTechnologyId: number;
 }
 
 const TechnologyNode = ({
@@ -23,7 +24,8 @@ const TechnologyNode = ({
   yPos,
   clickTechnologyId,
   onClickCallBack,
-  addNewTechnology
+  addNewTechnology,
+  topTechnologyId,
 }: TechnologyNode) => {
   const [canTitleEdit, setCanTitleEdit] = useState(false)
   const [canDescriptionEdit, setCanDescriptionEdit] = useState(false)
@@ -86,6 +88,8 @@ const TechnologyNode = ({
       .querySelector('meta[name="csrf-token"]')
       ?.getAttribute("content");
     try {
+      const newTechRelativeDistance = 50
+      const defaultName = "xxx"
       const response = await fetch(
         `/works/${workId}/technologies/${technologyId}/api`,
         {
@@ -96,9 +100,12 @@ const TechnologyNode = ({
           method: "post",
           body: JSON.stringify({
             technology: {
-              name: "xxx",
+              name: defaultName,
               upper_technology_id: technologyParams.current_tech_id,
-              description: "test"
+              description: "",
+              x_pos: technologyParams.x_pos + newTechRelativeDistance,
+              y_pos: technologyParams.y_pos + newTechRelativeDistance,
+              top_technology_id: topTechnologyId,
             }
           })
         }
@@ -106,9 +113,12 @@ const TechnologyNode = ({
       const data = await response.json();
       addNewTechnology({
         current_layer: technologyParams.current_layer + 1,
-        current_tech_name: "xxx",
+        current_tech_name: defaultName,
         current_tech_id: data.technology_id,
-        upper_tech_id: technologyParams.current_tech_id
+        upper_tech_id: technologyParams.current_tech_id,
+        x_pos: technologyParams.x_pos + newTechRelativeDistance,
+        y_pos: technologyParams.y_pos + newTechRelativeDistance,
+        top_technology_id: topTechnologyId,
       })
     } catch (error) {
       console.error(`Error: ${error}`)

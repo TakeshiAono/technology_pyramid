@@ -8,11 +8,19 @@ class Technology < ApplicationRecord
   has_many :upper_technologies, through: :lower_hierarckies, source: :technology
   belongs_to :work
 
+  after_create_commit :create_default_position
+
   accepts_nested_attributes_for :hierarckies,
   reject_if: proc {
     |attributes| attributes['lower_technology_id'].blank?
   },
   allow_destroy: true
+
+  def create_default_position
+    TechnologyPosition.create!(top_technology_id: id, target_technology_id: id)
+  rescue => e
+    Rails.logger.error("Error: #{e}")
+  end
 
   def get_technologies_and_hierarckies
     query = <<~SQL
@@ -36,25 +44,44 @@ class Technology < ApplicationRecord
               pt.layer + 1
             FROM hierarckies h2
             JOIN pyramid_technologies pt ON h2.technology_id = pt.current_tech_id
+          ),
+
+        top_technology AS (
+          SELECT
+            NULL::bigint AS upper_tech_id,
+            t.id AS current_tech_id,
+            t.name AS current_tech_name,
+            0 AS current_layer
+          FROM technologies t
+          WHERE id = :top_technology_id
+        ),
+
+        technology_hierarckies AS
+          -- 子と親の情報がセットになったレコードを取得
+          (
+            SELECT
+              pt.upper_tech_id,
+              pt.current_tech_id,
+              t.name AS current_tech_name,
+              pt.layer AS current_layer
+            FROM pyramid_technologies pt
+            JOIN technologies t ON pt.current_tech_id = t.id
+
+            UNION ALL
+            -- 最上位用のレコードを追加
+            SELECT
+              tt.upper_tech_id,
+              tt.current_tech_id,
+              tt.current_tech_name,
+              tt.current_layer
+            FROM top_technology tt
+            WHERE tt.current_tech_id = :top_technology_id
           )
 
-      -- 子と親の情報がセットになったレコードを取得
-      SELECT
-        pt.upper_tech_id,
-        pt.current_tech_id,
-        t.name AS current_tech_name,
-        pt.layer AS current_layer
-      FROM pyramid_technologies pt
-      JOIN technologies t ON pt.current_tech_id = t.id
-      UNION ALL
-      -- 最上位用のレコードを追加
-      SELECT
-        NULL AS upper_tech_id,
-        t.id AS current_tech_id,
-        t.name AS current_tech_name,
-        0 AS current_layer
-      FROM technologies t
-      WHERE id = :top_technology_id
+      SELECT *
+      FROM technology_hierarckies th
+      JOIN technology_positions tp ON th.current_tech_id = tp.target_technology_id
+      WHERE tp.top_technology_id = :top_technology_id;
     SQL
 
     sanitized_sql = ActiveRecord::Base.send(:sanitize_sql_array, [query, {top_technology_id: id}])

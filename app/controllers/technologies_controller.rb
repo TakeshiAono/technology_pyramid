@@ -88,6 +88,12 @@ class TechnologiesController < ApplicationController
     ActiveRecord::Base.transaction do
       result = technology.save!  # ← 先に保存して ID を確定
 
+      TechnologyPosition.create!(
+        top_technology_id: api_technology_params[:top_technology_id].to_i,
+        target_technology_id: technology.id,
+        x_pos: api_technology_params[:x_pos].to_i,
+        y_pos: api_technology_params[:y_pos].to_i
+      )
       Hierarcky.create!(
         technology_id:       api_technology_params[:upper_technology_id],
         lower_technology_id: technology.id
@@ -120,6 +126,9 @@ class TechnologiesController < ApplicationController
       :name,
       :upper_technology_id,
       :description,
+      :x_pos,
+      :y_pos,
+      :top_technology_id,
     )
   end
 
