@@ -23,8 +23,8 @@ User.create!(
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
-    password: 'aoao0101',
-    password_confirmation: 'aoao0101',
+    password: 'password',
+    password_confirmation: 'password',
     industry: Faker::IndustrySegments.industry,
     occupation: User::OCCUPATION[rand(0..5)]
   )
