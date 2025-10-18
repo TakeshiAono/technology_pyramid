@@ -105,6 +105,24 @@ class TechnologiesController < ApplicationController
     render json: { ok: false, error: e.record.errors.full_messages }, status: :unprocessable_entity
   end
 
+  def api_update_all_diff
+    ActiveRecord::Base.transaction do
+      technology_params_list.each do |tp|
+
+        pos = TechnologyPosition.find(tp[:tech_pos_id])
+        pos.update!(
+          x_pos: tp[:x_pos],
+          y_pos: tp[:y_pos]
+        )
+      end
+    end
+
+    head :ok
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.error e
+    head :internal_server_error
+  end
+
   private
 
   def set_technology
@@ -119,6 +137,17 @@ class TechnologiesController < ApplicationController
       :basic_flag,
       hierarckies_attributes: %i[id lower_technology_id technology_id]
     )
+  end
+
+  def technology_params_list
+    params.require(:technologies).map { |p| p.permit(
+      :top_technology_id,
+      :current_tech_id,
+      :current_tech_name,
+      :x_pos,
+      :y_pos,
+      :tech_pos_id,
+    )}
   end
 
   def api_technology_params

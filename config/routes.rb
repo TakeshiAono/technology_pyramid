@@ -13,7 +13,8 @@ Rails.application.routes.draw do
         delete :reset
       end
       member do
-        post :api_create, path: "api"
+        post :api_create
+        put :api_update_all_diff
       end
       resources :pyramids
       resources :links do

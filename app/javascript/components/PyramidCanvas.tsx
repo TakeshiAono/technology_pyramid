@@ -15,11 +15,17 @@ export type TechnologyParams = {
   x_pos: number;
   y_pos: number;
   top_technology_id: number;
+  tech_pos_id: number;
 }
+
+export type TechnologyNedeParams =
+  TechnologyParams & {
+    isUpdated: boolean;
+  }
 
 export type TechnologyRefInfo = {
   element: Konva.Group;
-  technologyParams: TechnologyParams;
+  technologyParams: TechnologyNedeParams;
 }
 
 const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: TechnologyParams[] }) => {
@@ -27,7 +33,8 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
   // レンダリングをするようにすればtechnologyParamsListStateは不要となるが
   // まだロジックができていないため、新規にテクノロジーを追加した時は
   // technologyParamsListStateとtechnologyInfosどちらのデータも更新が必要
-  const [technologyParamsListState, setTechnologyParamsListState] = useState<TechnologyParams[]>(technologyParamsList)
+  const [technologyParamsListState, setTechnologyParamsListState] =
+    useState<TechnologyNedeParams[]>(technologyParamsList.map(technologyParams => ({ ...technologyParams, isUpdated: false })))
   const [isChildNodeCahnge, setIsChildNodeCahnge] = useState(false)
   const [documentElementMaxWidth, setDocumentElementMaxWidth] = useState(document.scrollingElement.scrollWidth);
   const [documentElementMaxHeight, setDocumentElementMaxHeight] = useState(document.scrollingElement.scrollHeight);
@@ -37,6 +44,44 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
   // refを保持しないと矢印のレンダリングや座標の変更などができないため定義
   // TODO: technologyParamsListStateとtechnologyInfosで重複管理しているデータがあるので修正が必要
   const technologyInfos = useRef<TechnologyRefInfo[]>([])
+
+  const updateDiffTechnologies = async () => {
+    const path = location.pathname;
+    const match = path.match(/\/works\/(\d+)\/technologies\/(\d+)/);
+    const workId = match[1];
+    const technologyId = match[2];
+
+    const csrfToken = document
+      .querySelector('meta[name="csrf-token"]')
+      ?.getAttribute("content");
+
+    const updatedTechnologyParamsList = technologyParamsListState.filter(technologyParams => technologyParams.isUpdated)
+    if (updatedTechnologyParamsList.length === 0) return
+
+    try {
+      const response = await fetch(
+        `/works/${workId}/technologies/${technologyId}/api_update_all_diff`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken || "",
+          },
+          method: "put",
+          body: JSON.stringify({ technologies: updatedTechnologyParamsList })
+        }
+      )
+
+      if (response.status === 200) {
+        setTechnologyParamsListState(prev => prev.map(technologyParams => ({ ...technologyParams, isUpdated: false })))
+      }
+    } catch (error) {
+      console.error(`Error: ${error}`)
+    }
+  }
+
+  useKeyBoardShortcut({
+    "Ctrl+Shift+S": updateDiffTechnologies
+  })
 
   useEffect(() => {
     setIsChildNodeCahnge(false)
@@ -62,6 +107,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
     // technologyInfosの中の更新があった要素だけを置き換えたリストを生成する
     technologyInfos.current = technologyInfos.current.map(technologyInfo => {
       if (technologyInfo.technologyParams.current_tech_id === updatedTechnologyParams.current_tech_id) {
+        updatedTechnologyParams.isUpdated = true
         return { element: updatedElement, technologyParams: updatedTechnologyParams }
       } else {
         return { element: technologyInfo.element, technologyParams: technologyInfo.technologyParams }
@@ -71,6 +117,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
     setTechnologyParamsListState((prev) => {
       return prev.map((techParams) => {
         if (techParams.current_tech_id === updatedTechnologyParams.current_tech_id) {
+          techParams.isUpdated = true
           return { ...techParams, x_pos: updatedElement.x(), y_pos: updatedElement.y() }
         } else {
           return techParams
@@ -94,7 +141,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
     );
   }
 
-  const addNewTechnologyNode = (technologyParams: TechnologyParams) => {
+  const addNewTechnologyNode = (technologyParams: TechnologyNedeParams) => {
     setTechnologyParamsListState([...technologyParamsListState, technologyParams])
   }
 

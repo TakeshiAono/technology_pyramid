@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Rect, Text, Transformer, Group } from 'react-konva';
 import { Html } from "react-konva-utils";
-import { TechnologyParams, TechnologyRefInfo } from "./PyramidCanvas";
+import { TechnologyNedeParams, TechnologyRefInfo } from "./PyramidCanvas";
 import Konva from "konva";
 
 type TechnologyNode = {
-  technologyParams: TechnologyParams;
+  technologyParams: TechnologyNedeParams;
   xPos: number;
   yPos: number;
   mountRef: (val: TechnologyRefInfo) => void;
   updateRef: (val: TechnologyRefInfo) => void;
   clickTechnologyId: number | null;
   onClickCallBack: (technologyId: number | null) => void;
-  addNewTechnology: (technologyParams: TechnologyParams) => void;
+  addNewTechnology: (technologyParams: Omit<TechnologyNedeParams, "tech_pos_id">) => void;
   topTechnologyId: number;
 }
 
@@ -79,7 +79,6 @@ const TechnologyNode = ({
 
   const postTechnology = async () => {
     const path = location.pathname;
-
     const match = path.match(/\/works\/(\d+)\/technologies\/(\d+)/);
     const workId = match[1];
     const technologyId = match[2];
@@ -91,7 +90,7 @@ const TechnologyNode = ({
       const newTechRelativeDistance = 50
       const defaultName = "xxx"
       const response = await fetch(
-        `/works/${workId}/technologies/${technologyId}/api`,
+        `/works/${workId}/technologies/${technologyId}/api_create`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -119,6 +118,7 @@ const TechnologyNode = ({
         x_pos: technologyParams.x_pos + newTechRelativeDistance,
         y_pos: technologyParams.y_pos + newTechRelativeDistance,
         top_technology_id: topTechnologyId,
+        isUpdated: false,
       })
     } catch (error) {
       console.error(`Error: ${error}`)
@@ -161,6 +161,7 @@ const TechnologyNode = ({
           height={TechonologyCardStyle.height}
           shadowColor="black"
           cornerRadius={5}
+          fill={technologyParams.isUpdated ? "yellow" : ""}
         />
         {canTitleEdit ?
           <Html>

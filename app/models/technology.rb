@@ -78,7 +78,15 @@ class Technology < ApplicationRecord
             WHERE tt.current_tech_id = :top_technology_id
           )
 
-      SELECT *
+      SELECT
+        upper_tech_id,
+        current_tech_id,
+        current_tech_name,
+        current_layer,
+        top_technology_id,
+        x_pos,
+        y_pos,
+        id AS tech_pos_id
       FROM technology_hierarckies th
       JOIN technology_positions tp ON th.current_tech_id = tp.target_technology_id
       WHERE tp.top_technology_id = :top_technology_id;
