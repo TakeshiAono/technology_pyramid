@@ -16,6 +16,7 @@ export type TechnologyParams = {
   y_pos: number;
   top_technology_id: number;
   tech_pos_id: number;
+  description: string;
 }
 
 export type TechnologyNedeParams =
@@ -118,7 +119,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
       return prev.map((techParams) => {
         if (techParams.current_tech_id === updatedTechnologyParams.current_tech_id) {
           techParams.isUpdated = true
-          return { ...techParams, x_pos: updatedElement.x(), y_pos: updatedElement.y() }
+          return updatedTechnologyParams
         } else {
           return techParams
         }

@@ -109,6 +109,12 @@ class TechnologiesController < ApplicationController
     ActiveRecord::Base.transaction do
       technology_params_list.each do |tp|
 
+        techonology = Technology.find(tp[:current_tech_id])
+        techonology.update!(
+          name: tp[:current_tech_name],
+          description: tp[:description],
+        )
+
         pos = TechnologyPosition.find(tp[:tech_pos_id])
         pos.update!(
           x_pos: tp[:x_pos],
@@ -144,6 +150,7 @@ class TechnologiesController < ApplicationController
       :top_technology_id,
       :current_tech_id,
       :current_tech_name,
+      :description,
       :x_pos,
       :y_pos,
       :tech_pos_id,

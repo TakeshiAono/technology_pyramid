@@ -30,7 +30,7 @@ const TechnologyNode = ({
   const [canTitleEdit, setCanTitleEdit] = useState(false)
   const [canDescriptionEdit, setCanDescriptionEdit] = useState(false)
   const [title, setTitle] = useState(technologyParams.current_tech_name)
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState(technologyParams.description)
   const [isDragging, setIsDragging] = useState(false)
 
   const groupRef = useRef<Konva.Group | null>(null);
@@ -118,6 +118,7 @@ const TechnologyNode = ({
         x_pos: technologyParams.x_pos + newTechRelativeDistance,
         y_pos: technologyParams.y_pos + newTechRelativeDistance,
         top_technology_id: topTechnologyId,
+        description: "",
         isUpdated: false,
       })
     } catch (error) {
@@ -172,6 +173,13 @@ const TechnologyNode = ({
                 setTitle(e.target.value)
                 onClickCallBack(technologyParams.current_tech_id)
                 setCanDescriptionEdit(false)
+                updateRef({
+                  element: groupRef.current,
+                  technologyParams: {
+                    ...technologyParams,
+                    current_tech_name: e.target.value,
+                  }
+                })
               }}
               style={{
                 ...InputStyle,
@@ -191,7 +199,7 @@ const TechnologyNode = ({
             fontSize={30}
             fontFamily="Calibri"
             offsetX={0}
-            onClick={() => { onlyEditSelect("title"); console.log("クリ九された") }}
+            onClick={() => { onlyEditSelect("title") }}
           />
         }
         <Group
@@ -204,9 +212,18 @@ const TechnologyNode = ({
             canDescriptionEdit ?
               <Html>
                 <textarea
+                  defaultValue={description}
                   style={{ ...InputStyle, ...DescriptionStyle }}
-                  onChange={(e) => setDescription(e.target.value)}
-                  value={description}
+                  onChange={(e) => {
+                    setDescription(e.target.value)
+                    updateRef({
+                      element: groupRef.current,
+                      technologyParams: {
+                        ...technologyParams,
+                        description: e.target.value,
+                      }
+                    })
+                  }}
                   onClick={() => {
                     onClickCallBack(technologyParams.current_tech_id)
                     setCanTitleEdit(false)

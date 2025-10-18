@@ -51,7 +51,8 @@ class Technology < ApplicationRecord
             NULL::bigint AS upper_tech_id,
             t.id AS current_tech_id,
             t.name AS current_tech_name,
-            0 AS current_layer
+            0 AS current_layer,
+            t.description
           FROM technologies t
           WHERE id = :top_technology_id
         ),
@@ -63,7 +64,8 @@ class Technology < ApplicationRecord
               pt.upper_tech_id,
               pt.current_tech_id,
               t.name AS current_tech_name,
-              pt.layer AS current_layer
+              pt.layer AS current_layer,
+              t.description
             FROM pyramid_technologies pt
             JOIN technologies t ON pt.current_tech_id = t.id
 
@@ -73,7 +75,8 @@ class Technology < ApplicationRecord
               tt.upper_tech_id,
               tt.current_tech_id,
               tt.current_tech_name,
-              tt.current_layer
+              tt.current_layer,
+              tt.description
             FROM top_technology tt
             WHERE tt.current_tech_id = :top_technology_id
           )
@@ -86,6 +89,7 @@ class Technology < ApplicationRecord
         top_technology_id,
         x_pos,
         y_pos,
+        description,
         id AS tech_pos_id
       FROM technology_hierarckies th
       JOIN technology_positions tp ON th.current_tech_id = tp.target_technology_id
