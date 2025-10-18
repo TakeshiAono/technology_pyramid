@@ -12,7 +12,7 @@ type TechnologyNode = {
   updateRef: (val: TechnologyRefInfo) => void;
   clickTechnologyId: number | null;
   onClickCallBack: (technologyId: number | null) => void;
-  addNewTechnology: (technologyParams: Omit<TechnologyNedeParams, "tech_pos_id">) => void;
+  addNewTechnology: (technologyParams: TechnologyNedeParams) => void;
   topTechnologyId: number;
 }
 
@@ -87,7 +87,7 @@ const TechnologyNode = ({
       .querySelector('meta[name="csrf-token"]')
       ?.getAttribute("content");
     try {
-      const newTechRelativeDistance = 50
+      const newTechRelativeDistance = 300
       const defaultName = "xxx"
       const response = await fetch(
         `/works/${workId}/technologies/${technologyId}/api_create`,
@@ -118,6 +118,7 @@ const TechnologyNode = ({
         x_pos: technologyParams.x_pos + newTechRelativeDistance,
         y_pos: technologyParams.y_pos + newTechRelativeDistance,
         top_technology_id: topTechnologyId,
+        tech_pos_id: data.tech_pos_id,
         description: "",
         isUpdated: false,
       })

@@ -84,23 +84,24 @@ class TechnologiesController < ApplicationController
       work_id: params[:work_id]
     )
 
-    result = nil
+    tech_pos_result = nil
     ActiveRecord::Base.transaction do
-      result = technology.save!  # ← 先に保存して ID を確定
+      technology.save!
 
-      TechnologyPosition.create!(
+      tech_pos_result = TechnologyPosition.create!(
         top_technology_id: api_technology_params[:top_technology_id].to_i,
         target_technology_id: technology.id,
         x_pos: api_technology_params[:x_pos].to_i,
         y_pos: api_technology_params[:y_pos].to_i
       )
+
       Hierarcky.create!(
         technology_id:       api_technology_params[:upper_technology_id],
         lower_technology_id: technology.id
       )
     end
 
-    render json: { ok: true, technology_id: technology.id }, status: :created
+    render json: { ok: true, technology_id: technology.id, tech_pos_id: tech_pos_result.id }, status: :created
   rescue ActiveRecord::RecordInvalid => e
     render json: { ok: false, error: e.record.errors.full_messages }, status: :unprocessable_entity
   end
