@@ -169,13 +169,16 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
       if (parentTechnologyInfos === undefined) return
 
       const parentTechnologyElement = parentTechnologyInfos.element
+      const parentWidthCenterDistance = parentTechnologyElement.children[0].width() / 2
+      const parentHeight = parentTechnologyElement.children[0].height()
+      const childWidthCenterDistance = childElement.children[0].width() / 2
       return <Arrow
         x={0}
         y={0}
         points={[
-          parentTechnologyElement.x(),
-          parentTechnologyElement.y(),
-          childElement.x(),
+          parentTechnologyElement.x() + parentWidthCenterDistance,
+          parentTechnologyElement.y() + parentHeight,
+          childElement.x() + childWidthCenterDistance,
           childElement.y()
         ]}
         fill="black"
