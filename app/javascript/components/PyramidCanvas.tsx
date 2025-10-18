@@ -23,12 +23,19 @@ export type TechnologyRefInfo = {
 }
 
 const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: TechnologyParams[] }) => {
+  // 最終的には最初のレンダリングはtechnologyParamsListを使用し、その後はtechnologyInfosのデータをもとに
+  // レンダリングをするようにすればtechnologyParamsListStateは不要となるが
+  // まだロジックができていないため、新規にテクノロジーを追加した時は
+  // technologyParamsListStateとtechnologyInfosどちらのデータも更新が必要
   const [technologyParamsListState, setTechnologyParamsListState] = useState<TechnologyParams[]>(technologyParamsList)
   const [isChildNodeCahnge, setIsChildNodeCahnge] = useState(false)
   const [documentElementMaxWidth, setDocumentElementMaxWidth] = useState(document.scrollingElement.scrollWidth);
   const [documentElementMaxHeight, setDocumentElementMaxHeight] = useState(document.scrollingElement.scrollHeight);
   const [clickTechnologyId, setClickTechnologyId] = useState<number | null>(null);
 
+  // technologyParamsListStateはtechnologyInfosと違い、ref(DOM)情報は保持していない。
+  // refを保持しないと矢印のレンダリングや座標の変更などができないため定義
+  // TODO: technologyParamsListStateとtechnologyInfosで重複管理しているデータがあるので修正が必要
   const technologyInfos = useRef<TechnologyRefInfo[]>([])
 
   useEffect(() => {
@@ -45,6 +52,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
   const createTechnologyInfo = useCallback(({ element: createdElement, technologyParams }: TechnologyRefInfo) => {
     setIsChildNodeCahnge(true)
     technologyInfos.current = [...technologyInfos.current, { element: createdElement, technologyParams }]
+
     updateDocumentElementWidthAndHeight(createdElement)
   }, [])
 
@@ -58,6 +66,16 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
       } else {
         return { element: technologyInfo.element, technologyParams: technologyInfo.technologyParams }
       }
+    })
+
+    setTechnologyParamsListState((prev) => {
+      return prev.map((techParams) => {
+        if (techParams.current_tech_id === updatedTechnologyParams.current_tech_id) {
+          return { ...techParams, x_pos: updatedElement.x(), y_pos: updatedElement.y() }
+        } else {
+          return techParams
+        }
+      })
     })
 
     updateDocumentElementWidthAndHeight(updatedElement)

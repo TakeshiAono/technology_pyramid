@@ -140,7 +140,14 @@ const TechnologyNode = ({
         ref={groupRef}
         // onTransform={() => updateInvScale}
         onDragMove={() => {
-          updateRef({ element: groupRef.current, technologyParams })
+          updateRef({
+            element: groupRef.current,
+            technologyParams: {
+              ...technologyParams,
+              x_pos: groupRef.current.x(),
+              y_pos: groupRef.current.y(),
+            }
+          })
           onClickCallBack(technologyParams.current_tech_id)
           setIsDragging(true)
         }}
@@ -245,7 +252,14 @@ const TechnologyNode = ({
               return newBox;
             }}
             onTransform={() => {
-              updateRef({ element: groupRef.current, technologyParams })
+              updateRef({
+                element: groupRef.current,
+                technologyParams: {
+                  ...technologyParams,
+                  x_pos: groupRef.current.x(),
+                  y_pos: groupRef.current.y(),
+                }
+              })
             }}
           />
         </>
