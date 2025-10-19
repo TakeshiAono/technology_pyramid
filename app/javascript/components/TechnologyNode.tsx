@@ -248,6 +248,12 @@ const TechnologyNode = ({
           x={100}
           y={150}
           onClick={postTechnology}
+          onMouseOver={(e) => {
+            e.target.getStage().container().style.cursor = "pointer"
+          }}
+          onMouseLeave={(e) => {
+            e.target.getStage().container().style.cursor = "default"
+          }}
         >
           <Rect
             stroke="#555"
@@ -267,8 +273,6 @@ const TechnologyNode = ({
           y={150}
           onClick={() => { goToLinkPage(technologyParams.current_tech_id) }}
           onMouseOver={(e) => {
-            e.target
-            console.log(e.target.getStage().container())
             e.target.getStage().container().style.cursor = "pointer"
           }}
           onMouseLeave={(e) => {
