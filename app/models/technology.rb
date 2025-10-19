@@ -6,6 +6,7 @@ class Technology < ApplicationRecord
   has_many :lower_hierarckies, class_name: 'Hierarcky', foreign_key: :lower_technology_id, dependent: :destroy
   has_many :lower_technologies, through: :hierarckies, source: :upper_technology
   has_many :upper_technologies, through: :lower_hierarckies, source: :technology
+  has_many :technology_positions, class_name: "TechnologyPosition", foreign_key: "top_technology_id", dependent: :destroy
   belongs_to :work
 
   after_create_commit :create_default_position
