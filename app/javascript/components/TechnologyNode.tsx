@@ -102,7 +102,7 @@ const TechnologyNode = ({
               name: defaultName,
               upper_technology_id: technologyParams.current_tech_id,
               description: "",
-              x_pos: technologyParams.x_pos + newTechRelativeDistance,
+              x_pos: technologyParams.x_pos,
               y_pos: technologyParams.y_pos + newTechRelativeDistance,
               top_technology_id: topTechnologyId,
             }
@@ -115,7 +115,7 @@ const TechnologyNode = ({
         current_tech_name: defaultName,
         current_tech_id: data.technology_id,
         upper_tech_id: technologyParams.current_tech_id,
-        x_pos: technologyParams.x_pos + newTechRelativeDistance,
+        x_pos: technologyParams.x_pos,
         y_pos: technologyParams.y_pos + newTechRelativeDistance,
         top_technology_id: topTechnologyId,
         tech_pos_id: data.tech_pos_id,
