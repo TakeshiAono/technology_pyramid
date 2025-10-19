@@ -46,6 +46,11 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
   // TODO: technologyParamsListStateとtechnologyInfosで重複管理しているデータがあるので修正が必要
   const technologyInfos = useRef<TechnologyRefInfo[]>([])
 
+  const any_updated = () => {
+    const updatedTechnologyParamsList = technologyParamsListState.filter(technologyParams => technologyParams.isUpdated)
+    return updatedTechnologyParamsList.length > 0
+  }
+
   const updateDiffTechnologies = async () => {
     const path = location.pathname;
     const match = path.match(/\/works\/(\d+)\/technologies\/(\d+)/);
@@ -146,6 +151,17 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
     setTechnologyParamsListState([...technologyParamsListState, technologyParams])
   }
 
+  const goToLinkPage = async (technologyId: number) => {
+    const path = location.pathname;
+    const match = path.match(/\/works\/(\d+)/);
+    const workId = match[1];
+
+    const permit = any_updated() ? window.confirm("編集途中の内容がリセットされてしまいますが別ページに遷移してもよろしいですか?") : true
+    if (permit) {
+      window.location.href = `/works/${workId}/technologies/${technologyId}/links`;
+    }
+  }
+
   const technologyNodes = useMemo(() => {
     return _.map(technologiesByLayer, (technologyParamsListState) =>
       technologyParamsListState.map((technologyParams) => <TechnologyNode
@@ -158,6 +174,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
         clickTechnologyId={clickTechnologyId}
         onClickCallBack={(selectedTechId) => { setClickTechnologyId(selectedTechId); console.log("selectedTechId", selectedTechId) }}
         topTechnologyId={technologyParams.top_technology_id}
+        goToLinkPage={goToLinkPage}
       />)
     )
   }, [technologiesByLayer, clickTechnologyId, technologyParamsListState])

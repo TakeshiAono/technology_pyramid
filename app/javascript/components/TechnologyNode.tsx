@@ -14,6 +14,7 @@ type TechnologyNode = {
   onClickCallBack: (technologyId: number | null) => void;
   addNewTechnology: (technologyParams: TechnologyNedeParams) => void;
   topTechnologyId: number;
+  goToLinkPage: (technologyId: number) => void;
 }
 
 const TechnologyNode = ({
@@ -26,6 +27,7 @@ const TechnologyNode = ({
   onClickCallBack,
   addNewTechnology,
   topTechnologyId,
+  goToLinkPage,
 }: TechnologyNode) => {
   const [canTitleEdit, setCanTitleEdit] = useState(false)
   const [canDescriptionEdit, setCanDescriptionEdit] = useState(false)
@@ -249,7 +251,7 @@ const TechnologyNode = ({
         >
           <Rect
             stroke="#555"
-            width={150}
+            width={120}
             height={30}
             shadowColor="black"
             fill={"lightcyan"}
@@ -257,6 +259,32 @@ const TechnologyNode = ({
           >
           </Rect>
           <Text text="子要素を追加" fontSize={15} x={15} y={8} />
+        </Group>
+        <Group
+          width={100}
+          height={50}
+          x={230}
+          y={150}
+          onClick={() => { goToLinkPage(technologyParams.current_tech_id) }}
+          onMouseOver={(e) => {
+            e.target
+            console.log(e.target.getStage().container())
+            e.target.getStage().container().style.cursor = "pointer"
+          }}
+          onMouseLeave={(e) => {
+            e.target.getStage().container().style.cursor = "default"
+          }}
+        >
+          <Rect
+            stroke="#555"
+            width={60}
+            height={30}
+            shadowColor="black"
+            fill={"teal"}
+            cornerRadius={5}
+          >
+          </Rect>
+          <Text text="リンク" fontSize={15} fill={"white"} x={8} y={8} />
         </Group>
       </Group >
       {isClickedCurrentNode() && (
