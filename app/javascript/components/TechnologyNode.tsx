@@ -320,12 +320,12 @@ const TechnologyNode = ({
   )
 }
 
-const TechonologyCardStyle = {
+const TechonologyCardStyle: React.CSSProperties = {
   width: 300,
   height: 200
 }
 
-const InputStyle = {
+const InputStyle: React.CSSProperties = {
   width: TechonologyCardStyle.width,
   background: "transparent",
   border: "none",
@@ -336,7 +336,7 @@ const InputStyle = {
   lineHeight: "1",
 }
 
-const DescriptionStyle = {
+const DescriptionStyle: React.CSSProperties = {
   height: 100,
 }
 
