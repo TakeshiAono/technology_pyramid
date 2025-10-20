@@ -30,6 +30,7 @@ class Technology < ApplicationRecord
         RECURSIVE
           pyramid_technologies AS (
             SELECT
+              h.id AS hierarcky_id,
               h.technology_id AS upper_tech_id,
               h.lower_technology_id AS current_tech_id,
               1 AS layer
@@ -40,6 +41,7 @@ class Technology < ApplicationRecord
 
             -- 前段のレコードの子テクノロジーidを親とする子要素をレコードとして追加する
             SELECT
+              h2.id AS hierarcky_id,
               h2.technology_id AS upper_tech_id,
               h2.lower_technology_id AS current_tech_id,
               pt.layer + 1
@@ -62,6 +64,7 @@ class Technology < ApplicationRecord
           -- 子と親の情報がセットになったレコードを取得
           (
             SELECT
+              pt.hierarcky_id,
               pt.upper_tech_id,
               pt.current_tech_id,
               t.name AS current_tech_name,
@@ -73,6 +76,7 @@ class Technology < ApplicationRecord
             UNION ALL
             -- 最上位用のレコードを追加
             SELECT
+              NULL AS hierarcky_id,
               tt.upper_tech_id,
               tt.current_tech_id,
               tt.current_tech_name,
@@ -83,6 +87,7 @@ class Technology < ApplicationRecord
           )
 
       SELECT
+        hierarcky_id,
         upper_tech_id,
         current_tech_id,
         current_tech_name,

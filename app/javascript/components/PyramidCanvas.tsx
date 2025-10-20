@@ -17,6 +17,7 @@ export type TechnologyParams = {
   top_technology_id: number;
   tech_pos_id: number;
   description: string;
+  hierarcky_id: number | null;
 }
 
 export type TechnologyNedeParams =
@@ -151,6 +152,39 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
     setTechnologyParamsListState([...technologyParamsListState, technologyParams])
   }
 
+  const deleteTechnology = (targetTechId) => {
+    const deleteTargetIds = deleteTechIdsSearch(targetTechId)
+    const remainingTechs = technologyParamsListState.filter(technologyParams => !deleteTargetIds.includes(technologyParams.current_tech_id))
+
+    setTechnologyParamsListState(remainingTechs)
+    technologyInfos.current = _.compact(technologyInfos.current.map(technologyInfo => {
+      if (deleteTargetIds.includes(technologyInfo.technologyParams.current_tech_id)) {
+        return
+      } else {
+        return technologyInfo
+      }
+    }))
+  }
+
+  const deleteTechIdsSearch = (initialTechId: number) => {
+    const deleteTargetIds = [initialTechId]
+    let loopConditions = [initialTechId]
+    while (loopConditions.length > 0) {
+      const resultTechIds = []
+      loopConditions.forEach(searchTechId => {
+        technologyParamsListState.forEach(technologyParams => {
+          if (technologyParams.upper_tech_id === searchTechId) {
+            resultTechIds.push(technologyParams.current_tech_id)
+            deleteTargetIds.push(technologyParams.current_tech_id)
+          }
+        })
+      })
+      loopConditions = resultTechIds
+    }
+
+    return deleteTargetIds
+  }
+
   const goToLinkPage = async (technologyId: number) => {
     const path = location.pathname;
     const match = path.match(/\/works\/(\d+)/);
@@ -175,6 +209,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
         onClickCallBack={(selectedTechId) => { setClickTechnologyId(selectedTechId); console.log("selectedTechId", selectedTechId) }}
         topTechnologyId={technologyParams.top_technology_id}
         goToLinkPage={goToLinkPage}
+        deleteTechnology={deleteTechnology}
       />)
     )
   }, [technologiesByLayer, clickTechnologyId, technologyParamsListState])

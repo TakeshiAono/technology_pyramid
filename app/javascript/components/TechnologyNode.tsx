@@ -15,6 +15,7 @@ type TechnologyNode = {
   addNewTechnology: (technologyParams: TechnologyNedeParams) => void;
   topTechnologyId: number;
   goToLinkPage: (technologyId: number) => void;
+  deleteTechnology: (technologyId: number) => void;
 }
 
 const TechnologyNode = ({
@@ -28,6 +29,7 @@ const TechnologyNode = ({
   addNewTechnology,
   topTechnologyId,
   goToLinkPage,
+  deleteTechnology,
 }: TechnologyNode) => {
   const [canTitleEdit, setCanTitleEdit] = useState(false)
   const [canDescriptionEdit, setCanDescriptionEdit] = useState(false)
@@ -123,7 +125,43 @@ const TechnologyNode = ({
         tech_pos_id: data.tech_pos_id,
         description: "",
         isUpdated: false,
+        hierarcky_id: data.hierarcky_id,
       })
+    } catch (error) {
+      console.error(`Error: ${error}`)
+    }
+  }
+
+  const deleteTechnologyFromPyramid = async (targetTechId) => {
+    const path = location.pathname;
+    const match = path.match(/\/works\/(\d+)\/technologies\/(\d+)/);
+    const workId = match[1];
+    const toptTechnologyId = match[2];
+
+    const csrfToken = document
+      .querySelector('meta[name="csrf-token"]')
+      ?.getAttribute("content");
+    try {
+      await fetch(
+        `/works/${workId}/technologies/${toptTechnologyId}/api_delete_from_pyramid`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken || "",
+          },
+          method: "delete",
+          body: JSON.stringify({
+            technology: {
+              upper_technology_id: technologyParams.current_tech_id,
+              current_tech_id: technologyParams.current_tech_id,
+              top_technology_id: topTechnologyId,
+              tech_pos_id: technologyParams.tech_pos_id,
+              hierarcky_id: technologyParams.hierarcky_id,
+            }
+          })
+        }
+      )
+      deleteTechnology(targetTechId)
     } catch (error) {
       console.error(`Error: ${error}`)
     }
@@ -204,6 +242,25 @@ const TechnologyNode = ({
             offsetX={0}
             onClick={() => { onlyEditSelect("title") }}
           />
+        }
+        {
+          technologyParams.upper_tech_id &&
+          <Group
+            x={265}
+            y={1}
+            onClick={() => {
+              const permit = window.confirm("クリックしたカードに紐づいている子孫要素すべても削除されてしまいますがよろしいですか？")
+              if (permit) deleteTechnologyFromPyramid(technologyParams.current_tech_id)
+            }}
+            onMouseOver={(e) => {
+              e.target.getStage().container().style.cursor = "pointer"
+            }}
+            onMouseLeave={(e) => {
+              e.target.getStage().container().style.cursor = "default"
+            }}
+          >
+            <Text text="×" fontSize={20} x={11} y={7} />
+          </Group>
         }
         <Group
           width={100}

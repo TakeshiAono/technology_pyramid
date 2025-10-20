@@ -85,6 +85,7 @@ class TechnologiesController < ApplicationController
     )
 
     tech_pos_result = nil
+    hierarcky_result = nil
     ActiveRecord::Base.transaction do
       technology.save!
 
@@ -95,15 +96,26 @@ class TechnologiesController < ApplicationController
         y_pos: api_technology_params[:y_pos].to_i
       )
 
-      Hierarcky.create!(
+      hierarcky_result = Hierarcky.create!(
         technology_id:       api_technology_params[:upper_technology_id],
         lower_technology_id: technology.id
       )
     end
 
-    render json: { ok: true, technology_id: technology.id, tech_pos_id: tech_pos_result.id }, status: :created
+    render json: { ok: true, technology_id: technology.id, tech_pos_id: tech_pos_result.id, hierarcky_id: hierarcky_result.id }, status: :created
   rescue ActiveRecord::RecordInvalid => e
     render json: { ok: false, error: e.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def api_delete_from_pyramid
+    ActiveRecord::Base.transaction do
+      TechnologyPosition.destroy(api_technology_params[:tech_pos_id])
+
+      Hierarcky.destroy(api_technology_params[:hierarcky_id])
+    end
+    head :ok
+  rescue ActiveRecord::RecordInvalid => e
+    head :internal_server_error
   end
 
   def api_update_all_diff
@@ -146,26 +158,30 @@ class TechnologiesController < ApplicationController
     )
   end
 
-  def technology_params_list
-    params.require(:technologies).map { |p| p.permit(
-      :top_technology_id,
-      :current_tech_id,
-      :current_tech_name,
-      :description,
-      :x_pos,
-      :y_pos,
-      :tech_pos_id,
-    )}
-  end
-
-  def api_technology_params
-    params.require(:technology).permit(
+  def base_technology_permitted_params
+    [
       :name,
       :upper_technology_id,
       :description,
       :x_pos,
       :y_pos,
       :top_technology_id,
+      :tech_pos_id,
+      :hierarcky_id,
+      :current_tech_id,
+      :current_tech_name,
+    ]
+  end
+
+  def technology_params_list
+    params.require(:technologies).map { |p| p.permit(
+      *base_technology_permitted_params
+    )}
+  end
+
+  def api_technology_params
+    params.require(:technology).permit(
+      *base_technology_permitted_params
     )
   end
 

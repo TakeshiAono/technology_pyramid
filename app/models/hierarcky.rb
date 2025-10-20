@@ -39,4 +39,9 @@ class Hierarcky < ApplicationRecord
 
   belongs_to :technology
   belongs_to :upper_technology, class_name: 'Technology', foreign_key: 'lower_technology_id'
+
+  has_many :downstream_edges, class_name: 'Hierarcky',
+    foreign_key: :technology_id,
+    primary_key: :lower_technology_id,
+    dependent: :destroy
 end
