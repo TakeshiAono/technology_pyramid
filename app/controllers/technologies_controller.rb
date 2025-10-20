@@ -78,6 +78,70 @@ class TechnologiesController < ApplicationController
     redirect_to edit_technology_path(params[:technology_id])
   end
 
+  def api_create
+    technology = Technology.new(
+      name: api_technology_params[:name],
+      work_id: params[:work_id]
+    )
+
+    tech_pos_result = nil
+    hierarcky_result = nil
+    ActiveRecord::Base.transaction do
+      technology.save!
+
+      tech_pos_result = TechnologyPosition.create!(
+        top_technology_id: api_technology_params[:top_technology_id].to_i,
+        target_technology_id: technology.id,
+        x_pos: api_technology_params[:x_pos].to_i,
+        y_pos: api_technology_params[:y_pos].to_i
+      )
+
+      hierarcky_result = Hierarcky.create!(
+        technology_id:       api_technology_params[:upper_technology_id],
+        lower_technology_id: technology.id
+      )
+    end
+
+    render json: { ok: true, technology_id: technology.id, tech_pos_id: tech_pos_result.id, hierarcky_id: hierarcky_result.id }, status: :created
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { ok: false, error: e.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def api_delete_from_pyramid
+    ActiveRecord::Base.transaction do
+      TechnologyPosition.destroy(api_technology_params[:tech_pos_id])
+
+      Hierarcky.destroy(api_technology_params[:hierarcky_id])
+    end
+    head :ok
+  rescue ActiveRecord::RecordInvalid => e
+    head :internal_server_error
+  end
+
+  def api_update_all_diff
+    ActiveRecord::Base.transaction do
+      technology_params_list.each do |tp|
+
+        techonology = Technology.find(tp[:current_tech_id])
+        techonology.update!(
+          name: tp[:current_tech_name],
+          description: tp[:description],
+        )
+
+        pos = TechnologyPosition.find(tp[:tech_pos_id])
+        pos.update!(
+          x_pos: tp[:x_pos],
+          y_pos: tp[:y_pos]
+        )
+      end
+    end
+
+    head :ok
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.error e
+    head :internal_server_error
+  end
+
   private
 
   def set_technology
@@ -90,7 +154,35 @@ class TechnologiesController < ApplicationController
       :public_flag,
       :work_id,
       :basic_flag,
-      hierarckies_attributes: %i[id lower_technology_id technology_id])
+      hierarckies_attributes: %i[id lower_technology_id technology_id]
+    )
+  end
+
+  def base_technology_permitted_params
+    [
+      :name,
+      :upper_technology_id,
+      :description,
+      :x_pos,
+      :y_pos,
+      :top_technology_id,
+      :tech_pos_id,
+      :hierarcky_id,
+      :current_tech_id,
+      :current_tech_name,
+    ]
+  end
+
+  def technology_params_list
+    params.require(:technologies).map { |p| p.permit(
+      *base_technology_permitted_params
+    )}
+  end
+
+  def api_technology_params
+    params.require(:technology).permit(
+      *base_technology_permitted_params
+    )
   end
 
   def work_params

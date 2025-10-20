@@ -33,3 +33,6 @@ https://drive.google.com/file/d/1WFCqzV-Tp8rHO04OJK3SfiudiGbpFqgP/view?usp=shari
 
 # クラス図
 <img src= "document/クラス図.drawio.png">
+
+# 開発時の注意点
+npm run webpack-devを実行することより、ホットリロードを有効にすることができる。

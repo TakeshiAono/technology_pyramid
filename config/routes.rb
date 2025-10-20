@@ -12,6 +12,11 @@ Rails.application.routes.draw do
       collection do
         delete :reset
       end
+      member do
+        post :api_create
+        delete :api_delete_from_pyramid
+        put :api_update_all_diff
+      end
       resources :pyramids
       resources :links do
         member do
