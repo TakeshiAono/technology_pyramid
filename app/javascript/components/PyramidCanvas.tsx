@@ -220,8 +220,23 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
           {createArrows}
         </Layer>
       </Stage >
+      {technologyParamsListState.some(techParams => techParams.isUpdated === true) &&
+        <p style={{ ...infomationBlockStyle }}>変更されたカードがあります。Ctrl+Shift+Sで保存してください</p>
+      }
+
     </>
   )
+}
+
+const infomationBlockStyle: React.CSSProperties = {
+  position: "fixed",
+  bottom: 50,
+  right: 30,
+  border: "solid",
+  borderWidth: 3,
+  borderRadius: 10,
+  background: "orange",
+  padding: "0px 10px",
 }
 
 export default PyramidCanvas
