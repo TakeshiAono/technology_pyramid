@@ -239,7 +239,7 @@ const PyramidCanvas = ({ technologyParamsList }: { technologyParamsList: Technol
         strokeWidth={2}
       />
     })
-  }, [technologyInfos.current, technologyParamsListState])
+  }, [technologyInfos.current])
 
   return (
     <>
