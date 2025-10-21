@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Canvas Test</title>
+<style>
+  html,body { height:100%; margin:0; }
+  #myCanvas { display:block; width:320px; height:320px; margin:24px auto; border:1px solid #333; background:#f8f8f8; touch-action:none; }
+  button { display:block; margin:0 auto 16px; padding:8px 16px; }
+</style>
+<canvas id="myCanvas" width="320" height="320"></canvas>
+<button id="playBtn">音を鳴らす</button>
+
+<script>
+  // ====== クリック音テスト（iOSはユーザ操作イベント内が必要） ======
+  let audio;
+  function playTone(node=60, sec=0.3) {
+    stopTone();
+    const Hz = 11025;
+    const bytes = new Uint8Array(Math.floor(Hz*sec)+100);
+    const header = "524946460000000057415645666D74201000000001000100112B0000112B0000010008006461746100000000";
+    let fp = 0; for(let i=0;i<header.length/2;i++) bytes[fp++] = parseInt(header.substr(i*2,2),16);
+    const freqs=[4180,4428,4708,4968,5264,5592,5884,6300,6676,6988,7476,7848];
+    const octave = Math.floor(node/12), freq = freqs[node%12]/(1<<(7-octave));
+    const phase = 6.283185307179586 / (Hz/freq);
+    for(let t=0;t<Math.floor(Hz*sec);t++) bytes[fp++] = Math.floor(Math.sin(phase*t)*127)+128;
+    setLE(bytes,4,fp-8); setLE(bytes,24,Hz); setLE(bytes,40,fp-44);
+    let str=""; for(let i=0;i<fp;i++) str+=String.fromCharCode(bytes[i]);
+    audio = new Audio("data:audio/wav;base64,"+btoa(str)); audio.play();
+    function setLE(b,p,d){ b[p]=(d&255); b[p+1]=(d>>8)&255; b[p+2]=(d>>16)&255; b[p+3]=(d>>24)&255; }
+  }
+  function stopTone(){ if(audio && !audio.ended){ audio.pause(); audio.currentTime=0; } }
+  document.getElementById('playBtn').addEventListener('click', ()=>playTone(60,0.2));
+
+  // ====== Canvas 指描画（pointer events） ======
+  const canvas = document.getElementById('myCanvas');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+
+  function getXY(e){
+    const r = canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+  canvas.addEventListener('pointerdown',(e)=>{ drawing=true; const {x,y}=getXY(e); ctx.beginPath(); ctx.moveTo(x,y); });
+  canvas.addEventListener('pointermove',(e)=>{ if(!drawing) return; const {x,y}=getXY(e); ctx.lineWidth=3; ctx.lineCap='round'; ctx.strokeStyle='#000'; ctx.lineTo(x,y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x,y); });
+  const end=()=>{ drawing=false; ctx.beginPath(); };
+  canvas.addEventListener('pointerup', end);
+  canvas.addEventListener('pointerleave', end);
+  canvas.addEventListener('pointercancel', end);
+</script>
+</html>
